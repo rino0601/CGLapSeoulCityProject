@@ -20,13 +20,13 @@
 
 
 ColoredPapperTile::ColoredPapperTile(int saveCount) //생성자
-	: m_nAngle(0)
-	, m_bSelected(false)
-	, m_bCutted(false)
+: m_nAngle(0)
+, m_bSelected(false)
+, m_bCutted(false)
 {
 	isNeiborCutted = false;
 	m_type = saveCount;
-
+	
 }
 
 ColoredPapperTile::~ColoredPapperTile(void)//소멸자
@@ -37,50 +37,50 @@ ColoredPapperTile::~ColoredPapperTile(void)//소멸자
 void ColoredPapperTile::Destroy() //메모리 해제
 {
 	if(!NoEffect.empty())
-		NoEffect.clear(); 
-
+		NoEffect.clear();
+	
 	if(!isCuttedVert.empty())
 		isCuttedVert.clear();
-
+	
 	if(!CuttedVertNum.empty())
 		CuttedVertNum.clear();
-
+	
 	if(!CuttedTileNum.empty())
 		CuttedTileNum.clear();
 	
 	if(!vertex.empty())
 		vertex.clear();
-
+	
 	if(!m_vAlignedVert.empty())
-		m_vAlignedVert.clear();	
-
+		m_vAlignedVert.clear();
+	
 	if(!m_vColor.empty())
-		m_vColor.clear();	
-
+		m_vColor.clear();
+	
 	if(!m_vnVertAngle.empty())
 		m_vnVertAngle.clear();
-
+	
 	if(!m_vfVertLength.empty())
 		m_vfVertLength.clear();
 	
 	if(!m_vfLength.empty())
 		m_vfLength.clear();
-
+	
 	if(!m_vColorVert.empty())
 		m_vColorVert.clear();
 	
 	if(!m_vWhiteVert.empty())
 		m_vWhiteVert.clear();
-
+	
 	if(!m_vWhiteBase.empty())
 		m_vWhiteBase.clear();
-
+	
 	if(!m_vbIsWhiteVertSet.empty())
 		m_vbIsWhiteVertSet.clear();
-
+	
 	if(!m_vMinVert.empty())
-		m_vMinVert.clear();	
-
+		m_vMinVert.clear();
+	
 	int n = m_vpTornOfColored.size();
 	for(int i = 0; i < n ; i++){
 		m_vpTornOfColored[i]->Destroy();
@@ -99,7 +99,7 @@ void ColoredPapperTile::RandomMove(int range, int maxx, int maxy)
 		x = 0;
 	if( x >= maxx)
 		x = maxx-1;
-
+	
 	y += random( range * 2 -1 ) - range +1;
 	if( y < 0)
 		y = 0;
@@ -127,14 +127,14 @@ void ColoredPapperTile::AddVertex(int x, int y)
 {
 	int vertex_size =vertex.size();
 	for(int i = 0; i < vertex_size; i++){
-
+		
 		// 다른 버텍스와 거리가 가까우면 제외
 		if((abs(vertex[i].x - x) + abs(vertex[i].y - y)) <= 2)
 			return;
 	}
 	//버텍스 저장
 	vertex.push_back(MPoint(x,y));
-
+	
 }
 
 //버텍스 정렬
@@ -145,21 +145,21 @@ void ColoredPapperTile::AlignVerties()
 	int* angle;
 	int n = vertex.size();
 	angle = new int[ n ];
-
+	
 	double vecX,vecY;
 	double baseX,baseY;
 	double temp;
-
+	
 	// calcul center
 	baseX = baseY = 0;
 	for(int i =0; i < n; i++){
 		baseX += vertex[i].x;
 		baseY += vertex[i].y;
 	}
-
+	
 	tempX = baseX / n;
 	tempY = baseY / n;
-
+	
 	// calcul angle
 	for(int i = 0; i < n; i++){
 		vecX = vertex[i].x - tempX;
@@ -169,17 +169,17 @@ void ColoredPapperTile::AlignVerties()
 		temp = sqrt( temp );
 		vecX = vecX/temp;
 		vecY = vecY/temp;
-
+		
 		//base 벡터와 비교하여 angle 계산
 		angle[i] = acos(vecX) * 180 / 3.14;
 		if( vecY < 0){
 			angle[i] = 360 - angle[i];
 		}
-
+		
 	}
 	// angle 순서에 따른 저장
 	int minangle;
-	int minIndex;	
+	int minIndex;
 	for(int i = 0; i < n; i++){
 		minangle = 360;
 		for(int j = 0; j < n; j++){
@@ -193,13 +193,13 @@ void ColoredPapperTile::AlignVerties()
 		p.x = vertex[ minIndex ].x;
 		p.y = vertex[ minIndex ].y;
 		m_vAlignedVert.push_back(p);
-
+		
 		isCuttedVert.push_back( false );
-
+		
 		CuttedVertNum.push_back(-1);
 		CuttedTileNum.push_back(-1);
 		angle[ minIndex ] = 360;
-	}	
+	}
 	isNeiborCutted = false;
 	m_bCutted = false;
 	delete [] angle;
@@ -221,21 +221,21 @@ void ColoredPapperTile::setFractalInfo()
 	if((int)m_vpTornOfColored.size() != n){
 		for(int i = 0; i < (int)m_vpTornOfColored.size(); i++)
 			m_vpTornOfColored[i]->Destroy();
-
+		
 		for(int i = 0; i < (int)m_vpTornOfWhite.size(); i++)
 			m_vpTornOfWhite[i]->Destroy();
-
-
+		
+		
 		m_vpTornOfColored.resize( n );
 		m_vpTornOfWhite.resize( n );
-
+		
 		for(int i = 0; i < n; i++){
 			m_vpTornOfColored[i] = new TornEffect();
 			m_vpTornOfWhite[i] = new TornEffect();
 		}
 	}
-
-
+	
+	
 	for(int i = 0; i < n; i++){
 		//프렉탈효과가 없을 경우 다시 정의
 		if(!m_vpTornOfColored[i]->hasEffect())
@@ -247,7 +247,7 @@ void ColoredPapperTile::setFractalInfo()
 		{
 			m_vpTornOfWhite[i]->InitEffect();
 		}
-	}	
+	}
 }
 
 //프렉탈 정보 set (Invers Fractal 효과 위해)
@@ -272,21 +272,21 @@ void ColoredPapperTile::setFractalInfo(int i, bool isWhite, TornEffect* effect)
 
 //프렉탈 정보 초기화
 void ColoredPapperTile::setFractalInfoAsNULL()
-{	
+{
 	m_vpTornOfColored.resize( m_vAlignedVert.size() );
 	m_vpTornOfWhite.resize( m_vAlignedVert.size() );
-
+	
 	for(int i = 0; i < (int)m_vAlignedVert.size(); i++){
 		m_vpTornOfColored[i] = new TornEffect();
 		m_vpTornOfWhite[i] = new TornEffect();
-	}	
+	}
 }
 
 //버텍스 정보 제정의 (색종이 조각의 회전, 이동, 크기 변경시 사용)
 void ColoredPapperTile::updateBaseVert()
 {
 	int n = m_vfVertLength.size();
-
+	
 	for(int i = 0; i < n; i++){
 		m_vAlignedVert[i].x = m_oPosition.x + m_vfVertLength[i] * ( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) );
 		m_vAlignedVert[i].y = m_oPosition.y + m_vfVertLength[i] * ( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) );
@@ -306,13 +306,13 @@ void ColoredPapperTile::ColoredLayer(IplImage* dis, int minDis, float ratio) //(
 {
 	MPoint a, b;
 	int n = m_vAlignedVert.size();
-
+	
 	vector<MPoint> rstList;
-
+	
 	// calculate vertex list
 	m_vColorVert.clear();
 	double distance;
-
+	
 	double edgeRatio;
 	for(int i = 0; i < n; i++){
 		
@@ -326,7 +326,7 @@ void ColoredPapperTile::ColoredLayer(IplImage* dis, int minDis, float ratio) //(
 				continue;
 			}
 		}
-	
+		
 		
 		// start = a  end = b
 		a = m_vAlignedVert[i];
@@ -337,19 +337,19 @@ void ColoredPapperTile::ColoredLayer(IplImage* dis, int minDis, float ratio) //(
 		}
 		if(dis){
 			if(a.x < 0 || int(a.x+0.5) >= dis->width || a.y < 0 || int(a.y+0.5) >= dis->height ||
-				b.x < 0 || int(b.x+0.5) >= dis->width || b.y < 0 || int(b.y+0.5) >= dis->height)
+			   b.x < 0 || int(b.x+0.5) >= dis->width || b.y < 0 || int(b.y+0.5) >= dis->height)
 				edgeRatio = 1.0;
 			else{
-				distance = ((Byte)dis->imageData[int(a.y+0.5)* dis->widthStep + int(a.x+0.5)] 
-				+ (Byte)dis->imageData[int(b.y+0.5)* dis->widthStep + int(b.x+0.5)])/2.0;
+				distance = ((Byte)dis->imageData[int(a.y+0.5)* dis->widthStep + int(a.x+0.5)]
+							+ (Byte)dis->imageData[int(b.y+0.5)* dis->widthStep + int(b.x+0.5)])/2.0;
 				edgeRatio = min( 1.0, max( 0.1, (distance-5)/10.0 ) );
-			}		
+			}
 		}else{
 			edgeRatio = 1.0;
 		}
 		// get fractal value and store
 		rstList = m_vpTornOfColored[i]->GetTornEffectPoint( a, b, minDis, ratio * edgeRatio );
-
+		
 		for(int j = 0; j < (int)rstList.size(); j++)
 			m_vColorVert.push_back( rstList[j] );
 	}
@@ -365,7 +365,7 @@ void ColoredPapperTile::WhiteVertices(int n, int whiteRange, bool b)  //(int n, 
 		
 		for( int i = 0; i < n; i++) {
 			// white layer 가 보여질 확률을 조정한것  65:35
-		
+			
 			m_vWhiteBase[i].x = ( random( int(whiteRange*1.65+0.5) ) - int(whiteRange*0.35+0.5));
 			m_vWhiteBase[i].y = ( random( int(whiteRange*1.65+0.5) ) - int(whiteRange*0.35+0.5));
 			m_vbIsWhiteVertSet[i] = true;
@@ -400,15 +400,15 @@ void ColoredPapperTile::WhiteLayer(IplImage* dis, int whiteRange, int minDis, fl
 		int size =  NoEffect.size();
 		if(size != 0)
 		{
-		//색종이 경계일 경우 톤이펙트 적용 안함
+			//색종이 경계일 경우 톤이펙트 적용 안함
 			if(NoEffect[i] == true && NoEffect[roundRoutine(i+1, n)] == true)
 			{
 				m_vWhiteVert.push_back(m_vAlignedVert[i]);
-
+				
 				continue;
 			}
 		}
-
+		
 		// start = a  end = b									// 타일크기에 비례하여 white layer 보여지는 범위 조절한것
 		a.x = m_vAlignedVert[i].x + (m_vWhiteBase[i].x * min(1.0,((m_vfVertLength[i]+15)/75.0)))*ratio2;
 		a.y = m_vAlignedVert[i].y + (m_vWhiteBase[i].y * min(1.0,((m_vfVertLength[i]+15)/75.0)))*ratio2;
@@ -425,15 +425,15 @@ void ColoredPapperTile::WhiteLayer(IplImage* dis, int whiteRange, int minDis, fl
 		if(dis)
 		{
 			if(a.x < 0 || int(a.x+0.5) >= dis->width || a.y < 0 || int(a.y+0.5) >= dis->height ||
-				b.x < 0 || int(b.x+0.5) >= dis->width || b.y < 0 || int(b.y+0.5) >= dis->height)
-			{			
+			   b.x < 0 || int(b.x+0.5) >= dis->width || b.y < 0 || int(b.y+0.5) >= dis->height)
+			{
 				edgeRatio = 1.0;
 			}
 			else
 			{
 				distance = ((Byte)dis->imageData[int(a.y+0.5)* dis->widthStep + int(a.x+0.5)] + (Byte)dis->imageData[int(b.y+0.5)* dis->widthStep + int(b.x+0.5)])/2.0;
 				edgeRatio = min(1.0, max(0.1, distance-5)/10.0);
-			}		
+			}
 		}
 		else
 		{
@@ -441,7 +441,7 @@ void ColoredPapperTile::WhiteLayer(IplImage* dis, int whiteRange, int minDis, fl
 		}
 		// get fractal value and store
 		rstList = m_vpTornOfWhite[i]->GetTornEffectPoint( a, b, minDis, ratio*edgeRatio);
-
+		
 		for(int j = 0; j < (int)rstList.size(); j++)
 			m_vWhiteVert.push_back( rstList[j] );
 	}
@@ -452,31 +452,31 @@ void ColoredPapperTile::WhiteLayer(IplImage* dis, int whiteRange, int minDis, fl
 int ColoredPapperTile::setChangeVert(int px, int py , int vX, int vY)
 {
 	MPoint p;
-
+	
 	int n = m_vAlignedVert.size();
-
+	
 	float minDis = 10000000;
 	float dis;
 	int minIndex = -1;
-	for(int i = 0; i < n ; i++){		
+	for(int i = 0; i < n ; i++){
 		dis =  sqrt((px - m_vAlignedVert[i].x)*(px - m_vAlignedVert[i].x) + (py - m_vAlignedVert[i].y)*(py - m_vAlignedVert[i].y));
 		if( dis < minDis){
 			minDis = dis;
-			minIndex = i;			
+			minIndex = i;
 		}
 	}
 	
 	return minIndex;
 }
 
-//찢어짐 효과를 표현하기 위해 생성되는 타일의 버텍스와 가까운 버텍스를 찾고 주변 색종이 조각(타일)의 넘버와 버텍스 저장  
+//찢어짐 효과를 표현하기 위해 생성되는 타일의 버텍스와 가까운 버텍스를 찾고 주변 색종이 조각(타일)의 넘버와 버텍스 저장
 void ColoredPapperTile::setCuttedVert(int px, int py,  int vertexnum , int TileNum)
 {
 	MPoint p;
 	isNeiborCutted = true;
-
+	
 	int n = m_vAlignedVert.size();
-
+	
 	float minDis = 10000;
 	float dis;
 	int minIndex = -1;
@@ -484,25 +484,25 @@ void ColoredPapperTile::setCuttedVert(int px, int py,  int vertexnum , int TileN
 		dis =  sqrt((px - m_vAlignedVert[i].x)*(px - m_vAlignedVert[i].x) + (py - m_vAlignedVert[i].y)*(py - m_vAlignedVert[i].y));
 		if( dis < minDis){
 			minDis = dis;
-			minIndex = i;			
+			minIndex = i;
 		}
 	}
 	isCuttedVert[minIndex] = true;
-	CuttedVertNum[minIndex] = vertexnum;	
+	CuttedVertNum[minIndex] = vertexnum;
 	CuttedTileNum[minIndex] = TileNum;
-
+	
 }
 
-//선택된 타일 그리기(타일 이동시(마우스 드래그)) 
+//선택된 타일 그리기(타일 이동시(마우스 드래그))
 void ColoredPapperTile::RenderToDC(CGContextRef ctx,MPoint position)
 {
-//	MPoint* pt1 = NULL;
-//	MPoint* pt2 = NULL;
+	//	MPoint* pt1 = NULL;
+	//	MPoint* pt2 = NULL;
 	CGPoint* pt1 = NULL;
 	CGPoint* pt2 = NULL;
 	
 	int n,m,l;
-
+	
 	// Color setting
 	CvScalar color;
 	color.val[0] = color.val[1] = color.val[2] = 0;
@@ -529,41 +529,41 @@ void ColoredPapperTile::RenderToDC(CGContextRef ctx,MPoint position)
 	dwb = darkenWhite.val[0] = whiteColor.val[0] * 0.92;
 	dwg = darkenWhite.val[1] = whiteColor.val[1] * 0.92;
 	dwr = darkenWhite.val[2] = whiteColor.val[2] * 0.92;
-
+	
 	CvScalar darkenColor;	// border
 	dcb = darkenColor.val[0] = color.val[0] * 0.92;
 	dcg = darkenColor.val[1] = color.val[1] * 0.92;
 	dcr = darkenColor.val[2] = color.val[2] * 0.92;
-
-
-
-	// set vertex 
+	
+	
+	
+	// set vertex
 	n = m_vWhiteVert.size();
 	pt1 = new CGPoint[n];
 	m = m_vColorVert.size();
 	pt2 = new CGPoint[m];
-
+	
 	MPoint posi_dif;
 	posi_dif.x = (double)position.x - m_oPosition.x;
 	posi_dif.y = (double)position.y - m_oPosition.y;
-
+	
 	// set Points Lists
 	int x,y;
 	for(int i = 0; i < n; i++){
 		x =  int(m_vWhiteVert[i].x+posi_dif.x+0.5);
 		y =  int(m_vWhiteVert[i].y+posi_dif.y+0.5);
-
+		
 		pt1[i].x = x;
 		pt1[i].y = y;
 	}
 	for(int i = 0; i < m; i++){
 		x =  int(m_vColorVert[i].x+posi_dif.x+0.5);
 		y =  int(m_vColorVert[i].y+posi_dif.y+0.5);
-
+		
 		pt2[i].x = x;
 		pt2[i].y = y;
 	}
-		
+	
 	//iOS CGContext Code.
 	CGContextSetLineWidth(ctx, 1); // 1이상 값.
 	CGContextSetLineCap(ctx, kCGLineCapRound);
@@ -595,7 +595,7 @@ void ColoredPapperTile::RenderToDC(CGContextRef ctx,MPoint position)
 	
 	delete [] pt1;
 	delete [] pt2;
-
+	
 }
 
 // 색종이 영역 랜더링(색종이 리필 또는 색종이 영역 생성 시 사용) 및 모자이크 영역 색종이 조각 랜더링
@@ -612,7 +612,7 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 	m = m_vColorVert.size();
 	pt3 = new CvPoint[m];
 	pt4 = new CvPoint[m];
-
+	
 	// Color setting
 	CvScalar color;
 	color.val[0] = color.val[1] = color.val[2] = 0;
@@ -625,7 +625,7 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 	color.val[0] = color.val[0]/(double)l;
 	color.val[1] = color.val[1]/(double)l;
 	color.val[2] = color.val[2]/(double)l;
-
+	
 	CvScalar whiteColor;	// 화이트 밝아지는 정도 조절 6:4
 	whiteColor.val[0] = 255 * 0.6 + color.val[0] * 0.4;
 	whiteColor.val[1] = 255 * 0.6 + color.val[1] * 0.4;
@@ -634,22 +634,22 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 	darkenWhite.val[0] = whiteColor.val[0] * 0.92;
 	darkenWhite.val[1] = whiteColor.val[1] * 0.92;
 	darkenWhite.val[2] = whiteColor.val[2] * 0.92;
-
+	
 	CvScalar darkenColor;	// border
 	darkenColor.val[0] = color.val[0] * 0.92;
 	darkenColor.val[1] = color.val[1] * 0.92;
 	darkenColor.val[2] = color.val[2] * 0.92;
-
+	
 	// set Points Lists
 	int x,y;
 	int minx,miny,maxx,maxy;
 	miny = minx = 500000;
 	maxy = maxx = 0;
 	for(int i = 0; i < n; i++){
-	
+		
 		x =  int(m_vWhiteVert[i].x+0.5);
 		y =  int(m_vWhiteVert[i].y+0.5);
-
+		
 		if(x < minx)
 			minx = max(0,x);
 		if(x > maxx)
@@ -660,9 +660,9 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 			maxy = min(y+1, dst->height);
 		pt1[i] = cvPoint(x,y);
 		pt2[i] = cvPoint(x+1,y+1);
-	}	
+	}
 	for(int i = 0; i < m; i++){
-	
+		
 		x =  int(m_vColorVert[i].x+0.5);
 		y =  int(m_vColorVert[i].y+0.5);
 		if(x < minx)
@@ -676,14 +676,14 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 		pt3[i] = cvPoint(x, y);
 		pt4[i] = cvPoint(x+1, y+1);
 	}
-
+	
 	
 	if(isShadow){
 		if(temp){
 			cvSetZero(temp);
 			cvFillPoly(temp,&pt2,&n,1,cvScalar(1,1,1));
 			cvFillPoly(temp,&pt4,&m,1,cvScalar(1,1,1));
-
+			
 			for(y=miny; y< maxy; y++){
 				for(x = minx; x< maxx; x++){
 					if( temp->imageData[y * temp->widthStep + x] == 1){
@@ -698,7 +698,7 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 			cvSetZero(temp);
 			cvFillPoly(temp,&pt2,&n,1,cvScalar(1,1,1));
 			cvFillPoly(temp,&pt4,&m,1,cvScalar(1,1,1));
-
+			
 			for(y=miny; y< maxy; y++){
 				for(x = minx; x< maxx; x++){
 					if( temp->imageData[y * temp->widthStep + x] == 1){
@@ -709,12 +709,12 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 				}
 			}
 			cvReleaseImage(&temp);
-		}			
-	}	
-	//render White paper layer	
+		}
+	}
+	//render White paper layer
 	cvFillPoly(dst,&pt1,&n,1,whiteColor);
 	cvPolyLine(dst,&pt1,&n,1,1,darkenWhite);
-
+	
 	//render Colored paper layer
 	cvFillPoly(dst,&pt3,&m,1,color);
 	cvPolyLine(dst,&pt3,&m,1,1,darkenColor);
@@ -723,7 +723,7 @@ void ColoredPapperTile::Render(IplImage* dst,bool isShadow, IplImage* temp)
 	delete [] pt2;
 	delete [] pt3;
 	delete [] pt4;
-
+	
 }
 
 //모자이크 영역 타일 이동시 타일 선택 영역 타일 랜더링
@@ -814,7 +814,7 @@ void ColoredPapperTile::SelectRender(IplImage* dst, CPoint Max, CPoint Min, bool
 		pt3[i] = cvPoint(x, y);
 		pt4[i] = cvPoint(x+1, y+1);
 	}
-		
+	
 	//render White paper layer
 	cvFillPoly(temp2,&pt1,&n,1,whiteColor);
 	cvPolyLine(temp2,&pt1,&n,1,1,darkenWhite);
@@ -871,7 +871,7 @@ void  ColoredPapperTile::setTileMap(float x, float y, int angle, IplImage* tileM
 		return;
 	CvPoint* vertList;
 	int n = m_vAlignedVert.size();
-
+	
 	vertList = new CvPoint[n];
 	for(int i = 0; i < n; i++){
 		vertList[i].x = int( m_vfVertLength[i]*( COS( ANGLE( angle + m_vnVertAngle[i]) ) ) + x + 0.5 );
@@ -886,15 +886,15 @@ void  ColoredPapperTile::Resize(float lengthRatio)
 {
 	float Length;
 	bool resize;
-
 	
-
+	
+	
 	int n = m_vfVertLength.size();
 	for(int i = 0; i < n ; i++)
 	{
-		//타일의 크기 최대 크기 조절 
+		//타일의 크기 최대 크기 조절
 		Length = m_vfVertLength[i] ;
-		if(Length > 60) 
+		if(Length > 60)
 		{
 			resize = false;
 			break;
@@ -905,31 +905,31 @@ void  ColoredPapperTile::Resize(float lengthRatio)
 		}
 		
 	}
-
-	// 
+	
+	//
 	for(int i = 0; i < n ; i++)
 	{
 		Length = m_vfVertLength[i] *lengthRatio;
 		if(resize == true)
-		{	
+		{
 			// VertLength 가 70 보다 작을 경우 크기 키움
 			if(Length < 70 &&  lengthRatio > 1 )
 			{
 			 	m_vfVertLength[i] =  Length;
-			 	m_vfLength[i] = Length;			 				
+			 	m_vfLength[i] = Length;
 			}
 			
 		}
-
+		
 		// VertLength 가 6 보다 클 경우 크기 키움
 		if(Length >6  &&  lengthRatio < 1)
 		{
 			m_vfVertLength[i] =  Length;
-			m_vfLength[i] = Length;			
-		}			
+			m_vfLength[i] = Length;
+		}
 	}
-
-
+	
+	
 }
 
 // 자동 붙이기시 전처리 작업으로 후보점 찾기 위해 사용할 맵 생성
@@ -942,37 +942,37 @@ void ColoredPapperTile::setMaps(IplImage* tileMap, IplImage* overlapMap, IplImag
 	CvPoint* positionList;
 	CvPoint* midPositionList;
 	CvPoint* innerPositionList;
-
+	
 	int n = m_vAlignedVert.size();
-
+	
 	double tempLength;
 	overList = new CvPoint[n];
 	baseList = new CvPoint[n];
 	positionList = new CvPoint[n];
 	midPositionList = new CvPoint[n];
 	innerPositionList = new CvPoint[n];
-
+	
 	for(int i = 0; i < n; i++){
 		tempLength = m_vfVertLength[i]*overlapRatio;
 		overList[i].x = ( tempLength*( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.x +0.5 );
 		overList[i].y = ( tempLength*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );
-
+		
 		tempLength = m_vfVertLength[i]*regenRatio;
 		baseList[i].x = ( tempLength*( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.x +0.5 );
 		baseList[i].y = ( tempLength*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );
-
+		
 		tempLength = (m_vfVertLength[i] + m_vfVertLength[i])*0.95;
 		positionList[i].x = ( tempLength*( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.x +0.5 );
 		positionList[i].y = ( tempLength*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );
 		midPositionList[i].x = ( (tempLength - 3)*( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.x +0.5 );
 		midPositionList[i].y = ( (tempLength - 3)*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );
 		innerPositionList[i].x = ( (tempLength - 7)*( COS( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.x +0.5 );
-		innerPositionList[i].y = ( (tempLength - 7)*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );		
+		innerPositionList[i].y = ( (tempLength - 7)*( SIN( ANGLE( m_nAngle + m_vnVertAngle[i]) ) ) + m_oPosition.y +0.5 );
 	}
 	if(!temp){
 		temp = cvCreateImage(cvGetSize(tileMap),32,1);
 		cvSetZero(temp);
-
+		
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-3),7);
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-2),5);
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-1),3);
@@ -980,12 +980,12 @@ void ColoredPapperTile::setMaps(IplImage* tileMap, IplImage* overlapMap, IplImag
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(1),5);
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(2),3);
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(3),1);
-
+		
 		cvAdd(positionMap,temp,positionMap);
 		cvReleaseImage(&temp);
 	}else{
 		cvSetZero(temp);
-
+		
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-3),7);
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-2),5);
 		cvPolyLine(temp,&midPositionList,&n,1,1,cvScalar(-1),3);
@@ -993,13 +993,13 @@ void ColoredPapperTile::setMaps(IplImage* tileMap, IplImage* overlapMap, IplImag
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(1),5);
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(2),3);
 		cvPolyLine(temp,&positionList,&n,1,1, cvScalar(3),1);
-
+		
 		cvAdd(positionMap,temp,positionMap);
 	}
 	cvFillPoly(positionMap,&innerPositionList,&n,1,cvScalar(-4));
 	cvFillPoly(tileMap,&baseList,&n,1,CV_RGB(TILE,TILE,TILE));
 	cvFillPoly(overlapMap,&overList,&n,1,CV_RGB(OVERLAP,OVERLAP,OVERLAP));
-
+	
 	delete [] baseList;
 	delete [] positionList;
 	delete [] overList;
@@ -1075,7 +1075,7 @@ void ColoredPapperTile::reSetMaps(IplImage* tileMap, IplImage* overlapMap, IplIm
 	cvFillPoly(positionMap,&innerPositionList,&n,1,cvScalar(0));
 	cvFillPoly(tileMap,&baseList,&n,1,CV_RGB(0,0,0));
 	cvFillPoly(overlapMap,&overList,&n,1,CV_RGB(0,0,0));
-		
+	
 	delete [] baseList;
 	delete [] positionList;
 	delete [] overList;
@@ -1123,7 +1123,7 @@ void ColoredPapperTile::setMaskMaps(IplImage* tileMap, IplImage* overlapMap, Ipl
 	
 }
 
-//자동 붙이기시 선택된 위치에 대한 정보 저장 
+//자동 붙이기시 선택된 위치에 대한 정보 저장
 void ColoredPapperTile::setPosition(float x, float y, int angle, int maxx, int maxy, CvScalar color)
 {
 	m_oPosition.x = x;
@@ -1140,15 +1140,15 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 	m_vfLength.clear();
 	m_vfVertLength.clear();
 	m_vnVertAngle.clear();
-
+	
 	m_nRadius = radius;
 	m_fMinRatio = minRatio;
 	m_nAdditionalEdge = addtionalEdge;
-
+	
 	int step = 15;
 	vector< float > lengths;
 	float x, y;
-
+	
 	// intersection test
 	for(int i = 0; i < 360; i= i+step){
 		int j;
@@ -1162,7 +1162,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 		}
 		lengths.push_back(j-1);
 	}
-
+	
 	// 변곡점 찾기
 	int n = 360/step;
 	float leftflag, rightflag;
@@ -1175,7 +1175,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 			h = n-1;
 		leftflag = lengths[i] - lengths[h];
 		rightflag = lengths[j] - lengths[i];
-
+		
 		if(leftflag > 0)
 			leftflag = PLUS;
 		if(leftflag < 0)
@@ -1184,7 +1184,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 			rightflag = PLUS;
 		if(rightflag < 0)
 			rightflag = MINUS;
-
+		
 		// 변곡점
 		if(leftflag != rightflag){
 			// vertex 추가
@@ -1193,7 +1193,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 			m_vnVertAngle.push_back( i*step );
 		}
 	}
-
+	
 	// 변곡점 검사 및 추가 생성
 	int shape = 6;		// 5~6
 	int baseAngle = 360/shape;
@@ -1211,13 +1211,13 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 			m_vfLength.push_back(lengths[ (int)((i* baseAngle) /(double)step +0.5) ]);
 		}
 	}
-
+	
 	for(int i = 0; i < (int)m_vfVertLength.size(); i++)
 	{
 		m_vfVertLength[i] = max( m_vfVertLength[i], m_nRadius * m_fMinRatio );
 	    m_vfLength[i] = max( m_vfLength[i], m_nRadius * m_fMinRatio );
 	}
-
+	
 	// 각도 검사 및 추가
 	int tempAngle;
 	int insertedAngle;
@@ -1231,7 +1231,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 		rightflag = m_vnVertAngle[j] - m_vnVertAngle[i];
 		if(rightflag < 0)
 			rightflag +=360;
-
+		
 		tempAngle = m_vnVertAngle[i];
 		if( rightflag < 100)
 			continue;
@@ -1247,17 +1247,17 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 				n = 0;
 			fl = lengths[l];
 			fn = lengths[n];
-
+			
 			fm = ((step-m)/(double)step) * fl + (m/(double)step) * fn;
 			m_vfVertLength.insert(m_vfVertLength.begin()+j, fm);
 			m_vfLength.insert(m_vfLength.begin()+j, fm);
 		}else if( rightflag >= 160 && rightflag < 230){
 			baseAngle = rightflag/3;
-
+			
 			for(int k = 2; k > 0; k--){
 				insertedAngle = ANGLE( tempAngle+(baseAngle*k) );
 				m_vnVertAngle.insert(m_vnVertAngle.begin()+j, insertedAngle );
-
+				
 				l = insertedAngle/step;
 				m = insertedAngle%step;
 				n = l+1;
@@ -1265,18 +1265,18 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 					n = 0;
 				fl = lengths[l];
 				fn = lengths[n];
-
+				
 				fm = ((step-m)/(double)step) * fl + (m/(double)step) * fn;
 				m_vfVertLength.insert(m_vfVertLength.begin()+j, fm);
 				m_vfLength.insert(m_vfLength.begin()+j, fm);
 			}
 		}else if( rightflag >= 230 && rightflag < 294){
 			baseAngle = rightflag/4;
-
+			
 			for(int k = 3; k > 0; k--){
 				insertedAngle = ANGLE( tempAngle+(baseAngle*k) );
 				m_vnVertAngle.insert(m_vnVertAngle.begin()+j, insertedAngle );
-
+				
 				l = insertedAngle/step;
 				m = insertedAngle%step;
 				n = l+1;
@@ -1284,18 +1284,18 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 					n = 0;
 				fl = lengths[l];
 				fn = lengths[n];
-
+				
 				fm = ((step-m)/(double)step) * fl + (m/(double)step) * fn;
 				m_vfVertLength.insert(m_vfVertLength.begin()+j, fm);
 				m_vfLength.insert(m_vfLength.begin()+j, fm);
 			}
 		}else if( rightflag >= 294 && rightflag < 320){
 			baseAngle = rightflag/5;
-
+			
 			for(int k = 4; k > 0; k--){
 				insertedAngle = ANGLE( tempAngle+(baseAngle*k) );
 				m_vnVertAngle.insert(m_vnVertAngle.begin()+j, insertedAngle );
-
+				
 				l = insertedAngle/step;
 				m = insertedAngle%step;
 				n = l+1;
@@ -1303,18 +1303,18 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 					n = 0;
 				fl = lengths[l];
 				fn = lengths[n];
-
+				
 				fm = ((step-m)/(double)step) * fl + (m/(double)step) * fn;
 				m_vfVertLength.insert(m_vfVertLength.begin()+j, fm);
 				m_vfLength.insert(m_vfLength.begin()+j, fm);
 			}
 		}else if( rightflag >= 320 && rightflag < 360){
 			baseAngle = rightflag/6;
-
+			
 			for(int k = 5; k > 0; k--){
 				insertedAngle = ANGLE( tempAngle+(baseAngle*k) );
 				m_vnVertAngle.insert(m_vnVertAngle.begin()+j, insertedAngle );
-
+				
 				l = insertedAngle/step;
 				m = insertedAngle%step;
 				n = l+1;
@@ -1322,7 +1322,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 					n = 0;
 				fl = lengths[l];
 				fn = lengths[n];
-
+				
 				fm = ((step-m)/(double)step) * fl + (m/(double)step) * fn;
 				m_vfVertLength.insert(m_vfVertLength.begin()+j, fm);
 				m_vfLength.insert(m_vfLength.begin()+j, fm);
@@ -1331,7 +1331,7 @@ void ColoredPapperTile::generation(IplImage* overmap, IplImage* edge, IplImage* 
 	}
 	m_vAlignedVert.resize( m_vfVertLength.size());
 	updateBaseVert();
-
+	
 	lengths.clear();
 }
 
@@ -1341,21 +1341,21 @@ bool ColoredPapperTile::isIntersect(float fx, float fy, IplImage* overmap, IplIm
 	int x,y;
 	x = int(fx + 0.5);
 	y = int(fy + 0.5);
-
+	
 	// 이미지 경계와 교점
 	if(x < 1 || x >= m_mImageSize.x -1 || y < 1 || y >= m_mImageSize.y -1)
 		return false;
-
+	
 	// 에지와 교점
 	if((Byte)edge->imageData[ y * edge->widthStep + x ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y-1)* edge->widthStep + x ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y+1)* edge->widthStep + x ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ y * edge->widthStep + (x+1) ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ y * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y-1) * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y-1) * edge->widthStep + (x+1) ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y+1) * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
-		|| (Byte)edge->imageData[ (y+1) * edge->widthStep + (x+1) ] <= m_nAdditionalEdge )
+	   || (Byte)edge->imageData[ (y-1)* edge->widthStep + x ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ (y+1)* edge->widthStep + x ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ y * edge->widthStep + (x+1) ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ y * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ (y-1) * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ (y-1) * edge->widthStep + (x+1) ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ (y+1) * edge->widthStep + (x-1) ] <= m_nAdditionalEdge
+	   || (Byte)edge->imageData[ (y+1) * edge->widthStep + (x+1) ] <= m_nAdditionalEdge )
 		return true;
 	if(layer){
 		// 레이어 경계와 교점
@@ -1386,11 +1386,11 @@ void ColoredPapperTile::setAccumulatedTile(IplImage* dst, IplImage* temp)
 			x =  int(m_vWhiteVert[i].x+0.5);
 			y =  int(m_vWhiteVert[i].y+0.5);
 			pt[i] = cvPoint(x,y);
-		}	
+		}
 		cvFillPoly(temp,&pt,&n,1,CV_RGB(1,1,1));
-
+		
 		delete [] pt;
-
+		
 		//render Colored paper layer
 		n = m_vColorVert.size();
 		pt = new CvPoint[n];
@@ -1413,10 +1413,10 @@ void ColoredPapperTile::setAccumulatedTile(IplImage* dst, IplImage* temp)
 			x =  int(m_vWhiteVert[i].x+0.5);
 			y =  int(m_vWhiteVert[i].y+0.5);
 			pt[i] = cvPoint(x,y);
-		}	
+		}
 		cvFillPoly(temp,&pt,&n,1,CV_RGB(1,1,1));
 		delete [] pt;
-
+		
 		//render Colored paper layer
 		n = m_vColorVert.size();
 		pt = new CvPoint[n];
@@ -1465,37 +1465,37 @@ void ColoredPapperTile:: setAccumulatedMap(IplImage* dst, IplImage* temp)
 	}
 }
 
-//에지 클리핑, 에지위에 타일이 놓일때 알맞는 모양으로 타일의 변경  
+//에지 클리핑, 에지위에 타일이 놓일때 알맞는 모양으로 타일의 변경
 void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* tile, bool isInit)
-{ 
+{
 	if(m_type < NEW_TILE)
 		return;
-
+	
 	m_mImageSize.x = edge->width;
 	m_mImageSize.y = edge->height;
-
+	
 	m_nMinLength = 6;
-
+	
 	double length,curlength,templength;
 	double dx,dy;
 	double x,y;
 	int n = m_vAlignedVert.size();;
-
+	
 	// - & | direction
 	MPoint a,b, mid;
-
+	
 	int j;
 	int angleData[7] = {0,0,0,60,45,36,30};
-
+	
 	double flength;
 	int ilength;
-
+	
 	for(int i = 0; i < n; i++){
 		a = m_vAlignedVert[i];
 		b = i == n-1 ? m_vAlignedVert[0] : m_vAlignedVert[i+1];
 		mid.x = (a.x + b.x)/2.0;
 		mid.y = (a.y + b.y)/2.0;
-
+		
 		// calculate actual length
 		length = (mid.x - m_oPosition.x)*(mid.x - m_oPosition.x) + (mid.y - m_oPosition.y)*(mid.y - m_oPosition.y);
 		curlength = length = sqrt(length);
@@ -1505,36 +1505,36 @@ void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* 
 			}
 			continue;
 		}
-
+		
 		// calculate direction vector
 		dx = length == 0? 0 : (mid.x - m_oPosition.x) / length;
 		dy = length == 0? 0 : (mid.y - m_oPosition.y) / length;
-
+		
 		// templength is tile width/2
 		templength = m_vfLength[i]*( COS( angleData[n] ) );
-
+		
 		// for tile grow up
 		if( length < templength && m_type == NEW_TILE){
 			length = min( templength, length + deltaLength*0.5);
 		}
-
-
+		
+		
 		ilength = (int)length;
 		flength = length - ilength;
-
+		
 		for(j = 0; j < ilength; j++){
 			x = m_oPosition.x + dx * j;
 			y = m_oPosition.y + dy * j;
-
+			
 			x = max(1, min( m_mImageSize.x-2, int(x+0.5)));
 			y = max(1, min( m_mImageSize.y-2, int(y+0.5)));
-
+			
 			// if meet edge
-			if( isEdge(x,y,edge) ){										
+			if( isEdge(x,y,edge) ){
 				j = getEdgeClippedLength(j, curlength, isInit, deltaLength)+1;// if all passed then j is over length so +1 for default decrease
 				break;
 			}
-			if(tile != NULL)	
+			if(tile != NULL)
 			{
 				// if meet other tile
 				if( (Byte)tile->imageData[ int(y) * edge->widthStep + int(x) ] == TILE){// && isInit){
@@ -1543,34 +1543,34 @@ void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* 
 				}
 			}
 		}
-
+		
 		// ¡ﬂΩ…¡°
 		x = m_oPosition.x + dx * (j-1 + flength);
 		y = m_oPosition.y + dy * (j-1 + flength);
-
-
+		
+		
 		////// maybe it need to fix about the cross movement of two tiles ////////////////////////
 		m_vAlignedVert[i].x = x + a.x - mid.x;
 		m_vAlignedVert[i].y = y + a.y - mid.y;
-
+		
 		m_vfVertLength[i] = sqrt((double)((m_vAlignedVert[i].x - m_oPosition.x) * (m_vAlignedVert[i].x - m_oPosition.x)
-			+ (m_vAlignedVert[i].y - m_oPosition.y) * (m_vAlignedVert[i].y - m_oPosition.y)));
-
+										  + (m_vAlignedVert[i].y - m_oPosition.y) * (m_vAlignedVert[i].y - m_oPosition.y)));
+		
 		if(i == n-1){
 			m_vAlignedVert[0].x = x + b.x - mid.x;
 			m_vAlignedVert[0].y = y + b.y - mid.y;
 			m_vfVertLength[0] = sqrt((double)((m_vAlignedVert[0].x - m_oPosition.x) * (m_vAlignedVert[0].x - m_oPosition.x)
-				+ (m_vAlignedVert[0].y - m_oPosition.y) * (m_vAlignedVert[0].y - m_oPosition.y)));
-
+											  + (m_vAlignedVert[0].y - m_oPosition.y) * (m_vAlignedVert[0].y - m_oPosition.y)));
+			
 		}else{
 			m_vAlignedVert[i+1].x = x + b.x - mid.x;
 			m_vAlignedVert[i+1].y = y + b.y - mid.y;
 			m_vfVertLength[i+1] = sqrt((double)((m_vAlignedVert[i+1].x - m_oPosition.x) * (m_vAlignedVert[i+1].x - m_oPosition.x)
-				+ (m_vAlignedVert[i+1].y - m_oPosition.y) * (m_vAlignedVert[i+1].y - m_oPosition.y)));
+												+ (m_vAlignedVert[i+1].y - m_oPosition.y) * (m_vAlignedVert[i+1].y - m_oPosition.y)));
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////
 	}
-
+	
 	// diagonal (/ & \) direction
 	for(int i = 0; i < n; i++)
 	{
@@ -1580,26 +1580,26 @@ void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* 
 			}
 			continue;
 		}
-
+		
 		dx = m_vfVertLength[i] == 0? 0 : (m_vAlignedVert[i].x - m_oPosition.x) / m_vfVertLength[i];
 		dy = m_vfVertLength[i] == 0? 0 : (m_vAlignedVert[i].y - m_oPosition.y) / m_vfVertLength[i];
-
+		
 		if( m_vfVertLength[i] < m_vfLength[i] && m_type == NEW_TILE){
 			length = min( m_vfLength[i], m_vfVertLength[i] + deltaLength*0.5);
 		}else{
 			length = m_vfVertLength[i];
 		}
-
+		
 		ilength = (int)length;
 		flength = length - ilength;
-
+		
 		for( j = 0; j < ilength; j++){
 			x = m_oPosition.x + dx * j;
 			y = m_oPosition.y + dy * j;
-
+			
 			x = max(1, min( m_mImageSize.x-2, int(x+0.5)));
 			y = max(1, min( m_mImageSize.y-2, int(y+0.5)));
-
+			
 			// if meet edge
 			if( isEdge(x,y,edge) ){
 				j = getDiagonalEdgeClippedLength(j, m_vfVertLength[i], isInit, deltaLength)+1;
@@ -1614,12 +1614,12 @@ void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* 
 				}
 			}
 		}
-
+		
 		m_vAlignedVert[i].x = m_oPosition.x + dx * (j-1 + flength);
 		m_vAlignedVert[i].y = m_oPosition.y + dy * (j-1 + flength);
 		
 		m_vfVertLength[i] = sqrt((double)((m_vAlignedVert[i].x - m_oPosition.x) * (m_vAlignedVert[i].x - m_oPosition.x)
-			+ (m_vAlignedVert[i].y - m_oPosition.y) * (m_vAlignedVert[i].y - m_oPosition.y)));
+										  + (m_vAlignedVert[i].y - m_oPosition.y) * (m_vAlignedVert[i].y - m_oPosition.y)));
 	}
 }
 
@@ -1628,18 +1628,18 @@ void ColoredPapperTile::edgeClipping(IplImage* edge, int deltaLength, IplImage* 
 bool ColoredPapperTile::isEdge(int x, int y, IplImage* edgeMap)
 {
 	if((Byte)edgeMap->imageData[ y * edgeMap->widthStep + x ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y-1)* edgeMap->widthStep + x ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y+1)* edgeMap->widthStep + x ] == EDGE
-		|| (Byte)edgeMap->imageData[ y * edgeMap->widthStep + (x+1) ] == EDGE
-		|| (Byte)edgeMap->imageData[ y * edgeMap->widthStep + (x-1) ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y-1) * edgeMap->widthStep + (x-1) ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y-1) * edgeMap->widthStep + (x+1) ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y+1) * edgeMap->widthStep + (x-1) ] == EDGE
-		|| (Byte)edgeMap->imageData[ (y+1) * edgeMap->widthStep + (x+1) ] == EDGE)
-	{ 
+	   || (Byte)edgeMap->imageData[ (y-1)* edgeMap->widthStep + x ] == EDGE
+	   || (Byte)edgeMap->imageData[ (y+1)* edgeMap->widthStep + x ] == EDGE
+	   || (Byte)edgeMap->imageData[ y * edgeMap->widthStep + (x+1) ] == EDGE
+	   || (Byte)edgeMap->imageData[ y * edgeMap->widthStep + (x-1) ] == EDGE
+	   || (Byte)edgeMap->imageData[ (y-1) * edgeMap->widthStep + (x-1) ] == EDGE
+	   || (Byte)edgeMap->imageData[ (y-1) * edgeMap->widthStep + (x+1) ] == EDGE
+	   || (Byte)edgeMap->imageData[ (y+1) * edgeMap->widthStep + (x-1) ] == EDGE
+	   || (Byte)edgeMap->imageData[ (y+1) * edgeMap->widthStep + (x+1) ] == EDGE)
+	{
 		return true;
 	}
-
+	
 	return false;
 }
 
@@ -1651,7 +1651,7 @@ int ColoredPapperTile::getDiagonalEdgeClippedLength(int val, double curLength, b
 	if(isInit){
 		return max(tempMinLength, min(curLength-1, val+3));
 	}else{
-		if(m_type == NEW_TILE) 
+		if(m_type == NEW_TILE)
 			return max(tempMinLength, max( curLength - deltaLength, val ) );
 		else
 			return max(val, curLength-deltaLength);

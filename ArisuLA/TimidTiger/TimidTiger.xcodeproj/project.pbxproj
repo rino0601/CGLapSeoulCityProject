@@ -804,8 +804,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (VMY5SX42KT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -821,8 +821,8 @@
 				INFOPLIST_FILE = "TimidTiger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TimidTiger;
-				PROVISIONING_PROFILE = "DEC1E2BF-880D-47D3-8217-5EE0F74E10CF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC1E2BF-880D-47D3-8217-5EE0F74E10CF";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -835,8 +835,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (VMY5SX42KT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -850,8 +850,8 @@
 				INFOPLIST_FILE = "TimidTiger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TimidTiger;
-				PROVISIONING_PROFILE = "DEC1E2BF-880D-47D3-8217-5EE0F74E10CF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC1E2BF-880D-47D3-8217-5EE0F74E10CF";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
