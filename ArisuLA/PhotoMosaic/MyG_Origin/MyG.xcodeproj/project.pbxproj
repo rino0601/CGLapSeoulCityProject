@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CAB1EEE17854540004120C3 /* TileMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB1EED17854540004120C3 /* TileMosaic.cpp */; };
+		1CABEE22177D027300344562 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CABEE21177D027300344562 /* libsqlite3.dylib */; };
+		1CAC6E4917615B5F00C1E390 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAC6E4817615B5F00C1E390 /* OpenGLES.framework */; };
+		1CAC6E4B1761B35A00C1E390 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAC6E4A1761B35A00C1E390 /* QuartzCore.framework */; };
+		1CAC867E177CA72B00914F93 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAC867D177CA72B00914F93 /* CoreData.framework */; };
+		4C989C80178BDF6300AFAC23 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C989C7F178BDF6300AFAC23 /* opencv2.framework */; };
+		8F03E7A61666FD38002C6CA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F03E7A51666FD38002C6CA6 /* UIKit.framework */; };
+		8F03E7A81666FD38002C6CA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F03E7A71666FD38002C6CA6 /* Foundation.framework */; };
+		8F03E7AA1666FD38002C6CA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F03E7A91666FD38002C6CA6 /* CoreGraphics.framework */; };
+		8F03E7B01666FD38002C6CA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7AE1666FD38002C6CA6 /* InfoPlist.strings */; };
+		8F03E7B21666FD38002C6CA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F03E7B11666FD38002C6CA6 /* main.m */; };
+		8F03E7B61666FD38002C6CA6 /* LGRAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F03E7B51666FD38002C6CA6 /* LGRAppDelegate.mm */; };
+		8F03E7B81666FD38002C6CA6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7B71666FD38002C6CA6 /* Default.png */; };
+		8F03E7BA1666FD38002C6CA6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7B91666FD38002C6CA6 /* Default@2x.png */; };
+		8F03E7BC1666FD38002C6CA6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7BB1666FD38002C6CA6 /* Default-568h@2x.png */; };
+		8F03E7BF1666FD38002C6CA6 /* LGRViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F03E7BE1666FD38002C6CA6 /* LGRViewController.mm */; };
+		8F03E7C21666FD38002C6CA6 /* LGRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7C01666FD38002C6CA6 /* LGRViewController.xib */; };
+		8F03E7CE1666FEA1002C6CA6 /* Tile_Mosaic_CV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F03E7CC1666FEA1002C6CA6 /* Tile_Mosaic_CV.cpp */; };
+		8F03E7E3166C3916002C6CA6 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F03E7E2166C3916002C6CA6 /* AssetsLibrary.framework */; };
+		8F03E7E6166DA3DA002C6CA6 /* DB in Resources */ = {isa = PBXBuildFile; fileRef = 8F03E7E5166DA3DA002C6CA6 /* DB */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1CAB1EEC178543A3004120C3 /* TileMosaic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileMosaic.h; sourceTree = "<group>"; };
+		1CAB1EED17854540004120C3 /* TileMosaic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMosaic.cpp; sourceTree = "<group>"; };
+		1CABEE21177D027300344562 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1CAC6E43175EE0AB00C1E390 /* MyG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MyG.entitlements; sourceTree = "<group>"; };
+		1CAC6E4817615B5F00C1E390 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		1CAC6E4A1761B35A00C1E390 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1CAC867D177CA72B00914F93 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4C989C7F178BDF6300AFAC23 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../opencv2.framework; sourceTree = "<group>"; };
+		8F03E7A11666FD38002C6CA6 /* MyG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyG.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F03E7A51666FD38002C6CA6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8F03E7A71666FD38002C6CA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8F03E7A91666FD38002C6CA6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8F03E7AD1666FD38002C6CA6 /* MyG-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyG-Info.plist"; sourceTree = "<group>"; };
+		8F03E7AF1666FD38002C6CA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8F03E7B11666FD38002C6CA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8F03E7B31666FD38002C6CA6 /* MyG-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyG-Prefix.pch"; sourceTree = "<group>"; };
+		8F03E7B41666FD38002C6CA6 /* LGRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGRAppDelegate.h; sourceTree = "<group>"; };
+		8F03E7B51666FD38002C6CA6 /* LGRAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LGRAppDelegate.mm; sourceTree = "<group>"; };
+		8F03E7B71666FD38002C6CA6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8F03E7B91666FD38002C6CA6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8F03E7BB1666FD38002C6CA6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8F03E7BD1666FD38002C6CA6 /* LGRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGRViewController.h; sourceTree = "<group>"; };
+		8F03E7BE1666FD38002C6CA6 /* LGRViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LGRViewController.mm; sourceTree = "<group>"; };
+		8F03E7C11666FD38002C6CA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LGRViewController.xib; sourceTree = "<group>"; };
+		8F03E7CC1666FEA1002C6CA6 /* Tile_Mosaic_CV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile_Mosaic_CV.cpp; sourceTree = "<group>"; };
+		8F03E7CD1666FEA1002C6CA6 /* Tile_Mosaic_CV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile_Mosaic_CV.h; sourceTree = "<group>"; };
+		8F03E7E2166C3916002C6CA6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8F03E7E5166DA3DA002C6CA6 /* DB */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DB; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F03E79E1666FD38002C6CA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C989C80178BDF6300AFAC23 /* opencv2.framework in Frameworks */,
+				1CABEE22177D027300344562 /* libsqlite3.dylib in Frameworks */,
+				1CAC867E177CA72B00914F93 /* CoreData.framework in Frameworks */,
+				1CAC6E4B1761B35A00C1E390 /* QuartzCore.framework in Frameworks */,
+				1CAC6E4917615B5F00C1E390 /* OpenGLES.framework in Frameworks */,
+				8F03E7E3166C3916002C6CA6 /* AssetsLibrary.framework in Frameworks */,
+				8F03E7A61666FD38002C6CA6 /* UIKit.framework in Frameworks */,
+				8F03E7A81666FD38002C6CA6 /* Foundation.framework in Frameworks */,
+				8F03E7AA1666FD38002C6CA6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F03E7961666FD38002C6CA6 = {
+			isa = PBXGroup;
+			children = (
+				1CABEE21177D027300344562 /* libsqlite3.dylib */,
+				8F03E7AB1666FD38002C6CA6 /* MyG */,
+				8F03E7A41666FD38002C6CA6 /* Frameworks */,
+				8F03E7A21666FD38002C6CA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8F03E7A21666FD38002C6CA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F03E7A11666FD38002C6CA6 /* MyG.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F03E7A41666FD38002C6CA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C989C7F178BDF6300AFAC23 /* opencv2.framework */,
+				1CAC867D177CA72B00914F93 /* CoreData.framework */,
+				1CAC6E4A1761B35A00C1E390 /* QuartzCore.framework */,
+				1CAC6E4817615B5F00C1E390 /* OpenGLES.framework */,
+				8F03E7E2166C3916002C6CA6 /* AssetsLibrary.framework */,
+				8F03E7A51666FD38002C6CA6 /* UIKit.framework */,
+				8F03E7A71666FD38002C6CA6 /* Foundation.framework */,
+				8F03E7A91666FD38002C6CA6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F03E7AB1666FD38002C6CA6 /* MyG */ = {
+			isa = PBXGroup;
+			children = (
+				1CAC6E43175EE0AB00C1E390 /* MyG.entitlements */,
+				8F03E7E5166DA3DA002C6CA6 /* DB */,
+				8F03E7CC1666FEA1002C6CA6 /* Tile_Mosaic_CV.cpp */,
+				8F03E7CD1666FEA1002C6CA6 /* Tile_Mosaic_CV.h */,
+				8F03E7B41666FD38002C6CA6 /* LGRAppDelegate.h */,
+				8F03E7B51666FD38002C6CA6 /* LGRAppDelegate.mm */,
+				8F03E7BD1666FD38002C6CA6 /* LGRViewController.h */,
+				8F03E7BE1666FD38002C6CA6 /* LGRViewController.mm */,
+				8F03E7C01666FD38002C6CA6 /* LGRViewController.xib */,
+				8F03E7AC1666FD38002C6CA6 /* Supporting Files */,
+				1CAB1EEC178543A3004120C3 /* TileMosaic.h */,
+				1CAB1EED17854540004120C3 /* TileMosaic.cpp */,
+			);
+			path = MyG;
+			sourceTree = "<group>";
+		};
+		8F03E7AC1666FD38002C6CA6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8F03E7AD1666FD38002C6CA6 /* MyG-Info.plist */,
+				8F03E7AE1666FD38002C6CA6 /* InfoPlist.strings */,
+				8F03E7B11666FD38002C6CA6 /* main.m */,
+				8F03E7B31666FD38002C6CA6 /* MyG-Prefix.pch */,
+				8F03E7B71666FD38002C6CA6 /* Default.png */,
+				8F03E7B91666FD38002C6CA6 /* Default@2x.png */,
+				8F03E7BB1666FD38002C6CA6 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F03E7A01666FD38002C6CA6 /* MyG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F03E7C51666FD38002C6CA6 /* Build configuration list for PBXNativeTarget "MyG" */;
+			buildPhases = (
+				8F03E79D1666FD38002C6CA6 /* Sources */,
+				8F03E79E1666FD38002C6CA6 /* Frameworks */,
+				8F03E79F1666FD38002C6CA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyG;
+			productName = MyG;
+			productReference = 8F03E7A11666FD38002C6CA6 /* MyG.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F03E7981666FD38002C6CA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LGR;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = LGR;
+			};
+			buildConfigurationList = 8F03E79B1666FD38002C6CA6 /* Build configuration list for PBXProject "MyG" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8F03E7961666FD38002C6CA6;
+			productRefGroup = 8F03E7A21666FD38002C6CA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F03E7A01666FD38002C6CA6 /* MyG */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F03E79F1666FD38002C6CA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F03E7B01666FD38002C6CA6 /* InfoPlist.strings in Resources */,
+				8F03E7B81666FD38002C6CA6 /* Default.png in Resources */,
+				8F03E7BA1666FD38002C6CA6 /* Default@2x.png in Resources */,
+				8F03E7BC1666FD38002C6CA6 /* Default-568h@2x.png in Resources */,
+				8F03E7C21666FD38002C6CA6 /* LGRViewController.xib in Resources */,
+				8F03E7E6166DA3DA002C6CA6 /* DB in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F03E79D1666FD38002C6CA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F03E7B21666FD38002C6CA6 /* main.m in Sources */,
+				8F03E7B61666FD38002C6CA6 /* LGRAppDelegate.mm in Sources */,
+				8F03E7BF1666FD38002C6CA6 /* LGRViewController.mm in Sources */,
+				8F03E7CE1666FEA1002C6CA6 /* Tile_Mosaic_CV.cpp in Sources */,
+				1CAB1EEE17854540004120C3 /* TileMosaic.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8F03E7AE1666FD38002C6CA6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F03E7AF1666FD38002C6CA6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8F03E7C01666FD38002C6CA6 /* LGRViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F03E7C11666FD38002C6CA6 /* en */,
+			);
+			name = LGRViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F03E7C31666FD38002C6CA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		8F03E7C41666FD38002C6CA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F03E7C61666FD38002C6CA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../../../Desktop\"",
+					"\"$(SRCROOT)/../..\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyG/MyG-Prefix.pch";
+				INFOPLIST_FILE = "MyG/MyG-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8F03E7C71666FD38002C6CA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../../../Desktop\"",
+					"\"$(SRCROOT)/../..\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyG/MyG-Prefix.pch";
+				INFOPLIST_FILE = "MyG/MyG-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F03E79B1666FD38002C6CA6 /* Build configuration list for PBXProject "MyG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F03E7C31666FD38002C6CA6 /* Debug */,
+				8F03E7C41666FD38002C6CA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F03E7C51666FD38002C6CA6 /* Build configuration list for PBXNativeTarget "MyG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F03E7C61666FD38002C6CA6 /* Debug */,
+				8F03E7C71666FD38002C6CA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F03E7981666FD38002C6CA6 /* Project object */;
+}
