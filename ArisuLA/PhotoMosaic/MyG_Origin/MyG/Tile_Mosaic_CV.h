@@ -72,6 +72,7 @@ protected:
     
     // 생성된 메시지 맵 함수
     
+    cv::Subdiv2D sub;
     
     IplImage *image;
     IplImage *origin_imm;
@@ -104,10 +105,11 @@ protected:
     double biyul;
     
     void addtile(int x ,int y);
-    void Voronoi(cv::Mat img, cv::Subdiv2D sub);
+    void Voronoi(cv::Mat img);
     
     void CVD(cv::Mat img);
     void Line_avoid(cv::Mat img);
+    void setBasePoints();
     pointhead* phead;
     pointhead* basehead;
     edgehead* ehead;

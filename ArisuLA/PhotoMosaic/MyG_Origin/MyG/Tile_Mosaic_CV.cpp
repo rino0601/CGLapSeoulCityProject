@@ -239,19 +239,18 @@ void Mosaic_CV::locate_point(  cv::Mat& img,  cv::Subdiv2D& subdiv,  cv::Point2f
 	}
     
 }
-void Mosaic_CV::Voronoi(cv::Mat img, cv::Subdiv2D sub) //보로노이 만들기
+void Mosaic_CV::Voronoi(cv::Mat img) //보로노이 만들기
 {
-	cv::Rect cr;
+	/*cv::Rect cr;
 	cr.x = 0;
 	cr.y = 0;
 	cr.width = origin_imm->width;
 	cr.height = origin_imm->height;
-    
+    */
     
 	cv::Scalar active_facet_color(0,0,255), delaunay_color(255,255,255);
     
 	//string win = "voronoi";
-    
     
 	point* pp;
 	pp = phead->firstp;
@@ -263,7 +262,6 @@ void Mosaic_CV::Voronoi(cv::Mat img, cv::Subdiv2D sub) //보로노이 만들기
 		
 		locate_point( img, sub, fp, active_facet_color );
         
-        
 		sub.insert(fp);
         
 		img =  cv::Scalar::all(0);
@@ -274,90 +272,90 @@ void Mosaic_CV::Voronoi(cv::Mat img, cv::Subdiv2D sub) //보로노이 만들기
     
     img =  cv::Scalar::all(0);
     
-    cv::vector< cv::Vec6f> triangleList;
-	sub.getTriangleList(triangleList);
-    cv::vector< cv::Point> pt(3);
-
-    if(basehead!=NULL)
-    {
-        point *tp = basehead->firstp;
-        
-        while(tp!=NULL)
-        {
-            point* ttp = tp->nextp;
-            free(tp);
-            tp = ttp;
-        }
-        
-        free(basehead);
-        basehead = NULL;
-    }
     
-    if(basehead==NULL)
-    {
-        basehead = new pointhead;
-        basehead->rectsize = rectsize;
-        basehead->numofP = 0;
-        basehead->firstp = 0;
-        
-        point* currentPoint = (basehead->firstp);
-        
-        for( size_t i = 0; i < triangleList.size(); i++ )
-        {
-            cv::Vec6f t = triangleList[i];
-            pt[0] =  cv::Point(cvRound(t[0]), cvRound(t[1]));
-            pt[1] =  cv::Point(cvRound(t[2]), cvRound(t[3]));
-            pt[2] =  cv::Point(cvRound(t[4]), cvRound(t[5]));
-            
-            double x = (pt[0].x + pt[1].x+ pt[2].x)/3.0;
-            double y = (pt[0].y + pt[1].y+ pt[2].y)/3.0;
-            
-            if(x<0 || x>origin_imm->width)
-                continue;
-            
-            if(y<0 || y>origin_imm->height)
-                continue;
-            
-            point *tp = new point;
-            tp->x = x;
-            tp->y = y;
-            tp->nextp = NULL;
-            
-            if( currentPoint == NULL ){
-                basehead->firstp = tp;
-                currentPoint = tp;
-            } else {
-                tp->prevp = currentPoint;
-                currentPoint->nextp = tp;
-                currentPoint = tp;
-            }
-            
-            basehead->numofP++;
-        }
-
-    }
-
     
 }
 
 void Mosaic_CV::CVD(cv::Mat img)
 {// maybe Lloyd's algorithm  note.kim
-    
 	IplImage *imm = new IplImage(img);
 	
+	
+	cv::Rect cr;
+	cr.width = origin_imm->width;
+	cr.height = origin_imm->height;
+	cr.x = 0;
+	cr.y = 0;
+    
     unsigned long* sumOfX = new unsigned long[phead->numofP];
     unsigned long* sumOfY = new unsigned long[phead->numofP];
     unsigned long* numbers = new unsigned long[phead->numofP];
     
+    for (int i = 0; i < phead->numofP ; i++) {
+        sumOfX[i] = 0;
+        sumOfY[i] = 0;
+        numbers[i] = 0;
+    }
+    
     for(int h = 0; h < origin_imm->height; h++){
         for(int w = 0; w < origin_imm->width; w++){
             //if not black do sum
+            cv::Point2f pt;
+            
+            pt.x = (float)w;
+            pt.y = (float)h;
+            
+            unsigned char curR= (unsigned char)imm->imageData[h*imm->widthStep+w*3+0];
+            unsigned char curG= (unsigned char)imm->imageData[h*imm->widthStep+w*3+1];
+            unsigned char curB= (unsigned char)imm->imageData[h*imm->widthStep+w*3+2];
+             
+            if(curR == 0 && curG == 0 && curB == 0) {
+                int k = sub.findNearest(pt) - 4; // initial outer vertex
+                
+                if(k < 0) {
+                    NSLog(@"??");
+                
+                } else if( k < phead->numofP ) {
+                
+                    sumOfX[k] += pt.x;
+                    sumOfY[k] += pt.y;
+                    numbers[k]++;
+                } else {
+                    NSLog(@"fuck... what is problem? %d / %d",k,phead->numofP);
+                }
+            }
         }
     }
     
-	/*point *tp;
+    
+    point *tp;
 	tp = phead->firstp;
-	for(int i=0; i<phead->numofP; i++)
+    
+    
+    for(int i = 0; i < phead->numofP; i++) {
+        
+        if(numbers[i] != (unsigned) 0){
+
+            tp->x = ((float) sumOfX[i] / numbers[i]);
+            tp->y = ((float) sumOfY[i] / numbers[i]);
+    
+            if (tp->x < 0 || tp->y < 0 ||
+                tp->x >= origin_imm->width ||
+                tp->y >= origin_imm->height ) { // error check
+            
+                NSLog(@"%ld, %ld, %ld", sumOfX[i], sumOfY[i], numbers[i]);
+                printf("%d: tp->x %d, tp->y %d, origin_imm->width %d, origin_imm->height %d\n",
+                       i,tp->x,tp->y,origin_imm->width,origin_imm->height);
+        
+            }
+        }
+        tp = tp->nextp;
+    }
+    
+    
+    
+    
+/*	for(int i=0; i<phead->numofP; i++)
 	{
 		unsigned char R = tp->R;
 		unsigned char G = tp->G;
@@ -394,20 +392,16 @@ void Mosaic_CV::CVD(cv::Mat img)
 		tp = tp->nextp;
 	}*/
     
-	cv::Rect cr;
-	cr.width = origin_imm->width;
-	cr.height = origin_imm->height;
-	cr.x = 0;
-	cr.y = 0;
     
-	cv::Subdiv2D sub(cr);
-	Voronoi(img,sub);
+    sub.initDelaunay(cr);
+    
+	Voronoi(img);
 }
 
 void Mosaic_CV::goMosaic() //모자이크 만들기.
 {
     double time = CACurrentMediaTime();
-    printf("Start Mosaic : %f \n", (CACurrentMediaTime() - time));
+    NSLog(@"Start Mosaic");
     if(origin_imm ==NULL)
 		return;
     
@@ -441,22 +435,24 @@ void Mosaic_CV::goMosaic() //모자이크 만들기.
     
     cv::Mat img(cr.size(),CV_8UC3);
     cv::Mat res(cr.size(),CV_8UC3);
-    cv::Subdiv2D sub(cr);
+    sub.initDelaunay(cr);
 
-	Voronoi(img,sub);
-    printf("first get voronoi : %f \n", (CACurrentMediaTime() - time));
+	Voronoi(img);
+    NSLog(@"first get voronoi complete");
 	//cvWaitKey(5);
     
 	for(int i=0; i<2; i++)
 	{
 		CVD(img);  // cvd
-        printf("%d's CVD : %f \n",i, (CACurrentMediaTime() - time));
+        NSLog(@"%d's CVD complete",i);
 	}
     
 	//cvWaitKey(5);
     
 	Line_avoid(img); //라인 피하기
     printf("Line avoiding success : %f \n", (CACurrentMediaTime() - time));
+    
+    setBasePoints();
     
 	calcDirectionMap(); //각도계산
     printf("Direction Calculation success : %f \n", (CACurrentMediaTime() - time));
@@ -524,18 +520,6 @@ void Mosaic_CV::Line_avoid(cv::Mat img)
 	//edge너비를 늘려가면서 cvd를 반복 수행
     
 	for(int ei=0; ei<edge_avoid_iternum; ei++) {
-        
-        if(ei%6==0 && ei<40) {
-            
-			cvDilate(store_line,dilated,0,1);
-			cvCopy(dilated,store_line);
-		
-        } else if (ei%6==0 && ei>40) {
-		
-            cvErode(store_line,dilated,0,1);
-			cvCopy(dilated,store_line);
-		
-        }
 		
 		for(int h=0;h<line_imm->height; h++) {
 			for(int w=0; w<line_imm->width; w++) {
@@ -548,7 +532,20 @@ void Mosaic_CV::Line_avoid(cv::Mat img)
                 }
 			}
 		}
-
+        
+        
+        if(ei%6==0 && ei<40) {
+            
+			cvDilate(store_line,dilated,0,1);
+			cvCopy(dilated,store_line);
+            
+        } else if (ei%6==0 && ei>40) {
+            
+            cvErode(store_line,dilated,0,1);
+			cvCopy(dilated,store_line);
+            
+        }
+        NSLog(@"%d: CVD",ei);
         cv::Mat mm(imm);
 		CVD(mm);
 		cvCopy(imm,store_imm);
@@ -700,9 +697,73 @@ void Mosaic_CV::calcDirectionMap()
         tp = tp->nextp;
     }
 }
-
-void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾기
-{
+void Mosaic_CV::setBasePoints() {
+    cv::vector< cv::Vec6f> triangleList;
+	sub.getTriangleList(triangleList);
+    cv::vector< cv::Point> pt(3);
+    
+    if(basehead!=NULL)
+    {
+        point *tp = basehead->firstp;
+        
+        while(tp!=NULL)
+        {
+            point* ttp = tp->nextp;
+            free(tp);
+            tp = ttp;
+        }
+        
+        free(basehead);
+        basehead = NULL;
+    }
+    
+    if(basehead==NULL)
+    {
+        basehead = new pointhead;
+        basehead->rectsize = rectsize;
+        basehead->numofP = 0;
+        basehead->firstp = 0;
+        
+        point* currentPoint = (basehead->firstp);
+        
+        for( size_t i = 0; i < triangleList.size(); i++ )
+        {
+            cv::Vec6f t = triangleList[i];
+            pt[0] =  cv::Point(cvRound(t[0]), cvRound(t[1]));
+            pt[1] =  cv::Point(cvRound(t[2]), cvRound(t[3]));
+            pt[2] =  cv::Point(cvRound(t[4]), cvRound(t[5]));
+            
+            double x = (pt[0].x + pt[1].x+ pt[2].x)/3.0;
+            double y = (pt[0].y + pt[1].y+ pt[2].y)/3.0;
+            
+            if(x<0 || x>origin_imm->width)
+                continue;
+            
+            if(y<0 || y>origin_imm->height)
+                continue;
+            
+            point *tp = new point;
+            tp->x = x;
+            tp->y = y;
+            tp->nextp = NULL;
+            
+            if( currentPoint == NULL ){
+                basehead->firstp = tp;
+                currentPoint = tp;
+            } else {
+                tp->prevp = currentPoint;
+                currentPoint->nextp = tp;
+                currentPoint = tp;
+            }
+            
+            basehead->numofP++;
+        }
+        
+    }
+}
+void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾기 used opj-c in this code
+{   
+    
     
     sqlite3 *contactDB;
     
@@ -876,7 +937,7 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
         seldis = distance2[0];
         
         
-        for(int i = 0 ; i < 3 ; i ++ ){
+        for(int i = 0 ; i < 5 ; i ++ ){
             
             const char* asdf = "SELECT ID, SBYSIMAGE FROM IMAGEDATA WHERE ID = @A";
             
