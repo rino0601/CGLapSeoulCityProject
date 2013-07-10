@@ -65,7 +65,6 @@
 		
 		menuView = [[MenuView alloc] initWithFrame:frame];
 		menuView.isPlay=YES;
-		[menuView setHidden:YES];
 		
 		[movPlayer1.view addSubview:menuView];
 		
@@ -150,14 +149,7 @@
 
 
 - (void)controlMenuView:(BOOL)menuOn {
-	if(menuOn){
-		[menuView setHidden:![menuView isHidden]];
-		menuView.isPlay?[self pausePlay]:[self rePlay];
-		menuView.isPlay=!menuView.isPlay;
-	} else {
-		[menuView setHidden:YES];
-		menuView.isPlay=YES;
-	}
+	[menuView show:menuOn]; // NO 면 무조건 숨기고, YES면 toggle
 }
 
 
@@ -177,8 +169,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:movPlayer1];
 	
 	[movPlayer1 pause];
-	
-	[menuView setHidden:YES];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"bgmPlay" object:nil];
 	

@@ -1,13 +1,39 @@
 #import "MenuView.h"
 #import "ContentsView.h"
 
+@interface MenuView ()
+@property BOOL isShow;
+@property UIImageView *menuImageView;
+@end
+
 @implementation MenuView
 
-@synthesize btnPlay, isPlay, changeSubtitle;
+@synthesize btnPlay, isPlay, changeSubtitle, menuImageView;
 
 #ifndef ScaleCGRectMake
 #define ScaleCGRectMake(x,y,w,h) CGRectMake(((x)*scaleFactorX),((y)*scaleFactorY),((w)*scaleFactorX),((h)*scaleFactorY))
 #endif
+
+- (void)show:(BOOL)flag {
+	[UIView beginAnimations: nil context: nil];
+	[UIView setAnimationDuration:1.0];
+	if(flag==YES) {
+		if(_isShow){
+			[menuImageView setFrame:ScaleCGRectMake(0, 320, 480, 67)];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"rePlay" object:nil];
+			_isShow = NO;
+		} else {
+			[menuImageView setFrame:ScaleCGRectMake(0, 320-67, 480, 67)];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"pausePlay" object:nil];
+			_isShow = YES;
+		}
+	} else {
+		[menuImageView setFrame:ScaleCGRectMake(0, 320, 480, 67)];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"rePlay" object:nil];
+		_isShow = NO;
+	}
+	[UIView commitAnimations];
+}
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -18,12 +44,12 @@
 		scaleFactorX = frame.size.width / 480.0f;
 		scaleFactorY = frame.size.height / 320.0f;
 		
-		UIImageView *menuImageView = [[UIImageView alloc] initWithFrame:ScaleCGRectMake(0, 320-67, 480, 67)];
+		menuImageView = [[UIImageView alloc] initWithFrame:ScaleCGRectMake(0, 320-67, 480, 67)];
+		_isShow = YES;
+		[self show:YES];
 		menuImageView.image = [UIImage imageNamed:@"menu_bg_r.png"];
 		menuImageView.backgroundColor = [UIColor clearColor];
 		menuImageView.userInteractionEnabled = YES;
-		
-		[self addSubview:menuImageView];
 		
 		UIButton *btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
 		btnHome.frame = ScaleCGRectMake(41, 13, 40, 35);
@@ -67,6 +93,7 @@
 		
 		[menuImageView addSubview:btnSubtitle];
 		
+		[self addSubview:menuImageView];
 	}
     return self;
 }

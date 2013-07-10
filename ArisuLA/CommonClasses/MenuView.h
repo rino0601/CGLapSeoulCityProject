@@ -18,6 +18,8 @@
 @property(readwrite, assign) BOOL isPlay;
 @property(readwrite, assign) BOOL changeSubtitle;
 
+
+- (void)show:(BOOL)flag;
 - (void)playPause:(id)obj;
 - (void)backToHome;
 - (void)toggleSubtitle;
