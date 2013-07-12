@@ -106,7 +106,7 @@ protected:
     
     void addtile(int x ,int y);
     void Voronoi(cv::Mat img);
-    
+    void findMatchedImage(cv::Mat res, pointhead* points);
     void CVD(cv::Mat img);
     void Line_avoid(cv::Mat img);
     void setBasePoints();

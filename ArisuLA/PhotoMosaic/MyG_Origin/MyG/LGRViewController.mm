@@ -266,7 +266,7 @@
         printf("asdf\n");
     }
     
-    const char* sql_stmt = "CREATE TABLE IF NOT EXISTS IMAGEDATA (ID INTEGER PRIMARY KEY, TBYTIMAGE BLOB, FBYFIMAGE BLOB, SBYSIMAGE BLOB)";
+    const char* sql_stmt = "CREATE TABLE IF NOT EXISTS IMAGEDATA (ID INTEGER PRIMARY KEY, OBYOIMAGE BLOB, TBYTIMAGE BLOB, FBYFIMAGE BLOB, SBYSIMAGE BLOB)";
     
     char* errMsg;
     
@@ -288,13 +288,20 @@
                     UIImage *tim = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
                     IplImage *ttim = [self CreateIplImageFromUIImage:tim];
                     
+                    IplImage *onebyone = cvCreateImage(cvSize(1,1),8,ttim->nChannels);
                     IplImage *twobytwo = cvCreateImage(cvSize(2,2),8,ttim->nChannels);
                     IplImage *fourbyfour = cvCreateImage(cvSize(4,4),8,ttim->nChannels);
                     IplImage *sixteenbysixteen = cvCreateImage(cvSize(16,16),8,ttim->nChannels);
                     
+                    cvResize(ttim, onebyone);
                     cvResize(ttim, twobytwo);
                     cvResize(ttim, fourbyfour);
                     cvResize(ttim, sixteenbysixteen);
+                    
+                    //--Insert 1by1 images to DB
+                    
+                    NSData *obotemp = [NSData alloc];
+                    obotemp = [obotemp initWithBytes:onebyone->imageData length:onebyone->widthStep * onebyone->height];
                     
                     //--DB에2x2넣기
                     
@@ -311,13 +318,14 @@
                     NSData *sbstemp = [NSData alloc];
                     sbstemp = [sbstemp initWithBytes:sixteenbysixteen->imageData length:sixteenbysixteen->widthStep*sixteenbysixteen->height];
 
-                    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO IMAGEDATA (ID,TBYTIMAGE,FBYFIMAGE,SBYSIMAGE) VALUES (%d,@A,@B,@C)",assetcount];
+                    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO IMAGEDATA (ID,OBYOIMAGE,TBYTIMAGE,FBYFIMAGE,SBYSIMAGE) VALUES (%d,@A,@B,@C,@D)",assetcount];
                     
                     if (sqlite3_prepare_v2(sampleImageDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK )
                     {
-                        sqlite3_bind_blob(statement, 1, tbttemp.bytes, tbttemp.length, SQLITE_TRANSIENT);
-                        sqlite3_bind_blob(statement, 2, fbftemp.bytes, fbftemp.length, SQLITE_TRANSIENT);
-                        sqlite3_bind_blob(statement, 3, sbstemp.bytes, sbstemp.length, SQLITE_TRANSIENT);
+                        sqlite3_bind_blob(statement, 1, obotemp.bytes, obotemp.length, SQLITE_TRANSIENT);
+                        sqlite3_bind_blob(statement, 2, tbttemp.bytes, tbttemp.length, SQLITE_TRANSIENT);
+                        sqlite3_bind_blob(statement, 3, fbftemp.bytes, fbftemp.length, SQLITE_TRANSIENT);
+                        sqlite3_bind_blob(statement, 4, sbstemp.bytes, sbstemp.length, SQLITE_TRANSIENT);
                         
                         if(sqlite3_step(statement) == SQLITE_DONE){
                             
@@ -336,6 +344,7 @@
                     
                     numodDBIM = assetcount;
                     
+                    cvReleaseImage(&onebyone);
                     cvReleaseImage(&twobytwo);
                     cvReleaseImage(&fourbyfour);
                     cvReleaseImage(&sixteenbysixteen);
@@ -566,9 +575,9 @@
                 int j = tp->y + (rotatedH - matchim_cv->height/2);
                 
                 if(i<resim->width && i>=0 && j<resim->height && j>= 0){
-                    resim->imageData[j*resim->widthStep + i*3 + 0] = (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 0];
-                    resim->imageData[j*resim->widthStep + i*3 + 1] = (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 1];
-                    resim->imageData[j*resim->widthStep + i*3 + 2] = (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 2];
+                    resim->imageData[j*resim->widthStep + i*3 + 0] = 0.15 * (unsigned char) resim->imageData[j*resim->widthStep + i*3 + 0] + 0.85 * (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 0];
+                    resim->imageData[j*resim->widthStep + i*3 + 1] = 0.15 * (unsigned char) resim->imageData[j*resim->widthStep + i*3 + 1] + 0.85 * (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 1];
+                    resim->imageData[j*resim->widthStep + i*3 + 2] = 0.15 * (unsigned char) resim->imageData[j*resim->widthStep + i*3 + 2] + 0.85 * (unsigned char) matchim_cv->imageData[h*matchim_cv->widthStep + w*3 + 2];
                 }
             }
         }

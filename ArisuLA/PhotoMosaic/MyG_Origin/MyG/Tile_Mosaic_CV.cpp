@@ -9,6 +9,7 @@
 #import <QuartzCore/CAAnimation.h>
 #include "Tile_Mosaic_CV.h"
 #import "sqlite3.h"
+
 // Semantic Isuue 발생해서 집어넣습니다. - 고한종
 using namespace std;
 
@@ -506,7 +507,7 @@ void Mosaic_CV::Line_avoid(cv::Mat img)
 	IplImage *imm = new IplImage(img);
 	//imm = &IplImage(img);
     
-	int edge_avoid_iternum =63;
+	int edge_avoid_iternum =50;
     
 	IplImage *store_imm = cvCreateImage(cvGetSize(imm),8,3);
 	cvCopy(imm,store_imm,0);
@@ -545,7 +546,7 @@ void Mosaic_CV::Line_avoid(cv::Mat img)
 			cvCopy(dilated,store_line);
             
         }
-        NSLog(@"%d: CVD",ei);
+        //NSLog(@"%d: CVD",ei);
         cv::Mat mm(imm);
 		CVD(mm);
 		cvCopy(imm,store_imm);
@@ -599,11 +600,11 @@ void Mosaic_CV::calcDirectionMap()
             double vec1[2];
             double vec2[2];
             
-            vec1[0] = (selx-tp->x)*100;;
+            vec1[0] = (selx-tp->x) * 100;;
             vec1[1] = 0;
             
-            vec2[0] = (selx-tp->x)*100;
-            vec2[1] = (sely-tp->y)*100;
+            vec2[0] = (selx-tp->x) * 100;
+            vec2[1] = (sely-tp->y) * 100;
             
             double cc = ( sqrt( pow(vec1[0],2) + pow(vec1[1],2) ) * sqrt( pow(vec2[0],2) + pow(vec2[1],2) ) );
             
@@ -697,7 +698,9 @@ void Mosaic_CV::calcDirectionMap()
         tp = tp->nextp;
     }
 }
-void Mosaic_CV::setBasePoints() {
+void Mosaic_CV::setBasePoints()
+{//들로네 포인트들의 사이에 빈칸을 채우기 위해 포인트들을 배치함.
+    
     cv::vector< cv::Vec6f> triangleList;
 	sub.getTriangleList(triangleList);
     cv::vector< cv::Point> pt(3);
@@ -761,54 +764,41 @@ void Mosaic_CV::setBasePoints() {
         
     }
 }
-void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾기 used opj-c in this code
-{   
+
+void Mosaic_CV::findMatchedImage(cv::Mat res, pointhead* points){ //used opj-c in this code
     
     
-    sqlite3 *contactDB;
     
+    sqlite3 *contactDB;    
     sqlite3_open(sqlDB, &contactDB);
     
-    NSMutableArray *tByTImages = [[NSMutableArray alloc] init];
+    NSMutableArray *oByOImages = [[NSMutableArray alloc] init];
     
-    const char* querySQL = "SELECT ID, TBYTIMAGE FROM IMAGEDATA";
-    
-    sqlite3_stmt *statement ;
-    
-    sqlite3_prepare_v2(contactDB, querySQL, -1, &statement, NULL);
-    
+    const char* querySQL = "SELECT ID, OBYOIMAGE FROM IMAGEDATA";
+    sqlite3_stmt *statement ;    
+    sqlite3_prepare_v2(contactDB, querySQL, -1, &statement, NULL);    
     while( sqlite3_step (statement) == SQLITE_ROW ) {
         NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
         NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
-        [tByTImages addObject:ipl];
-    }
-    
+        [oByOImages addObject:ipl];
+    }    
     sqlite3_finalize(statement);
     
-	point* pt;
-    res =  cv::Scalar::all(0);
-    
-	pt = phead->firstp;
-    
     cv::Mat orimat = origin_imm;
+    point* ptr = points->firstp;
     
-    point* pt2;
-    pt2 = basehead->firstp;
-    
-    
-    
-    while(pt2!=NULL)
+    while(ptr!=NULL)
 	{
-		cv::Point2f ctt(pt2->x,pt2->y);
+		cv::Point2f ctt(ptr->x,ptr->y);
 		cv::Size2f cs(rectsize-(rectsize/5.0),rectsize-(rectsize/5.0));
         
-		int R = (unsigned char)origin_imm->imageData[pt2->y*origin_imm->widthStep + pt2->x*3 + 0];
-		int G = (unsigned char)origin_imm->imageData[pt2->y*origin_imm->widthStep + pt2->x*3 + 1];
-		int B = (unsigned char)origin_imm->imageData[pt2->y*origin_imm->widthStep + pt2->x*3 + 2];
+		int R = (unsigned char)origin_imm->imageData[ptr->y*origin_imm->widthStep + ptr->x*3 + 0];
+		int G = (unsigned char)origin_imm->imageData[ptr->y*origin_imm->widthStep + ptr->x*3 + 1];
+		int B = (unsigned char)origin_imm->imageData[ptr->y*origin_imm->widthStep + ptr->x*3 + 2];
         ///////////////////////
         
         
-		double angle = pt->direction;
+		double angle = ptr->direction;
         
         if(isnan(angle))
             angle = 0.0;
@@ -816,7 +806,7 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
         if(angle>180)
             angle -= 180;
         
-        pt->direction = angle;
+        ptr->direction = angle;
         
 		//angle = angle;
 		//float rad = angle*(PI/180.0f);
@@ -835,36 +825,46 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
         cv::getRectSubPix(rotated, rect_size, cvR.center, cropped);
         
         IplImage *sample = new IplImage(cropped);
+        IplImage *oneSample = cvCreateImage(cvSize(1,1), sample->depth, sample->nChannels);
         IplImage *twosample = cvCreateImage(cvSize(2,2), sample->depth, sample->nChannels);
         IplImage *foursample = cvCreateImage(cvSize(4,4), sample->depth, sample->nChannels);
         IplImage *sixteensample = cvCreateImage(cvSize(16,16), sample->depth, sample->nChannels);
         
+        cvResize(sample, oneSample);
         cvResize(sample, twosample);
         cvResize(sample, foursample);
         cvResize(sample, sixteensample);
-		
+        
+        int threadHoleDistance[4] = {30,20,10,5};  
+        
         //매치를 찾는다.
-        int candidates1[10];
-        double distance[10] = {30000,30000,30000,30000,30000,30000,30000,30000,30000,30000};
+        int candidates[5];
+        double distance[5];
+        int candidateNumber = 5;
         
-        int candidates2[5];
-        double distance2[5] = {30000,30000,30000,30000,30000};
+        for (int i = 0; i<candidateNumber; i++) {
+            distance[i] = 30000;
+        }
+
+        /**
+         * one by one image 중 
+         * Distanse가 ThreadHoleDistance[3] 보다 작거나
+         * 가장 가까운 5개의 image 선별.
+         */
         
-        int selectedone;
-        double seldis;
+        std::vector<int> oneByOneCandi;
         
-        //2개짜리 후보군 5개///////////////////////////////////////////////////////////////////////////////////////////////
-        for (NSData *a in tByTImages) {
+        for (NSData *a in oByOImages) {
             
             double disT = 0;
             
-            for(int h=0; h<twosample->height; h++)
+            for(int h=0; h<oneSample->height; h++)
             {
-                for(int w=0; w<twosample->width; w++)
+                for(int w=0; w<oneSample->width; w++)
                 {
-                    int orib = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+0];
-                    int orig = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+1];
-                    int orir = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+2];
+                    int orib = (unsigned char)oneSample->imageData[h*oneSample->widthStep+w*3+0];
+                    int orig = (unsigned char)oneSample->imageData[h*oneSample->widthStep+w*3+1];
+                    int orir = (unsigned char)oneSample->imageData[h*oneSample->widthStep+w*3+2];
                     
                     int dbb = ((const unsigned char*)[a bytes])[h*6 + w*3 + 0];
                     int dbg = ((const unsigned char*)[a bytes])[h*6 + w*3 + 1];
@@ -878,16 +878,156 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
                 }
             }
             
-            disT = disT/(double)(twosample->height * twosample->width);
-            if( disT < distance[9] )
-                mininsert(distance, candidates1, disT, [tByTImages indexOfObject:a], 10);
+            disT = disT/(double)(oneSample->height * oneSample->width);
+            
+            if( disT < threadHoleDistance[3] ) {
+                oneByOneCandi.push_back([oByOImages indexOfObject:a]);
+            
+            } else if( disT < distance[candidateNumber - 1] ) {
+                mininsert(distance, candidates, disT, [oByOImages indexOfObject:a], candidateNumber);
+            }
+        }
+        
+        /**
+         * 선택된 image들의
+         * two by two sample image 중
+         * Distanse가 ThreadHoleDistance[2] 보다 작거나
+         * 가장 가까운 5개의 image 선별.
+         */
+        int tmpCandi[5];
+        for (int i = 0; i<candidateNumber; i++) {
+            tmpCandi[i] = candidates[i];
+            distance[i] = 30000;
+        }
+        
+        std::vector<int> twoByTwoCandi;
+        
+        int index = 0, forMin = 0;
+        while(1) {
+            
+            /**
+             * 후보키를 뽑는다. 우선 ThreadHole에 있는 것을 뽑은 뒤
+             * 이후 ThreadHole에 대한것을 빼고 난 후 Min값에 대한 것을 뽑는다.
+             */
+            if(!oneByOneCandi.empty()) {
+                index = oneByOneCandi.back();
+                oneByOneCandi.pop_back();
+            } else if (forMin < candidateNumber) {
+                index = tmpCandi[forMin++];
+            } else {
+                break;
+            }
+            
+            const char* querySQL = "SELECT ID, TBYTIMAGE FROM IMAGEDATA WHERE ID = @A";
+            
+            sqlite3_prepare_v2(contactDB, querySQL, -1, &statement, NULL);
+            sqlite3_bind_int(statement, 1, index);
+            
+            while( sqlite3_step (statement) == SQLITE_ROW ) {
+                double disT = 0;
+                NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
+                NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
+                
+                for(int h=0; h<twosample->height; h++)
+                {
+                    for(int w=0; w<twosample->width; w++)
+                    {
+                        int orib = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+0];
+                        int orig = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+1];
+                        int orir = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+2];
+                        
+                        int dbb = ((const unsigned char*)[ipl bytes])[h*twosample->widthStep*3 + w*3 + 0];
+                        int dbg = ((const unsigned char*)[ipl bytes])[h*twosample->widthStep*3 + w*3 + 1];
+                        int dbr = ((const unsigned char*)[ipl bytes])[h*twosample->widthStep*3 + w*3 + 2];
+                        
+                        int disB = abs(orib-dbb);
+                        int disG = abs(orig-dbg);
+                        int disR = abs(orir-dbr);
+                        disT += (double)(disB+disG+disR)/3.0;
+                    }
+                }
+                
+                disT = disT/(double)(twosample->height*twosample->width);
+                
+                if( disT < threadHoleDistance[2] ){
+                    twoByTwoCandi.push_back(index);
+                } else if( disT < distance[candidateNumber - 1] )
+                    mininsert(distance, candidates, disT, index, candidateNumber);
+            }
+            
+            sqlite3_finalize(statement);
             
         }
         
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //4개짜리 후보군 3개
+        /**
+         * 선택된 image들의
+         * four by four sample image 중
+         * Distanse가 ThreadHoleDistance[1] 보다 작거나
+         * 가장 가까운 5개의 image 선별.
+         */
+        for (int i = 0; i<candidateNumber; i++) {
+            tmpCandi[i] = candidates[i];
+            distance[i] = 30000;
+        }
+        std::vector<int> fourByFourCandi;
         
-        for (int i = 0; i < 5; i++) {
+        index = 0, forMin = 0;
+        while(1) {
+            
+            /**
+             * 후보키를 뽑는다. 우선 ThreadHole에 있는 것을 뽑은 뒤
+             * 이후 ThreadHole에 대한것을 빼고 난 후 Min값에 대한 것을 뽑는다.
+             */
+            if(!twoByTwoCandi.empty()) {
+                index = twoByTwoCandi.back();
+                twoByTwoCandi.pop_back();
+            } else if (forMin < candidateNumber) {
+                index = tmpCandi[forMin++];
+            } else {
+                break;
+            }
+            
+            const char* querySQL = "SELECT ID, FBYFIMAGE FROM IMAGEDATA WHERE ID = @A";
+            
+            sqlite3_prepare_v2(contactDB, querySQL, -1, &statement, NULL);
+            sqlite3_bind_int(statement, 1, index);
+            
+            while( sqlite3_step (statement) == SQLITE_ROW ) {
+                double disT = 0;
+                NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
+                NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
+                
+                for(int h=0; h<foursample->height; h++)
+                {
+                    for(int w=0; w<foursample->width; w++)
+                    {
+                        int orib = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+0];
+                        int orig = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+1];
+                        int orir = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+2];
+                        
+                        int dbb = ((const unsigned char*)[ipl bytes])[h*foursample->widthStep*3 + w*3 + 0];
+                        int dbg = ((const unsigned char*)[ipl bytes])[h*foursample->widthStep*3 + w*3 + 1];
+                        int dbr = ((const unsigned char*)[ipl bytes])[h*foursample->widthStep*3 + w*3 + 2];
+                        
+                        int disB = abs(orib-dbb);
+                        int disG = abs(orig-dbg);
+                        int disR = abs(orir-dbr);
+                        disT += (double)(disB+disG+disR)/3.0;
+                    }
+                }
+                
+                disT = disT/(double)(foursample->height*foursample->width);
+                
+                if( disT < threadHoleDistance[1] ){
+                    fourByFourCandi.push_back(index);
+                } else if( disT < distance[candidateNumber - 1] )
+                    mininsert(distance, candidates, disT, index, candidateNumber);
+            }
+            
+            sqlite3_finalize(statement);
+            
+        }
+/*        for (int i = 0; i < 5; i++) {
             double disT = 0;
             
             const char* asdf = "SELECT ID, FBYFIMAGE FROM IMAGEDATA WHERE ID = @A";
@@ -926,18 +1066,73 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
                 mininsert(distance2, candidates2, disT, candidates1[i], 5);
                 
             }
+            sqlite3_finalize(statement);
+ 
+        }*/
+        
+        /**
+         * 선택된 image들의
+         * sixteen by sixteen sample image 중
+         * 가장 가까운 이미지 선별!
+         */
+        std::vector<int> sixteenBySixteenCandi;
+        index = 0, forMin = 0;
+        int minIndex = 0, minDistance = 30000;
+        while(1) {            
+            /**
+             * 후보키를 뽑는다. 우선 ThreadHole에 있는 것을 뽑은 뒤
+             * 이후 ThreadHole에 대한것을 빼고 난 후 Min값에 대한 것을 뽑는다.
+             */
+            if(!fourByFourCandi.empty()) {
+                index = fourByFourCandi.back();
+                fourByFourCandi.pop_back();
+            } else if (forMin < candidateNumber) {
+                index = tmpCandi[forMin++];
+            } else {
+                break;
+            }
+            
+            const char* querySQL = "SELECT ID, SBYSIMAGE FROM IMAGEDATA WHERE ID = @A";
+            
+            sqlite3_prepare_v2(contactDB, querySQL, -1, &statement, NULL);
+            sqlite3_bind_int(statement, 1, index);
+            
+            while( sqlite3_step (statement) == SQLITE_ROW ) {
+                double disT = 0;
+                NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
+                NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
+                
+                for(int h=0; h<sixteensample->height; h++)
+                {
+                    for(int w=0; w<sixteensample->width; w++)
+                    {
+                        int orib = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+0];
+                        int orig = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+1];
+                        int orir = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+2];
+                        
+                        int dbb = ((const unsigned char*)[ipl bytes])[h*sixteensample->widthStep*3 + w*3 + 0];
+                        int dbg = ((const unsigned char*)[ipl bytes])[h*sixteensample->widthStep*3 + w*3 + 1];
+                        int dbr = ((const unsigned char*)[ipl bytes])[h*sixteensample->widthStep*3 + w*3 + 2];
+                        
+                        int disB = abs(orib-dbb);
+                        int disG = abs(orig-dbg);
+                        int disR = abs(orir-dbr);
+                        disT += (double)(disB+disG+disR)/3.0;
+                    }
+                }
+                
+                disT = disT/(double)(sixteensample->height*sixteensample->width);
+                
+                if( disT < minDistance ) {
+                    minIndex = index;
+                    minDistance = disT;                
+                }
+            }
+            
+            sqlite3_finalize(statement);
             
         }
-        sqlite3_finalize(statement);
-        
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        //4개짜리 후보군 중에 16개짜리 최종 후보군 뽑기
-        
-        selectedone = candidates2[0];
-        seldis = distance2[0];
-        
-        
-        for(int i = 0 ; i < 5 ; i ++ ){
+        /*for(int i = 0 ; i < 5 ; i ++ ){
             
             const char* asdf = "SELECT ID, SBYSIMAGE FROM IMAGEDATA WHERE ID = @A";
             
@@ -979,11 +1174,7 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
             }
             
             sqlite3_finalize(statement);
-        }
-        
-        
-        
-        //////////////////////////////////////////////////////////////////////////////////////
+        }*/
         
 		cv::Point2f cp[4];
 		cvR.points(cp);
@@ -1001,242 +1192,23 @@ void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾
         cv::fillConvexPoly(res,cpp,4,cv::Scalar(B,G,R));
         isdone = 0;
         
-        pt2->matchim_num = selectedone;
+        ptr->matchim_num = minIndex;
         
-		pt2 = pt2->nextp;
+		ptr = ptr->nextp;
         
+        cvReleaseImage(&oneSample);
         cvReleaseImage(&twosample);
         cvReleaseImage(&foursample);
         cvReleaseImage(&sixteensample);
 	}
     
-    while(pt!=NULL)
-	{
-        
-		cv::Point2f ctt(pt->x,pt->y);
-		cv::Size2f cs(rectsize-(rectsize/5.0),rectsize-(rectsize/5.0));
-        
-		int R = (unsigned char)origin_imm->imageData[pt->y*origin_imm->widthStep+pt->x*3+0];
-		int G = (unsigned char)origin_imm->imageData[pt->y*origin_imm->widthStep+pt->x*3+1];
-		int B = (unsigned char)origin_imm->imageData[pt->y*origin_imm->widthStep+pt->x*3+2];
-        ///////////////////////
-        
-        
-		double angle = pt->direction;
-        
-        if(isnan(angle))
-            angle = 0.0;
-        
-        if(angle>180)
-            angle -= 180;
-        
-        pt->direction = angle;
-        
-		//angle = angle;
-		//float rad = angle*(PI/180.0f);
-		cv::RotatedRect cvR(ctt,cs,angle);
-        
-        //Rotated rect 추출.
-        cv::Size rect_size = cvR.size;
-        
-        cv::Mat M, rotated, cropped;
-        
-        // get the rotation matrix
-        M = cv::getRotationMatrix2D(cvR.center, angle, 1.0);
-        // perform the affine transformation
-        cv::warpAffine(orimat, rotated, M, orimat.size(), cv::INTER_CUBIC, cv::BORDER_TRANSPARENT);
-        // crop the resulting image
-        cv::getRectSubPix(rotated, rect_size, cvR.center, cropped);
-        
-        IplImage *sample = new IplImage(cropped);
-        IplImage *twosample = cvCreateImage(cvSize(2,2), sample->depth, sample->nChannels);
-        IplImage *foursample = cvCreateImage(cvSize(4,4), sample->depth, sample->nChannels);
-        IplImage *sixteensample = cvCreateImage(cvSize(16,16), sample->depth, sample->nChannels);
-        
-        cvResize(sample, twosample);
-        cvResize(sample, foursample);
-        cvResize(sample, sixteensample);
-		
-        //매치를 찾는다.
-        
-        int candidates1[5];
-        double distance[5] = {30000,30000,30000,30000,30000};
-        
-        int candidates2[3];
-        double distance2[3] = {30000,30000,30000};
-        
-        int selectedone;
-        double seldis;
-        
-        //2개짜리 후보군 5개///////////////////////////////////////////////////////////////////////////////////////////////
-        for (NSData *a in tByTImages) {
-            
-            double disT = 0;
-            
-            for(int h=0; h<twosample->height; h++)
-            {
-                for(int w=0; w<twosample->width; w++)
-                {
-                    int orib = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+0];
-                    int orig = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+1];
-                    int orir = (unsigned char)twosample->imageData[h*twosample->widthStep+w*3+2];
-                    
-                    int dbb = ((const unsigned char*)[a bytes])[h*6 + w*3 + 0];
-                    int dbg = ((const unsigned char*)[a bytes])[h*6 + w*3 + 1];
-                    int dbr = ((const unsigned char*)[a bytes])[h*6 + w*3 + 2];
-                    
-                    int disB = abs(orib-dbb);
-                    int disG = abs(orig-dbg);
-                    int disR = abs(orir-dbr);
-                    
-                    disT += (double)(disB+disG+disR)/3.0;
-                }
-            }
-            
-            disT = disT/(double)(twosample->height * twosample->width);
-            if( disT < distance[4] )
-                mininsert(distance, candidates1, disT, [tByTImages indexOfObject:a], 5);
-            
-        }
-        
-        
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //4개짜리 후보군 3개
-        
-        
-        for (int i = 0; i < 5; i++) {
-            double disT = 0;
-            
-            const char* asdf = "SELECT ID, FBYFIMAGE FROM IMAGEDATA WHERE ID = @A";
-            
-            sqlite3_prepare_v2(contactDB, asdf, -1, &statement, NULL);
-            sqlite3_bind_int(statement, 1, candidates1[i]);
-            
-            while( sqlite3_step (statement) == SQLITE_ROW ) {
-                NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
-                NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
-                
-                for(int h=0; h<foursample->height; h++)
-                {
-                    
-                    for(int w=0; w<foursample->width; w++)
-                    {
-                        int orib = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+0];
-                        int orig = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+1];
-                        int orir = (unsigned char)foursample->imageData[h*foursample->widthStep+w*3+2];
-                        
-                        
-                        int dbb = ((const unsigned char*)[ipl bytes])[h*4*3 + w*3 + 0];
-                        int dbg = ((const unsigned char*)[ipl bytes])[h*4*3 + w*3 + 1];
-                        int dbr = ((const unsigned char*)[ipl bytes])[h*4*3 + w*3 + 2];
-                        
-                        int disB = abs(orib-dbb);
-                        int disG = abs(orig-dbg);
-                        int disR = abs(orir-dbr);
-                        disT += (double)(disB+disG+disR)/3.0;
-                    }
-                    
-                }
-                
-                disT = disT/(double)(foursample->height*foursample->width);
-                
-                mininsert(distance2, candidates2, disT, candidates1[i], 3);
-                
-            }
-            
-        }
-        sqlite3_finalize(statement);
-        
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        //16개짜리 후보군 하나
-        
-        selectedone = candidates2[0];
-        seldis = distance2[0];
-        
-        
-        for(int i = 0 ; i < 3 ; i ++ ){
-            
-            const char* asdf = "SELECT ID, SBYSIMAGE FROM IMAGEDATA WHERE ID = @A";
-            
-            sqlite3_prepare_v2(contactDB, asdf, -1, &statement, NULL);
-            sqlite3_bind_int(statement, 1, candidates2[0]);
-            
-            
-            while( sqlite3_step (statement) == SQLITE_ROW ) {
-                double disT = 0;
-                NSUInteger blobLength = sqlite3_column_bytes(statement, 1);
-                NSData* ipl = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:blobLength];
-                
-                for(int h=0; h<sixteensample->height; h++)
-                {
-                    for(int w=0; w<sixteensample->width; w++)
-                    {
-                        int orib = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+0];
-                        int orig = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+1];
-                        int orir = (unsigned char)sixteensample->imageData[h*sixteensample->widthStep+w*3+2];
-                        
-                        int dbb = ((const unsigned char*)[ipl bytes])[h*16*3 + w*3 + 0];
-                        int dbg = ((const unsigned char*)[ipl bytes])[h*16*3 + w*3 + 1];
-                        int dbr = ((const unsigned char*)[ipl bytes])[h*16*3 + w*3 + 2];
-                        
-                        int disB = abs(orib-dbb);
-                        int disG = abs(orig-dbg);
-                        int disR = abs(orir-dbr);
-                        disT += (double)(disB+disG+disR)/3.0;
-                    }
-                }
-                
-                disT = disT/(double)(sixteensample->height*sixteensample->width);
-                
-                if(disT < seldis)
-                {
-                    seldis = disT;
-                    selectedone = sqlite3_column_int(statement, 0);
-                }
-            }
-            
-            sqlite3_finalize(statement);
-        }
-        
-        
-        //////////////////////////////////////////////////////////////////////////////////////
-        
-		//cv::vector<cv::Point2f> ifacet;
-		cv::Point2f cp[4];
-		cvR.points(cp);
-		
-		cv::Point cpp[4];
-		for(int h=0;h<4;h++)
-		{
-			cpp[h].x = cp[h].x;
-			cpp[h].y = cp[h].y;
-            
-            
-            
-            cpp[h].x = MIN(MAX(cpp[h].x,0),origin_imm->width);
-            cpp[h].y = MIN(MAX(cpp[h].y,0),origin_imm->height);
-		}
-		
-		cv::fillConvexPoly(res,cpp,4,cv::Scalar(B,G,R));
-        isdone = 0;
-        
-        pt->matchim_num = selectedone;
-        
-		pt = pt->nextp;
-        
-        //if(pt==NULL)
-        //    break;
-        //cvReleaseImage(&sample);
-        cvReleaseImage(&twosample);
-        cvReleaseImage(&foursample);
-        cvReleaseImage(&sixteensample);
-	}
-    
-    
-    
-    
-    
-    
+}
+
+void Mosaic_CV::drawRect(cv::Mat res) //사각형 그리기 겸... 이미지 찾기
+{
+    res =  cv::Scalar::all(0);
+    findMatchedImage(res, basehead);
+    findMatchedImage(res, phead);
 }
 
 
