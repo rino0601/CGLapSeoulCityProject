@@ -21,6 +21,8 @@
 - (void)prevPlay;
 - (void)backToHome2;
 - (void)playFirst;
+- (void)clickTest:(UIButton*) sender;
+
 @end
 
 @implementation ContentsView
@@ -44,7 +46,10 @@
 		backImageView.backgroundColor = [UIColor clearColor];
 		backImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[videoList objectAtIndex:playCount]]];
 		
-		movPlayer1 = [[MPMoviePlayerController alloc] init];
+		
+
+        
+        movPlayer1 = [[MPMoviePlayerController alloc] init];
 		movPlayer1.view.frame = frame;
 		movPlayer1.controlStyle = MPMovieControlStyleNone;
 		movPlayer1.fullscreen = YES;
@@ -63,6 +68,27 @@
 		
 		[self addSubview:movPlayer1.view];
 		
+        
+        prevButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		prevButton.frame = ScaleCGRectMake(0, 160 - 50, 60, 60);
+		
+		[prevButton setBackgroundImage:[UIImage imageNamed:@"icon_prev.png"] forState:UIControlStateNormal];
+		[prevButton addTarget: self
+                       action: @selector(prevPlay)
+             forControlEvents: UIControlEventTouchUpInside];
+		
+		[self addSubview:prevButton];
+
+        nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		nextButton.frame = ScaleCGRectMake(480 - 60, 160 - 50, 60, 60);
+		
+		[nextButton setBackgroundImage:[UIImage imageNamed:@"icon_next.png"] forState:UIControlStateNormal];
+		[nextButton addTarget: self
+                       action: @selector(nextPlay)
+             forControlEvents: UIControlEventTouchUpInside];
+		
+		[self addSubview:nextButton];
+        
 		menuView = [[MenuView alloc] initWithFrame:frame];
 		menuView.isPlay=YES;
 		
@@ -73,7 +99,9 @@
 	
     return self;
 }
-
+- (void)clickTest:(UIButton*) sender {
+    NSLog(@"Tag: %d",sender.tag);
+}
 
 - (void)openTwitter {
 	NSString *twitter = @"http://m.twitter.com/genicube";
@@ -208,6 +236,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint pt = [[touches anyObject] locationInView:self];
+
 	if (!isAnimate) {
 		if (pt.x < startPos.x - 50) {
 			if( playCount + 1 == [videoList count]){
@@ -359,7 +388,9 @@
 	imagePrevCount = playCount - 1;
 	
 	if (imagePrevCount < 0 ) {
-		imagePrevCount = [videoList count] - 1;
+        isAnimate = NO;
+        return;
+		//imagePrevCount = [videoList count] - 1;
 	}
 	
 	backImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[videoList objectAtIndex:imagePrevCount]]];

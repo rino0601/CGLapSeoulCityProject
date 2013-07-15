@@ -17,6 +17,9 @@
     UIView *endPage;
 	UIView *naviView;
 	UIWebView *twitterWebView;
+    
+    UIButton *prevButton;
+    UIButton *nextButton;
 		
 	NSArray *videoList;
 	

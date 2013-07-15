@@ -52,9 +52,9 @@
 		menuImageView.userInteractionEnabled = YES;
 		
 		UIButton *btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-		btnHome.frame = ScaleCGRectMake(41, 13, 40, 35);
+		btnHome.frame = ScaleCGRectMake(0, 13, 40, 35);
 		
-		[btnHome setBackgroundImage:[UIImage imageNamed:@"btn_home.png"] forState:UIControlStateNormal];
+		[btnHome setBackgroundImage:[UIImage imageNamed:@"icon_m_home.png"] forState:UIControlStateNormal];
 		[btnHome addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
 		
 		[menuImageView addSubview:btnHome];
@@ -73,8 +73,8 @@
 		btnPlay.frame = ScaleCGRectMake(285, 15, 32, 32);
 		
 		[btnPlay setBackgroundImage:[UIImage imageNamed:@"btn_pause.png"] forState:UIControlStateNormal];
-		//[btnPlay addTarget:self action:@selector(playPause:) forControlEvents:UIControlEventTouchUpInside];
-		[btnPlay addTarget:self action:@selector(mosaicViewUP) forControlEvents:UIControlEventTouchUpInside];
+        //[btnPlay addTarget:self action:@selector(playPause:) forControlEvents:UIControlEventTouchUpInside];
+        [btnPlay addTarget:self action:@selector(mosaicViewUP) forControlEvents:UIControlEventTouchUpInside];
 		
 		[menuImageView addSubview:btnPlay];
 		
