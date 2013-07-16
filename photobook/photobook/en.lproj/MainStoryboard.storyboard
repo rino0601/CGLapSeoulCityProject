@@ -67,6 +67,7 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="01.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="0vX-Vx-USL"/>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJg-Gx-bzX">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="menu_bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="xxT-jK-qhb">
@@ -180,7 +181,6 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
                                 </accessibility>
@@ -269,22 +269,27 @@
                             <accessibilityTraits key="traits" none="YES" image="YES" updatesFrequently="YES"/>
                         </accessibility>
                         <constraints>
+                            <constraint firstItem="0vX-Vx-USL" firstAttribute="leading" secondItem="hld-Pe-zT2" secondAttribute="leading" type="default" id="0q5-Ws-aLo"/>
                             <constraint firstItem="4Xb-dl-xRG" firstAttribute="leading" secondItem="hld-Pe-zT2" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2ca-98-5tz"/>
+                            <constraint firstItem="4Xb-dl-xRG" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" constant="317" id="A35-eL-HNu"/>
+                            <constraint firstItem="0vX-Vx-USL" firstAttribute="trailing" secondItem="hld-Pe-zT2" secondAttribute="trailing" type="default" id="DCW-qQ-ejv"/>
                             <constraint firstItem="4Xb-dl-xRG" firstAttribute="top" secondItem="haz-PY-TgH" secondAttribute="top" type="default" id="E0T-YU-ezx"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="trailing" secondItem="hld-Pe-zT2" secondAttribute="trailing" type="default" id="M9X-ef-kWz"/>
-                            <constraint firstItem="haz-PY-TgH" firstAttribute="bottom" secondItem="4Xb-dl-xRG" secondAttribute="bottom" type="default" id="NjX-Gg-afV"/>
                             <constraint firstItem="vhI-po-ybb" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" constant="670" id="aId-zz-3vH"/>
+                            <constraint firstItem="haz-PY-TgH" firstAttribute="bottom" secondItem="4Xb-dl-xRG" secondAttribute="bottom" type="default" id="cQx-pI-khm"/>
                             <constraint firstAttribute="trailing" secondItem="haz-PY-TgH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dbg-Y2-5st"/>
+                            <constraint firstItem="0vX-Vx-USL" firstAttribute="bottom" secondItem="hld-Pe-zT2" secondAttribute="bottom" type="default" id="ddM-2Z-b78"/>
+                            <constraint firstItem="0vX-Vx-USL" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" type="default" id="mCs-jF-X6p"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" constant="623" id="qea-Km-dcK"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="leading" secondItem="hld-Pe-zT2" secondAttribute="leading" type="default" id="rXP-2O-28O"/>
                             <constraint firstItem="vhI-po-ybb" firstAttribute="centerX" secondItem="lJg-Gx-bzX" secondAttribute="centerX" type="default" id="sJy-TU-H4l"/>
-                            <constraint firstItem="4Xb-dl-xRG" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" constant="317" id="wPw-7a-YHS"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="bottom" secondItem="hld-Pe-zT2" secondAttribute="bottom" type="default" id="xcU-vk-T5R"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="contentsViewer" destination="0vX-Vx-USL" id="uX5-vE-Gkg"/>
                         <outlet property="menuBar" destination="lJg-Gx-bzX" id="Za5-dq-xOM"/>
                         <outlet property="menuIcon" destination="vhI-po-ybb" id="cnP-nF-ikz"/>
                         <segue destination="GSu-kb-PhV" kind="modal" id="Vte-iJ-hkc"/>
@@ -305,6 +310,234 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="cWW-N2-RHT"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty4-PW-sYc">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_action_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pra-o4-Sfa"/>
+                                </subviews>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" image="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="top" secondItem="ty4-PW-sYc" secondAttribute="top" type="default" id="Cxo-g0-JBb"/>
+                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="trailing" secondItem="ty4-PW-sYc" secondAttribute="trailing" type="default" id="Gqq-8b-r2h"/>
+                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="leading" secondItem="ty4-PW-sYc" secondAttribute="leading" type="default" id="b6O-aV-W0o"/>
+                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="bottom" secondItem="ty4-PW-sYc" secondAttribute="bottom" type="default" id="cEt-9K-tra"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-1T-pDD">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-sx-A1a">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="KpM-Y7-iZQ"/>
+                                            <constraint firstAttribute="width" constant="80" id="nHK-si-XIe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="01" image="mosaic_c01.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-zP-wNl">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="fpr-jt-sm6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="02" image="mosaic_c02.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1x-gS-7pp">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="03" image="mosaic_c03.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPj-T5-CPm">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="j1e-5V-f7F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="04" image="mosaic_c04.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-uY-93d">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="lbO-eC-hyo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="05" image="mosaic_c05.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKB-TX-kQJ">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <state key="normal" image="mosaic_c06.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-ts-chU">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="4l3-5d-KEW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c07.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-Sy-rOQ">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c08.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-cr-e51">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c09.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N14-2t-g2x">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c10.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7P-sB-NI4">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c11.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRJ-ky-B0s">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="zTr-NP-oqw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="mosaic_c12.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cg4-zP-wNl" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="0GO-gN-9JO"/>
+                                    <constraint firstItem="N14-2t-g2x" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="3jN-UG-4jY"/>
+                                    <constraint firstItem="Q3D-ts-chU" firstAttribute="bottom" secondItem="qfH-Sy-rOQ" secondAttribute="bottom" type="default" id="7by-J0-ghO"/>
+                                    <constraint firstItem="Q3D-ts-chU" firstAttribute="trailing" secondItem="o1x-gS-7pp" secondAttribute="trailing" type="default" id="7c5-if-fHs"/>
+                                    <constraint firstItem="fRJ-ky-B0s" firstAttribute="leading" secondItem="qfH-Sy-rOQ" secondAttribute="leading" type="default" id="9GM-Gu-7V6"/>
+                                    <constraint firstItem="N14-2t-g2x" firstAttribute="leading" secondItem="IKB-TX-kQJ" secondAttribute="leading" type="default" id="BX8-cV-5jv"/>
+                                    <constraint firstItem="kPj-T5-CPm" firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" type="default" id="Dfu-Z2-l09"/>
+                                    <constraint firstItem="cg4-zP-wNl" firstAttribute="trailing" secondItem="IKB-TX-kQJ" secondAttribute="trailing" type="default" id="GVj-7H-Fya"/>
+                                    <constraint firstItem="N14-2t-g2x" firstAttribute="top" secondItem="fuM-cr-e51" secondAttribute="top" type="default" id="HGD-8Z-axH"/>
+                                    <constraint firstItem="fRJ-ky-B0s" firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" type="default" id="IDr-rM-I7b"/>
+                                    <constraint firstItem="N14-2t-g2x" firstAttribute="trailing" secondItem="IKB-TX-kQJ" secondAttribute="trailing" type="default" id="OYx-kO-mJI"/>
+                                    <constraint firstItem="Co0-sx-A1a" firstAttribute="leading" secondItem="3f1-1T-pDD" secondAttribute="leading" type="default" id="PAS-A4-7dc"/>
+                                    <constraint firstItem="IKB-TX-kQJ" firstAttribute="bottom" secondItem="Q3D-ts-chU" secondAttribute="bottom" type="default" id="RGJ-dA-a2d"/>
+                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" type="default" id="Rs1-wi-gtd"/>
+                                    <constraint firstItem="IKB-TX-kQJ" firstAttribute="top" secondItem="5Wx-uY-93d" secondAttribute="top" type="default" id="Tbf-FZ-7Ym"/>
+                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="top" secondItem="Q3D-ts-chU" secondAttribute="top" type="default" id="X3S-AR-zvr"/>
+                                    <constraint firstItem="Q3D-ts-chU" firstAttribute="top" secondItem="IKB-TX-kQJ" secondAttribute="top" type="default" id="Xm1-hE-QSX"/>
+                                    <constraint firstItem="fRJ-ky-B0s" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="YFu-Uj-ljg"/>
+                                    <constraint firstItem="5Wx-uY-93d" firstAttribute="trailing" secondItem="Co0-sx-A1a" secondAttribute="trailing" type="default" id="Zek-Ki-JtW"/>
+                                    <constraint firstItem="o1x-gS-7pp" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="aGb-Ks-y9J"/>
+                                    <constraint firstItem="Q3D-ts-chU" firstAttribute="leading" secondItem="k7P-sB-NI4" secondAttribute="leading" type="default" id="aPV-0I-b0g"/>
+                                    <constraint firstItem="o1x-gS-7pp" firstAttribute="bottom" secondItem="kPj-T5-CPm" secondAttribute="bottom" type="default" id="bPk-Qj-LbB"/>
+                                    <constraint firstItem="k7P-sB-NI4" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="gQ3-jA-F7C"/>
+                                    <constraint firstItem="Co0-sx-A1a" firstAttribute="bottom" secondItem="cg4-zP-wNl" secondAttribute="bottom" type="default" id="iQ9-E6-qQ5"/>
+                                    <constraint firstItem="k7P-sB-NI4" firstAttribute="trailing" secondItem="Q3D-ts-chU" secondAttribute="trailing" type="default" id="j1t-1V-UUI"/>
+                                    <constraint firstItem="fuM-cr-e51" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="jMg-cm-dub"/>
+                                    <constraint firstItem="IKB-TX-kQJ" firstAttribute="leading" secondItem="cg4-zP-wNl" secondAttribute="leading" type="default" id="ll5-pE-HIk"/>
+                                    <constraint firstItem="Co0-sx-A1a" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="lnU-aZ-Iys"/>
+                                    <constraint firstItem="fuM-cr-e51" firstAttribute="trailing" secondItem="5Wx-uY-93d" secondAttribute="trailing" type="default" id="nZR-Ze-Lcs"/>
+                                    <constraint firstItem="o1x-gS-7pp" firstAttribute="bottom" secondItem="cg4-zP-wNl" secondAttribute="bottom" type="default" id="nnI-rt-Dwz"/>
+                                    <constraint firstItem="N14-2t-g2x" firstAttribute="top" secondItem="k7P-sB-NI4" secondAttribute="top" type="default" id="nxg-Oe-2te"/>
+                                    <constraint firstItem="cg4-zP-wNl" firstAttribute="leading" secondItem="3f1-1T-pDD" secondAttribute="leading" constant="99" id="oys-vu-OWJ"/>
+                                    <constraint firstItem="5Wx-uY-93d" firstAttribute="leading" secondItem="3f1-1T-pDD" secondAttribute="leading" type="default" id="pcz-fw-cla"/>
+                                    <constraint firstItem="kPj-T5-CPm" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="pxz-qO-Bxf"/>
+                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="leading" secondItem="kPj-T5-CPm" secondAttribute="leading" type="default" id="qB4-sj-7Uh"/>
+                                    <constraint firstItem="IKB-TX-kQJ" firstAttribute="bottom" secondItem="5Wx-uY-93d" secondAttribute="bottom" type="default" id="rmA-ha-uAT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q3D-ts-chU" secondAttribute="trailing" constant="101" id="rwS-g4-hZv"/>
+                                    <constraint firstItem="fuM-cr-e51" firstAttribute="leading" secondItem="3f1-1T-pDD" secondAttribute="leading" type="default" id="wLP-kT-4b1"/>
+                                    <constraint firstItem="fRJ-ky-B0s" firstAttribute="top" secondItem="k7P-sB-NI4" secondAttribute="top" type="default" id="xoP-9M-oGj"/>
+                                    <constraint firstItem="Q3D-ts-chU" firstAttribute="leading" secondItem="o1x-gS-7pp" secondAttribute="leading" type="default" id="zEW-xY-YLd"/>
+                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="centerY" secondItem="3f1-1T-pDD" secondAttribute="centerY" type="default" id="zfU-ce-qDz"/>
+                                    <constraint firstItem="5Wx-uY-93d" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" constant="97" id="zmB-8J-efO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sg-Dp-n1w">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_book.png" translatesAutoresizingMaskIntoConstraints="NO" id="zt0-CF-Rjm"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgE-vb-oHc">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="QR9-DL-2C9"/>
+                                            <constraint firstAttribute="height" constant="53" id="xvm-wD-Aw2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="btn_paste.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="top" secondItem="5Sg-Dp-n1w" secondAttribute="top" type="default" id="8vy-rz-0qG"/>
+                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="leading" secondItem="5Sg-Dp-n1w" secondAttribute="leading" type="default" id="DVp-Oy-644"/>
+                                    <constraint firstItem="MgE-vb-oHc" firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" type="default" id="Op1-7g-XWJ"/>
+                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" type="default" id="fsW-cc-9VW"/>
+                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="bottom" secondItem="5Sg-Dp-n1w" secondAttribute="bottom" type="default" id="gog-bA-8QQ"/>
+                                    <constraint firstItem="MgE-vb-oHc" firstAttribute="top" secondItem="5Sg-Dp-n1w" secondAttribute="top" type="default" id="m3L-ZK-Bd7"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-xy-dDq">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
@@ -328,12 +561,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ty4-PW-sYc" firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" type="default" id="0Na-A8-Dax"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" type="default" id="UQj-IE-0hz"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" type="default" id="V2r-6o-Jxy"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="bottom" secondItem="RVw-yR-6n9" secondAttribute="bottom" type="default" id="XTO-Ha-Y40"/>
+                            <constraint firstItem="ty4-PW-sYc" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="XtA-AJ-STp"/>
+                            <constraint firstItem="ty4-PW-sYc" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="cIz-8O-gUQ"/>
+                            <constraint firstItem="3f1-1T-pDD" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="d1o-yF-lMC"/>
+                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="leading" secondItem="QFP-xy-dDq" secondAttribute="leading" type="default" id="dRW-sg-tA8"/>
+                            <constraint firstAttribute="bottom" secondItem="ty4-PW-sYc" secondAttribute="bottom" constant="403" id="ef5-HM-9nL"/>
+                            <constraint firstItem="3f1-1T-pDD" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="370" id="fHY-Pq-M30"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="trailing" secondItem="RVw-yR-6n9" secondAttribute="trailing" type="default" id="iej-TH-Tew"/>
+                            <constraint firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ifH-X9-27n"/>
                             <constraint firstItem="QFP-xy-dDq" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="667" id="nUL-tH-Ymu"/>
+                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="q2n-bM-Jxp"/>
+                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="sbz-6P-a0a"/>
                             <constraint firstItem="QFP-xy-dDq" firstAttribute="centerX" secondItem="cWW-N2-RHT" secondAttribute="centerX" type="default" id="tRf-J9-Vae"/>
+                            <constraint firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" constant="621" id="zYv-3e-3AH"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -342,7 +586,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m23-4R-Fdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iq4-xG-qIK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2308" y="571"/>
+            <point key="canvasLocation" x="2300" y="567"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="e0k-n8-H1Y">
@@ -362,6 +606,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="01.JPG" width="2400" height="1503"/>
+        <image name="btn_paste.png" width="285" height="150"/>
         <image name="icon_m_home.png" width="225" height="225"/>
         <image name="icon_m_info.png" width="225" height="225"/>
         <image name="icon_m_mosaic.png" width="225" height="225"/>
@@ -373,7 +619,21 @@
         <image name="icon_play.png" width="448" height="448"/>
         <image name="icon_prev.png" width="135" height="135"/>
         <image name="menu_bar.png" width="2048" height="142"/>
+        <image name="mosaic_action_box.png" width="742" height="742"/>
         <image name="mosaic_bg.png" width="2048" height="1536"/>
+        <image name="mosaic_book.png" width="1172" height="1348"/>
+        <image name="mosaic_c01.png" width="168" height="172"/>
+        <image name="mosaic_c02.png" width="168" height="172"/>
+        <image name="mosaic_c03.png" width="168" height="172"/>
+        <image name="mosaic_c04.png" width="168" height="172"/>
+        <image name="mosaic_c05.png" width="168" height="172"/>
+        <image name="mosaic_c06.png" width="168" height="172"/>
+        <image name="mosaic_c07.png" width="168" height="172"/>
+        <image name="mosaic_c08.png" width="168" height="172"/>
+        <image name="mosaic_c09.png" width="168" height="172"/>
+        <image name="mosaic_c10.png" width="168" height="172"/>
+        <image name="mosaic_c11.png" width="168" height="172"/>
+        <image name="mosaic_c12.png" width="168" height="172"/>
         <image name="p1.jpg" width="2048" height="1536"/>
     </resources>
     <classes>
@@ -388,6 +648,7 @@
                 <relationship kind="action" name="doMosaic"/>
                 <relationship kind="action" name="doRight"/>
                 <relationship kind="action" name="onContents:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="contentsViewer" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="menuBar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="menuIcon" candidateClass="UIButton"/>
             </relationships>

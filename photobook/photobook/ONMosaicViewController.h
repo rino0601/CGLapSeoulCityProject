@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ONMosaicViewController : UIViewController
+@interface ONMosaicViewController : UIViewController {
+    UIImageView *paperSeat;
+    UIImageView *dd;
+}
 
 @end

@@ -14,6 +14,7 @@
 - (IBAction)doLeft;
 - (IBAction)doRight;
 - (IBAction)doMosaic;
+- (IBAction)doPageAnimation;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
 
 - (void)playBookWithIndex:(int)index;
@@ -40,14 +41,20 @@
     [super viewDidLoad];
     isMenuOn = false;
     
-    NSUserDefaults *defaultsValues = [NSUserDefaults standardUserDefaults];
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    
+    NSString *finalPath = [path stringByAppendingPathComponent:@"settings.plist"];
+    
+    NSMutableDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:finalPath];
+    
+    contentsList = [contentsPlist objectForKey:@"contentsList"];
     
     
-    contentsList = [defaultsValues arrayForKey:@"contentsList"];
-    
+    //currentViewIndex = (int)[contentsPlist valueForKey:@"readPage"] - 1;
     currentViewIndex = 0;
-    maxViewIndex = contentsList.count;
     
+    maxViewIndex = contentsList.count;
+    [self playBookWithIndex:currentViewIndex];
 	// Do any additional setup after loading the view.
 }
 
@@ -83,27 +90,35 @@
         currentViewIndex = 0;
     }
     
-    /* 화면을 좌측으로 넘기는 부분 구현.
+    /* 화면을 좌측으로 넘기는 부분 animation 구현.
      */
     
     NSLog(@"index: %d",currentViewIndex);
-
+    [self playBookWithIndex:currentViewIndex];
 }
 - (IBAction)doRight{
-    if( ++currentViewIndex > maxViewIndex) {
-        currentViewIndex = maxViewIndex;
+    if( ++currentViewIndex >= maxViewIndex) {
+        currentViewIndex = maxViewIndex - 1;
     }
     
-    /* 화면을 우측으로 넘기는 부분 구현.
+    /* 화면을 우측으로 넘기는 부분 animation 구현.
      */
     
     NSLog(@"index: %d",currentViewIndex);
-    
+    [self playBookWithIndex:currentViewIndex];
 }
 
+- (IBAction)doPageAnimation {
+    /* 페이지를 읽기 시작할 때 로딩시의 에니메이션을 설정 및 시작하는 함수.
+     * 추후 구현 예정
+     */
+}
 
 - (void)playBookWithIndex:(int)index{
-    //[contentsViewer ]
+    index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
+    NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
+    [contentsViewer setImage:[UIImage imageNamed:[contentsList objectAtIndex:index]]];
+    [self doPageAnimation];
 }
 
 - (IBAction)doMosaic{
