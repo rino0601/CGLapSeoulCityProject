@@ -22,7 +22,6 @@
 - (void)prevPlay;
 - (void)backToHome2;
 - (void)playFirst;
-- (void)clickTest:(UIButton*) sender;
 
 @end
 
@@ -39,7 +38,6 @@
 		scaleFactorX = frame.size.width / 480.0f;
 		scaleFactorY = frame.size.height / 320.0f;
 		playCount = [defaultsValues integerForKey:@"readPage"] - 1;
-		
 		videoList = [[NSArray alloc] initWithArray:[defaultsValues arrayForKey:@"videoList"]];
 		
 		backImageView = [[UIImageView alloc] initWithFrame:frame];
@@ -99,9 +97,6 @@
     }
 	
     return self;
-}
-- (void)clickTest:(UIButton*) sender {
-    NSLog(@"Tag: %d",sender.tag);
 }
 
 - (void)openTwitter {
@@ -181,7 +176,13 @@
 	[menuView show:menuOn]; // NO 면 무조건 숨기고, YES면 toggle
 }
 
-
+- (void)playWithIndex:(int)index {
+    
+    index < 0 ? playCount = 0 : index > [videoList count] ? playCount = [videoList count] - 1 : playCount = index;
+    
+    
+    
+}
 - (void)playFirst {
 	[endPage removeFromSuperview];
 	
@@ -226,8 +227,6 @@
 	
 	[self removeFromSuperview];
 }
-
-
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint pt = [[touches anyObject] locationInView:self];
@@ -349,7 +348,9 @@
 	imageNextCount = playCount + 1;
 	
 	if (imageNextCount == [videoList count]) {
-		imageNextCount = 0;
+        isAnimate = NO;
+        return;
+		//imageNextCount = 0;
 	}
 	
 	backImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[videoList objectAtIndex:imageNextCount]]];
