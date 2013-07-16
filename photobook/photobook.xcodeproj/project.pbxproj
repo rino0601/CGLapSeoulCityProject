@@ -138,7 +138,7 @@
 		1CEE47CA17953353009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE47A417953353009D0105 /* UIImageCVArrConverter.mm */; };
 		1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CD17953537009D0105 /* OpenGLES.framework */; };
 		1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CF1795354C009D0105 /* QuartzCore.framework */; };
-		1CEE47D217953599009D0105 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47D117953599009D0105 /* opencv2.framework */; };
+		EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9A638A17953A9500D11A4E /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -316,7 +316,7 @@
 		1CEE47A417953353009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
 		1CEE47CD17953537009D0105 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1CEE47CF1795354C009D0105 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1CEE47D117953599009D0105 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../ArisuLA/opencv2.framework; sourceTree = "<group>"; };
+		EA9A638A17953A9500D11A4E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,12 +324,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CEE47D217953599009D0105 /* opencv2.framework in Frameworks */,
 				1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */,
 				1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */,
 				1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */,
 				1C8AE10C1793D63300174072 /* Foundation.framework in Frameworks */,
 				1C8AE10E1793D63300174072 /* CoreGraphics.framework in Frameworks */,
+				EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +349,6 @@
 		1C8AE0FD1793D63300174072 = {
 			isa = PBXGroup;
 			children = (
-				1CEE47D117953599009D0105 /* opencv2.framework */,
 				1CEE475B17953353009D0105 /* PaperMosaic */,
 				1C8AE3811794449900174072 /* Resources */,
 				1C8AE10F1793D63300174072 /* Photobook */,
@@ -371,6 +370,7 @@
 		1C8AE1081793D63300174072 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA9A638A17953A9500D11A4E /* opencv2.framework */,
 				1CEE47CF1795354C009D0105 /* QuartzCore.framework */,
 				1CEE47CD17953537009D0105 /* OpenGLES.framework */,
 				1C8AE1091793D63300174072 /* UIKit.framework */,
@@ -1040,11 +1040,15 @@
 		1C8AE13F1793D63300174072 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../ArisuLA\"",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
@@ -1057,11 +1061,15 @@
 		1C8AE1401793D63300174072 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../ArisuLA\"",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
