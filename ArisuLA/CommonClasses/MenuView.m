@@ -54,7 +54,7 @@
 		UIButton *btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
 		btnHome.frame = ScaleCGRectMake(0, 13, 40, 35);
 		
-		[btnHome setBackgroundImage:[UIImage imageNamed:@"icon_m_home.png"] forState:UIControlStateNormal];
+		[btnHome setBackgroundImage:[UIImage imageNamed:@"btn_home.png"] forState:UIControlStateNormal];
 		[btnHome addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
 		
 		[menuImageView addSubview:btnHome];

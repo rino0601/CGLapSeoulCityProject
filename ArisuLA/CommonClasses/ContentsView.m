@@ -15,6 +15,7 @@
 
 - (void)subviewChange;
 
+- (void)playWithIndex:(int)index;
 - (void)playLive:(NSString *)moviePath;
 - (void)videoPlay;
 - (void)nextPlay;
