@@ -10,10 +10,15 @@
 #import "../PaperMosaic/PaperMosaicCanvas.h"
 
 @interface ONMosaicViewController : UIViewController {
-    UIView *backPan;
-    PaperMosaicCanvas *mosaicPan;
+    CGContextRef ctx;
+	ActiveXDialog *ADelegate;
+	UIImageView *Mosaic;
+	UIImageView *Paper;
+	CGPoint touchPos;
 }
-@property (nonatomic, retain) IBOutlet PaperMosaicCanvas *mosaicPan;
-@property (nonatomic, retain) IBOutlet UIView *backPan;
+
+- (void)doAsAutoMode; //작동을 왜 안하니 ㅠㅠ
+- (BOOL)setPaperColor:(UIColor *)color;
+- (id)initWithFrame:(CGRect)frame scale:(CGSize)factor;
 
 @end

@@ -14,15 +14,11 @@
 
 @implementation ONMosaicViewController
 
-@synthesize backPan;
-@synthesize mosaicPan;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        PaperMosaicCanvas *mosaicView = [[PaperMosaicCanvas alloc] initWithFrame:CGRectMake(100,100,100,100)];
-		[backPan addSubview:mosaicView];
+        
     }
     return self;
 }

@@ -90,22 +90,30 @@
         currentViewIndex = 0;
     }
     
-    /* 화면을 좌측으로 넘기는 부분 animation 구현.
-     */
-    
     NSLog(@"index: %d",currentViewIndex);
     [self playBookWithIndex:currentViewIndex];
+    
+    /* 화면을 좌측으로 넘기는 부분 animation 구현.
+     */
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:NO];
+    [UIView commitAnimations];
 }
 - (IBAction)doRight{
     if( ++currentViewIndex >= maxViewIndex) {
         currentViewIndex = maxViewIndex - 1;
     }
     
-    /* 화면을 우측으로 넘기는 부분 animation 구현.
-     */
-    
     NSLog(@"index: %d",currentViewIndex);
     [self playBookWithIndex:currentViewIndex];
+    
+    /* 화면을 우측으로 넘기는 부분 animation 구현.
+     */
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:NO];
+    [UIView commitAnimations];
 }
 
 - (IBAction)doPageAnimation {
