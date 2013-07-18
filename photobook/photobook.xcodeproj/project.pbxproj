@@ -98,46 +98,31 @@
 		1C8AE52117951F9000174072 /* p1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4DB17951F9000174072 /* p1.jpg */; };
 		1CEE4759179529F0009D0105 /* btn_paste_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE4757179529F0009D0105 /* btn_paste_down.png */; };
 		1CEE475A179529F0009D0105 /* btn_paste.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE4758179529F0009D0105 /* btn_paste.png */; };
-		1CEE47A517953353009D0105 /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE475D17953353009D0105 /* ColorPickerView.m */; };
-		1CEE47A617953353009D0105 /* ActiveXDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE475F17953353009D0105 /* ActiveXDialog.cpp */; };
-		1CEE47A717953353009D0105 /* ColoredPaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476117953353009D0105 /* ColoredPaper.cpp */; };
-		1CEE47A817953353009D0105 /* ColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476317953353009D0105 /* ColoredPaperMosaic.cpp */; };
-		1CEE47A917953353009D0105 /* ColoredPapperTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476517953353009D0105 /* ColoredPapperTile.cpp */; };
-		1CEE47AA17953353009D0105 /* dwLIC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476817953353009D0105 /* dwLIC.cpp */; };
-		1CEE47AB17953353009D0105 /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476A17953353009D0105 /* ETF.cpp */; };
-		1CEE47AC17953353009D0105 /* fdog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE476C17953353009D0105 /* fdog.cpp */; };
-		1CEE47AD17953353009D0105 /* InteractiveColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477017953353009D0105 /* InteractiveColoredPaperMosaic.cpp */; };
-		1CEE47AE17953353009D0105 /* MNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477217953353009D0105 /* MNode.cpp */; };
-		1CEE47AF17953353009D0105 /* MPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477417953353009D0105 /* MPoint.cpp */; };
-		1CEE47B017953353009D0105 /* mSemaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477617953353009D0105 /* mSemaphore.cpp */; };
-		1CEE47B117953353009D0105 /* TornEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477817953353009D0105 /* TornEffect.cpp */; };
-		1CEE47B217953353009D0105 /* xDistanceTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE477A17953353009D0105 /* xDistanceTransform.cpp */; };
-		1CEE47B317953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE477E17953353009D0105 /* edge_img.bmp */; };
-		1CEE47B417953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE477F17953353009D0105 /* mask_img.bmp */; };
-		1CEE47B517953353009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478017953353009D0105 /* source_img.bmp */; };
-		1CEE47B617953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478217953353009D0105 /* edge_img.bmp */; };
-		1CEE47B717953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478317953353009D0105 /* mask_img.bmp */; };
-		1CEE47B817953353009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478417953353009D0105 /* source_img.bmp */; };
-		1CEE47B917953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478617953353009D0105 /* edge_img.bmp */; };
-		1CEE47BA17953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478717953353009D0105 /* mask_img.bmp */; };
-		1CEE47BB17953353009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478817953353009D0105 /* source_img.bmp */; };
-		1CEE47BC17953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478A17953353009D0105 /* edge_img.bmp */; };
-		1CEE47BD17953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478B17953353009D0105 /* mask_img.bmp */; };
-		1CEE47BE17953353009D0105 /* souce_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478C17953353009D0105 /* souce_img.bmp */; };
-		1CEE47BF17953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478E17953353009D0105 /* edge_img.bmp */; };
-		1CEE47C017953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE478F17953353009D0105 /* mask_img.bmp */; };
-		1CEE47C117953353009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE479017953353009D0105 /* source_img.bmp */; };
-		1CEE47C217953353009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE479217953353009D0105 /* edge_img.bmp */; };
-		1CEE47C317953353009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE479317953353009D0105 /* mask_img.bmp */; };
-		1CEE47C417953353009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE479417953353009D0105 /* source_img.bmp */; };
-		1CEE47C517953353009D0105 /* ObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE479617953353009D0105 /* ObjectiveC.mm */; };
-		1CEE47C617953353009D0105 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE479917953353009D0105 /* GLView.mm */; };
-		1CEE47C717953353009D0105 /* RenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE479D17953353009D0105 /* RenderingEngine1.cpp */; };
-		1CEE47C817953353009D0105 /* PaperMosaicCanvas.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE47A017953353009D0105 /* PaperMosaicCanvas.mm */; };
-		1CEE47C917953353009D0105 /* PaperMosaicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE47A217953353009D0105 /* PaperMosaicViewController.mm */; };
-		1CEE47CA17953353009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE47A417953353009D0105 /* UIImageCVArrConverter.mm */; };
 		1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CD17953537009D0105 /* OpenGLES.framework */; };
 		1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CF1795354C009D0105 /* QuartzCore.framework */; };
+		1CEE489217955028009D0105 /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484A17955028009D0105 /* ColorPickerView.m */; };
+		1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484C17955028009D0105 /* ActiveXDialog.cpp */; };
+		1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484E17955028009D0105 /* ColoredPaper.cpp */; };
+		1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485017955028009D0105 /* ColoredPaperMosaic.cpp */; };
+		1CEE489617955028009D0105 /* ColoredPapperTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485217955028009D0105 /* ColoredPapperTile.cpp */; };
+		1CEE489717955028009D0105 /* dwLIC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485517955028009D0105 /* dwLIC.cpp */; };
+		1CEE489817955028009D0105 /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485717955028009D0105 /* ETF.cpp */; };
+		1CEE489917955028009D0105 /* fdog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485917955028009D0105 /* fdog.cpp */; };
+		1CEE489A17955028009D0105 /* InteractiveColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485D17955028009D0105 /* InteractiveColoredPaperMosaic.cpp */; };
+		1CEE489B17955028009D0105 /* MNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485F17955028009D0105 /* MNode.cpp */; };
+		1CEE489C17955028009D0105 /* MPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE486117955028009D0105 /* MPoint.cpp */; };
+		1CEE489D17955028009D0105 /* mSemaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE486317955028009D0105 /* mSemaphore.cpp */; };
+		1CEE489E17955028009D0105 /* TornEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE486517955028009D0105 /* TornEffect.cpp */; };
+		1CEE489F17955028009D0105 /* xDistanceTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE486717955028009D0105 /* xDistanceTransform.cpp */; };
+		1CEE48A317955028009D0105 /* edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE486F17955028009D0105 /* edge_img.bmp */; };
+		1CEE48A417955028009D0105 /* mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE487017955028009D0105 /* mask_img.bmp */; };
+		1CEE48A517955028009D0105 /* source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE487117955028009D0105 /* source_img.bmp */; };
+		1CEE48B217955028009D0105 /* ObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488317955028009D0105 /* ObjectiveC.mm */; };
+		1CEE48B317955028009D0105 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488617955028009D0105 /* GLView.mm */; };
+		1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488A17955028009D0105 /* RenderingEngine1.cpp */; };
+		1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */; };
+		1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */; };
+		1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */; };
 		EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9A638A17953A9500D11A4E /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
@@ -251,71 +236,56 @@
 		1C8AE4DB17951F9000174072 /* p1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = p1.jpg; sourceTree = "<group>"; };
 		1CEE4757179529F0009D0105 /* btn_paste_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paste_down.png; sourceTree = "<group>"; };
 		1CEE4758179529F0009D0105 /* btn_paste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paste.png; sourceTree = "<group>"; };
-		1CEE475C17953353009D0105 /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
-		1CEE475D17953353009D0105 /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
-		1CEE475F17953353009D0105 /* ActiveXDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveXDialog.cpp; sourceTree = "<group>"; };
-		1CEE476017953353009D0105 /* ActiveXDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveXDialog.h; sourceTree = "<group>"; };
-		1CEE476117953353009D0105 /* ColoredPaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaper.cpp; sourceTree = "<group>"; };
-		1CEE476217953353009D0105 /* ColoredPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPaper.h; sourceTree = "<group>"; };
-		1CEE476317953353009D0105 /* ColoredPaperMosaic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaperMosaic.cpp; sourceTree = "<group>"; };
-		1CEE476417953353009D0105 /* ColoredPaperMosaic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPaperMosaic.h; sourceTree = "<group>"; };
-		1CEE476517953353009D0105 /* ColoredPapperTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPapperTile.cpp; sourceTree = "<group>"; };
-		1CEE476617953353009D0105 /* ColoredPapperTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPapperTile.h; sourceTree = "<group>"; };
-		1CEE476817953353009D0105 /* dwLIC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dwLIC.cpp; sourceTree = "<group>"; };
-		1CEE476917953353009D0105 /* dwLIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dwLIC.h; sourceTree = "<group>"; };
-		1CEE476A17953353009D0105 /* ETF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ETF.cpp; sourceTree = "<group>"; };
-		1CEE476B17953353009D0105 /* ETF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETF.h; sourceTree = "<group>"; };
-		1CEE476C17953353009D0105 /* fdog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fdog.cpp; sourceTree = "<group>"; };
-		1CEE476D17953353009D0105 /* fdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fdog.h; sourceTree = "<group>"; };
-		1CEE476E17953353009D0105 /* imatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imatrix.h; sourceTree = "<group>"; };
-		1CEE476F17953353009D0105 /* myvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myvec.h; sourceTree = "<group>"; };
-		1CEE477017953353009D0105 /* InteractiveColoredPaperMosaic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveColoredPaperMosaic.cpp; sourceTree = "<group>"; };
-		1CEE477117953353009D0105 /* InteractiveColoredPaperMosaic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveColoredPaperMosaic.h; sourceTree = "<group>"; };
-		1CEE477217953353009D0105 /* MNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MNode.cpp; sourceTree = "<group>"; };
-		1CEE477317953353009D0105 /* MNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNode.h; sourceTree = "<group>"; };
-		1CEE477417953353009D0105 /* MPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MPoint.cpp; sourceTree = "<group>"; };
-		1CEE477517953353009D0105 /* MPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPoint.h; sourceTree = "<group>"; };
-		1CEE477617953353009D0105 /* mSemaphore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mSemaphore.cpp; sourceTree = "<group>"; };
-		1CEE477717953353009D0105 /* mSemaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mSemaphore.h; sourceTree = "<group>"; };
-		1CEE477817953353009D0105 /* TornEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TornEffect.cpp; sourceTree = "<group>"; };
-		1CEE477917953353009D0105 /* TornEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TornEffect.h; sourceTree = "<group>"; };
-		1CEE477A17953353009D0105 /* xDistanceTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xDistanceTransform.cpp; sourceTree = "<group>"; };
-		1CEE477B17953353009D0105 /* xDistanceTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xDistanceTransform.h; sourceTree = "<group>"; };
-		1CEE477E17953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE477F17953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE478017953353009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
-		1CEE478217953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE478317953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE478417953353009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
-		1CEE478617953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE478717953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE478817953353009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
-		1CEE478A17953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE478B17953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE478C17953353009D0105 /* souce_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = souce_img.bmp; sourceTree = "<group>"; };
-		1CEE478E17953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE478F17953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE479017953353009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
-		1CEE479217953353009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
-		1CEE479317953353009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
-		1CEE479417953353009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
-		1CEE479517953353009D0105 /* ObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveC.h; sourceTree = "<group>"; };
-		1CEE479617953353009D0105 /* ObjectiveC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectiveC.mm; sourceTree = "<group>"; };
-		1CEE479817953353009D0105 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
-		1CEE479917953353009D0105 /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLView.mm; sourceTree = "<group>"; };
-		1CEE479A17953353009D0105 /* IRenderingEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderingEngine.hpp; sourceTree = "<group>"; };
-		1CEE479B17953353009D0105 /* Matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
-		1CEE479C17953353009D0105 /* Quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
-		1CEE479D17953353009D0105 /* RenderingEngine1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine1.cpp; sourceTree = "<group>"; };
-		1CEE479E17953353009D0105 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
-		1CEE479F17953353009D0105 /* PaperMosaicCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicCanvas.h; sourceTree = "<group>"; };
-		1CEE47A017953353009D0105 /* PaperMosaicCanvas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicCanvas.mm; sourceTree = "<group>"; };
-		1CEE47A117953353009D0105 /* PaperMosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicViewController.h; sourceTree = "<group>"; };
-		1CEE47A217953353009D0105 /* PaperMosaicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicViewController.mm; sourceTree = "<group>"; };
-		1CEE47A317953353009D0105 /* UIImageCVArrConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCVArrConverter.h; sourceTree = "<group>"; };
-		1CEE47A417953353009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
 		1CEE47CD17953537009D0105 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1CEE47CF1795354C009D0105 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1CEE484917955028009D0105 /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
+		1CEE484A17955028009D0105 /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
+		1CEE484C17955028009D0105 /* ActiveXDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveXDialog.cpp; sourceTree = "<group>"; };
+		1CEE484D17955028009D0105 /* ActiveXDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveXDialog.h; sourceTree = "<group>"; };
+		1CEE484E17955028009D0105 /* ColoredPaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaper.cpp; sourceTree = "<group>"; };
+		1CEE484F17955028009D0105 /* ColoredPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPaper.h; sourceTree = "<group>"; };
+		1CEE485017955028009D0105 /* ColoredPaperMosaic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaperMosaic.cpp; sourceTree = "<group>"; };
+		1CEE485117955028009D0105 /* ColoredPaperMosaic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPaperMosaic.h; sourceTree = "<group>"; };
+		1CEE485217955028009D0105 /* ColoredPapperTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPapperTile.cpp; sourceTree = "<group>"; };
+		1CEE485317955028009D0105 /* ColoredPapperTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredPapperTile.h; sourceTree = "<group>"; };
+		1CEE485517955028009D0105 /* dwLIC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dwLIC.cpp; sourceTree = "<group>"; };
+		1CEE485617955028009D0105 /* dwLIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dwLIC.h; sourceTree = "<group>"; };
+		1CEE485717955028009D0105 /* ETF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ETF.cpp; sourceTree = "<group>"; };
+		1CEE485817955028009D0105 /* ETF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETF.h; sourceTree = "<group>"; };
+		1CEE485917955028009D0105 /* fdog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fdog.cpp; sourceTree = "<group>"; };
+		1CEE485A17955028009D0105 /* fdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fdog.h; sourceTree = "<group>"; };
+		1CEE485B17955028009D0105 /* imatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imatrix.h; sourceTree = "<group>"; };
+		1CEE485C17955028009D0105 /* myvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myvec.h; sourceTree = "<group>"; };
+		1CEE485D17955028009D0105 /* InteractiveColoredPaperMosaic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveColoredPaperMosaic.cpp; sourceTree = "<group>"; };
+		1CEE485E17955028009D0105 /* InteractiveColoredPaperMosaic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveColoredPaperMosaic.h; sourceTree = "<group>"; };
+		1CEE485F17955028009D0105 /* MNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MNode.cpp; sourceTree = "<group>"; };
+		1CEE486017955028009D0105 /* MNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNode.h; sourceTree = "<group>"; };
+		1CEE486117955028009D0105 /* MPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MPoint.cpp; sourceTree = "<group>"; };
+		1CEE486217955028009D0105 /* MPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPoint.h; sourceTree = "<group>"; };
+		1CEE486317955028009D0105 /* mSemaphore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mSemaphore.cpp; sourceTree = "<group>"; };
+		1CEE486417955028009D0105 /* mSemaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mSemaphore.h; sourceTree = "<group>"; };
+		1CEE486517955028009D0105 /* TornEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TornEffect.cpp; sourceTree = "<group>"; };
+		1CEE486617955028009D0105 /* TornEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TornEffect.h; sourceTree = "<group>"; };
+		1CEE486717955028009D0105 /* xDistanceTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xDistanceTransform.cpp; sourceTree = "<group>"; };
+		1CEE486817955028009D0105 /* xDistanceTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xDistanceTransform.h; sourceTree = "<group>"; };
+		1CEE486F17955028009D0105 /* edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = edge_img.bmp; sourceTree = "<group>"; };
+		1CEE487017955028009D0105 /* mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mask_img.bmp; sourceTree = "<group>"; };
+		1CEE487117955028009D0105 /* source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = source_img.bmp; sourceTree = "<group>"; };
+		1CEE488217955028009D0105 /* ObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveC.h; sourceTree = "<group>"; };
+		1CEE488317955028009D0105 /* ObjectiveC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectiveC.mm; sourceTree = "<group>"; };
+		1CEE488517955028009D0105 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
+		1CEE488617955028009D0105 /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLView.mm; sourceTree = "<group>"; };
+		1CEE488717955028009D0105 /* IRenderingEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderingEngine.hpp; sourceTree = "<group>"; };
+		1CEE488817955028009D0105 /* Matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
+		1CEE488917955028009D0105 /* Quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
+		1CEE488A17955028009D0105 /* RenderingEngine1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine1.cpp; sourceTree = "<group>"; };
+		1CEE488B17955028009D0105 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicCanvas.h; sourceTree = "<group>"; };
+		1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicCanvas.mm; sourceTree = "<group>"; };
+		1CEE488E17955028009D0105 /* PaperMosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicViewController.h; sourceTree = "<group>"; };
+		1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicViewController.mm; sourceTree = "<group>"; };
+		1CEE489017955028009D0105 /* UIImageCVArrConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCVArrConverter.h; sourceTree = "<group>"; };
+		1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
 		EA9A638A17953A9500D11A4E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,7 +319,7 @@
 		1C8AE0FD1793D63300174072 = {
 			isa = PBXGroup;
 			children = (
-				1CEE475B17953353009D0105 /* PaperMosaic */,
+				1CEE484817955028009D0105 /* PaperMosaic */,
 				1C8AE3811794449900174072 /* Resources */,
 				1C8AE10F1793D63300174072 /* Photobook */,
 				1C8AE1331793D63300174072 /* photobookTests */,
@@ -553,152 +523,97 @@
 			path = start;
 			sourceTree = "<group>";
 		};
-		1CEE475B17953353009D0105 /* PaperMosaic */ = {
+		1CEE484817955028009D0105 /* PaperMosaic */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE475C17953353009D0105 /* ColorPickerView.h */,
-				1CEE475D17953353009D0105 /* ColorPickerView.m */,
-				1CEE475E17953353009D0105 /* cpp */,
-				1CEE477C17953353009D0105 /* image_resource */,
-				1CEE479517953353009D0105 /* ObjectiveC.h */,
-				1CEE479617953353009D0105 /* ObjectiveC.mm */,
-				1CEE479717953353009D0105 /* opengles */,
-				1CEE479F17953353009D0105 /* PaperMosaicCanvas.h */,
-				1CEE47A017953353009D0105 /* PaperMosaicCanvas.mm */,
-				1CEE47A117953353009D0105 /* PaperMosaicViewController.h */,
-				1CEE47A217953353009D0105 /* PaperMosaicViewController.mm */,
-				1CEE47A317953353009D0105 /* UIImageCVArrConverter.h */,
-				1CEE47A417953353009D0105 /* UIImageCVArrConverter.mm */,
+				1CEE484917955028009D0105 /* ColorPickerView.h */,
+				1CEE484A17955028009D0105 /* ColorPickerView.m */,
+				1CEE484B17955028009D0105 /* cpp */,
+				1CEE486917955028009D0105 /* image_resource */,
+				1CEE488217955028009D0105 /* ObjectiveC.h */,
+				1CEE488317955028009D0105 /* ObjectiveC.mm */,
+				1CEE488417955028009D0105 /* opengles */,
+				1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */,
+				1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */,
+				1CEE488E17955028009D0105 /* PaperMosaicViewController.h */,
+				1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */,
+				1CEE489017955028009D0105 /* UIImageCVArrConverter.h */,
+				1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */,
 			);
 			path = PaperMosaic;
 			sourceTree = "<group>";
 		};
-		1CEE475E17953353009D0105 /* cpp */ = {
+		1CEE484B17955028009D0105 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE475F17953353009D0105 /* ActiveXDialog.cpp */,
-				1CEE476017953353009D0105 /* ActiveXDialog.h */,
-				1CEE476117953353009D0105 /* ColoredPaper.cpp */,
-				1CEE476217953353009D0105 /* ColoredPaper.h */,
-				1CEE476317953353009D0105 /* ColoredPaperMosaic.cpp */,
-				1CEE476417953353009D0105 /* ColoredPaperMosaic.h */,
-				1CEE476517953353009D0105 /* ColoredPapperTile.cpp */,
-				1CEE476617953353009D0105 /* ColoredPapperTile.h */,
-				1CEE476717953353009D0105 /* ETF */,
-				1CEE477017953353009D0105 /* InteractiveColoredPaperMosaic.cpp */,
-				1CEE477117953353009D0105 /* InteractiveColoredPaperMosaic.h */,
-				1CEE477217953353009D0105 /* MNode.cpp */,
-				1CEE477317953353009D0105 /* MNode.h */,
-				1CEE477417953353009D0105 /* MPoint.cpp */,
-				1CEE477517953353009D0105 /* MPoint.h */,
-				1CEE477617953353009D0105 /* mSemaphore.cpp */,
-				1CEE477717953353009D0105 /* mSemaphore.h */,
-				1CEE477817953353009D0105 /* TornEffect.cpp */,
-				1CEE477917953353009D0105 /* TornEffect.h */,
-				1CEE477A17953353009D0105 /* xDistanceTransform.cpp */,
-				1CEE477B17953353009D0105 /* xDistanceTransform.h */,
+				1CEE484C17955028009D0105 /* ActiveXDialog.cpp */,
+				1CEE484D17955028009D0105 /* ActiveXDialog.h */,
+				1CEE484E17955028009D0105 /* ColoredPaper.cpp */,
+				1CEE484F17955028009D0105 /* ColoredPaper.h */,
+				1CEE485017955028009D0105 /* ColoredPaperMosaic.cpp */,
+				1CEE485117955028009D0105 /* ColoredPaperMosaic.h */,
+				1CEE485217955028009D0105 /* ColoredPapperTile.cpp */,
+				1CEE485317955028009D0105 /* ColoredPapperTile.h */,
+				1CEE485417955028009D0105 /* ETF */,
+				1CEE485D17955028009D0105 /* InteractiveColoredPaperMosaic.cpp */,
+				1CEE485E17955028009D0105 /* InteractiveColoredPaperMosaic.h */,
+				1CEE485F17955028009D0105 /* MNode.cpp */,
+				1CEE486017955028009D0105 /* MNode.h */,
+				1CEE486117955028009D0105 /* MPoint.cpp */,
+				1CEE486217955028009D0105 /* MPoint.h */,
+				1CEE486317955028009D0105 /* mSemaphore.cpp */,
+				1CEE486417955028009D0105 /* mSemaphore.h */,
+				1CEE486517955028009D0105 /* TornEffect.cpp */,
+				1CEE486617955028009D0105 /* TornEffect.h */,
+				1CEE486717955028009D0105 /* xDistanceTransform.cpp */,
+				1CEE486817955028009D0105 /* xDistanceTransform.h */,
 			);
 			path = cpp;
 			sourceTree = "<group>";
 		};
-		1CEE476717953353009D0105 /* ETF */ = {
+		1CEE485417955028009D0105 /* ETF */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE476817953353009D0105 /* dwLIC.cpp */,
-				1CEE476917953353009D0105 /* dwLIC.h */,
-				1CEE476A17953353009D0105 /* ETF.cpp */,
-				1CEE476B17953353009D0105 /* ETF.h */,
-				1CEE476C17953353009D0105 /* fdog.cpp */,
-				1CEE476D17953353009D0105 /* fdog.h */,
-				1CEE476E17953353009D0105 /* imatrix.h */,
-				1CEE476F17953353009D0105 /* myvec.h */,
+				1CEE485517955028009D0105 /* dwLIC.cpp */,
+				1CEE485617955028009D0105 /* dwLIC.h */,
+				1CEE485717955028009D0105 /* ETF.cpp */,
+				1CEE485817955028009D0105 /* ETF.h */,
+				1CEE485917955028009D0105 /* fdog.cpp */,
+				1CEE485A17955028009D0105 /* fdog.h */,
+				1CEE485B17955028009D0105 /* imatrix.h */,
+				1CEE485C17955028009D0105 /* myvec.h */,
 			);
 			path = ETF;
 			sourceTree = "<group>";
 		};
-		1CEE477C17953353009D0105 /* image_resource */ = {
+		1CEE486917955028009D0105 /* image_resource */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE477D17953353009D0105 /* bug */,
-				1CEE478117953353009D0105 /* chicken */,
-				1CEE478517953353009D0105 /* dog */,
-				1CEE478917953353009D0105 /* monster */,
-				1CEE478D17953353009D0105 /* poo */,
-				1CEE479117953353009D0105 /* taeg */,
+				1CEE486E17955028009D0105 /* chicken */,
 			);
 			path = image_resource;
 			sourceTree = "<group>";
 		};
-		1CEE477D17953353009D0105 /* bug */ = {
+		1CEE486E17955028009D0105 /* chicken */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE477E17953353009D0105 /* edge_img.bmp */,
-				1CEE477F17953353009D0105 /* mask_img.bmp */,
-				1CEE478017953353009D0105 /* source_img.bmp */,
-			);
-			path = bug;
-			sourceTree = "<group>";
-		};
-		1CEE478117953353009D0105 /* chicken */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE478217953353009D0105 /* edge_img.bmp */,
-				1CEE478317953353009D0105 /* mask_img.bmp */,
-				1CEE478417953353009D0105 /* source_img.bmp */,
+				1CEE486F17955028009D0105 /* edge_img.bmp */,
+				1CEE487017955028009D0105 /* mask_img.bmp */,
+				1CEE487117955028009D0105 /* source_img.bmp */,
 			);
 			path = chicken;
 			sourceTree = "<group>";
 		};
-		1CEE478517953353009D0105 /* dog */ = {
+		1CEE488417955028009D0105 /* opengles */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE478617953353009D0105 /* edge_img.bmp */,
-				1CEE478717953353009D0105 /* mask_img.bmp */,
-				1CEE478817953353009D0105 /* source_img.bmp */,
-			);
-			path = dog;
-			sourceTree = "<group>";
-		};
-		1CEE478917953353009D0105 /* monster */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE478A17953353009D0105 /* edge_img.bmp */,
-				1CEE478B17953353009D0105 /* mask_img.bmp */,
-				1CEE478C17953353009D0105 /* souce_img.bmp */,
-			);
-			path = monster;
-			sourceTree = "<group>";
-		};
-		1CEE478D17953353009D0105 /* poo */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE478E17953353009D0105 /* edge_img.bmp */,
-				1CEE478F17953353009D0105 /* mask_img.bmp */,
-				1CEE479017953353009D0105 /* source_img.bmp */,
-			);
-			path = poo;
-			sourceTree = "<group>";
-		};
-		1CEE479117953353009D0105 /* taeg */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE479217953353009D0105 /* edge_img.bmp */,
-				1CEE479317953353009D0105 /* mask_img.bmp */,
-				1CEE479417953353009D0105 /* source_img.bmp */,
-			);
-			path = taeg;
-			sourceTree = "<group>";
-		};
-		1CEE479717953353009D0105 /* opengles */ = {
-			isa = PBXGroup;
-			children = (
-				1CEE479817953353009D0105 /* GLView.h */,
-				1CEE479917953353009D0105 /* GLView.mm */,
-				1CEE479A17953353009D0105 /* IRenderingEngine.hpp */,
-				1CEE479B17953353009D0105 /* Matrix.hpp */,
-				1CEE479C17953353009D0105 /* Quaternion.hpp */,
-				1CEE479D17953353009D0105 /* RenderingEngine1.cpp */,
-				1CEE479E17953353009D0105 /* Vector.hpp */,
+				1CEE488517955028009D0105 /* GLView.h */,
+				1CEE488617955028009D0105 /* GLView.mm */,
+				1CEE488717955028009D0105 /* IRenderingEngine.hpp */,
+				1CEE488817955028009D0105 /* Matrix.hpp */,
+				1CEE488917955028009D0105 /* Quaternion.hpp */,
+				1CEE488A17955028009D0105 /* RenderingEngine1.cpp */,
+				1CEE488B17955028009D0105 /* Vector.hpp */,
 			);
 			path = opengles;
 			sourceTree = "<group>";
@@ -853,24 +768,9 @@
 				1C8AE52117951F9000174072 /* p1.jpg in Resources */,
 				1CEE4759179529F0009D0105 /* btn_paste_down.png in Resources */,
 				1CEE475A179529F0009D0105 /* btn_paste.png in Resources */,
-				1CEE47B317953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47B417953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47B517953353009D0105 /* source_img.bmp in Resources */,
-				1CEE47B617953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47B717953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47B817953353009D0105 /* source_img.bmp in Resources */,
-				1CEE47B917953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47BA17953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47BB17953353009D0105 /* source_img.bmp in Resources */,
-				1CEE47BC17953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47BD17953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47BE17953353009D0105 /* souce_img.bmp in Resources */,
-				1CEE47BF17953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47C017953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47C117953353009D0105 /* source_img.bmp in Resources */,
-				1CEE47C217953353009D0105 /* edge_img.bmp in Resources */,
-				1CEE47C317953353009D0105 /* mask_img.bmp in Resources */,
-				1CEE47C417953353009D0105 /* source_img.bmp in Resources */,
+				1CEE48A317955028009D0105 /* edge_img.bmp in Resources */,
+				1CEE48A417955028009D0105 /* mask_img.bmp in Resources */,
+				1CEE48A517955028009D0105 /* source_img.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,26 +810,26 @@
 				1C8AE1261793D63300174072 /* ONViewController.m in Sources */,
 				1C8AE16D179424F400174072 /* ONMosaicViewController.m in Sources */,
 				1C8AE3FC1794452600174072 /* ONContentsViewController.m in Sources */,
-				1CEE47A517953353009D0105 /* ColorPickerView.m in Sources */,
-				1CEE47A617953353009D0105 /* ActiveXDialog.cpp in Sources */,
-				1CEE47A717953353009D0105 /* ColoredPaper.cpp in Sources */,
-				1CEE47A817953353009D0105 /* ColoredPaperMosaic.cpp in Sources */,
-				1CEE47A917953353009D0105 /* ColoredPapperTile.cpp in Sources */,
-				1CEE47AA17953353009D0105 /* dwLIC.cpp in Sources */,
-				1CEE47AB17953353009D0105 /* ETF.cpp in Sources */,
-				1CEE47AC17953353009D0105 /* fdog.cpp in Sources */,
-				1CEE47AD17953353009D0105 /* InteractiveColoredPaperMosaic.cpp in Sources */,
-				1CEE47AE17953353009D0105 /* MNode.cpp in Sources */,
-				1CEE47AF17953353009D0105 /* MPoint.cpp in Sources */,
-				1CEE47B017953353009D0105 /* mSemaphore.cpp in Sources */,
-				1CEE47B117953353009D0105 /* TornEffect.cpp in Sources */,
-				1CEE47B217953353009D0105 /* xDistanceTransform.cpp in Sources */,
-				1CEE47C517953353009D0105 /* ObjectiveC.mm in Sources */,
-				1CEE47C617953353009D0105 /* GLView.mm in Sources */,
-				1CEE47C717953353009D0105 /* RenderingEngine1.cpp in Sources */,
-				1CEE47C817953353009D0105 /* PaperMosaicCanvas.mm in Sources */,
-				1CEE47C917953353009D0105 /* PaperMosaicViewController.mm in Sources */,
-				1CEE47CA17953353009D0105 /* UIImageCVArrConverter.mm in Sources */,
+				1CEE489217955028009D0105 /* ColorPickerView.m in Sources */,
+				1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */,
+				1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */,
+				1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */,
+				1CEE489617955028009D0105 /* ColoredPapperTile.cpp in Sources */,
+				1CEE489717955028009D0105 /* dwLIC.cpp in Sources */,
+				1CEE489817955028009D0105 /* ETF.cpp in Sources */,
+				1CEE489917955028009D0105 /* fdog.cpp in Sources */,
+				1CEE489A17955028009D0105 /* InteractiveColoredPaperMosaic.cpp in Sources */,
+				1CEE489B17955028009D0105 /* MNode.cpp in Sources */,
+				1CEE489C17955028009D0105 /* MPoint.cpp in Sources */,
+				1CEE489D17955028009D0105 /* mSemaphore.cpp in Sources */,
+				1CEE489E17955028009D0105 /* TornEffect.cpp in Sources */,
+				1CEE489F17955028009D0105 /* xDistanceTransform.cpp in Sources */,
+				1CEE48B217955028009D0105 /* ObjectiveC.mm in Sources */,
+				1CEE48B317955028009D0105 /* GLView.mm in Sources */,
+				1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */,
+				1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */,
+				1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */,
+				1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

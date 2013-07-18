@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "../PaperMosaic/PaperMosaicCanvas.h"
 
 @interface ONMosaicViewController : UIViewController {
-    UIImageView *paperSeat;
-    UIImageView *dd;
+    UIView *backPan;
+    PaperMosaicCanvas *mosaicPan;
 }
+@property (nonatomic, retain) IBOutlet PaperMosaicCanvas *mosaicPan;
+@property (nonatomic, retain) IBOutlet UIView *backPan;
 
 @end

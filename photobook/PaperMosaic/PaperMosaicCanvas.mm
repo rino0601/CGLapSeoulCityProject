@@ -65,7 +65,7 @@
 	
 	// 모자이크 영역에 밑그림(에지) && 색종이 조각 그리기
 	CGContextTranslateCTM(ctx, 0, Mosaic.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
-	//CGContextDrawImage(ctx, Mosaic.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pEdge] CGImage]); 	//밑그림(에지)
+	CGContextDrawImage(ctx, Mosaic.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pEdge] CGImage]); 	//밑그림(에지)
 	/* 웃긴게, 엣지를 버려도 엣지가 그려진다?! 게다가 그릴때 깜빡이는것도 사라짐. 허헣ㅎ허허*/
 	CGContextDrawImage(ctx, Mosaic.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic] CGImage]); 	//색종이 조각 그리기
 	CGContextTranslateCTM(ctx, 0, Mosaic.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
