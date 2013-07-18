@@ -123,6 +123,7 @@
 		1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */; };
 		1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */; };
 		1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */; };
+		1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE48B91797E336009D0105 /* ONSnapshotCollectionViewCell.m */; };
 		EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9A638A17953A9500D11A4E /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
@@ -286,6 +287,8 @@
 		1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicViewController.mm; sourceTree = "<group>"; };
 		1CEE489017955028009D0105 /* UIImageCVArrConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCVArrConverter.h; sourceTree = "<group>"; };
 		1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
+		1CEE48B81797E336009D0105 /* ONSnapshotCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONSnapshotCollectionViewCell.h; sourceTree = "<group>"; };
+		1CEE48B91797E336009D0105 /* ONSnapshotCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONSnapshotCollectionViewCell.m; sourceTree = "<group>"; };
 		EA9A638A17953A9500D11A4E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -363,6 +366,8 @@
 				1C8AE1211793D63300174072 /* MainStoryboard.storyboard */,
 				1C8AE1241793D63300174072 /* ONViewController.h */,
 				1C8AE1251793D63300174072 /* ONViewController.m */,
+				1CEE48B81797E336009D0105 /* ONSnapshotCollectionViewCell.h */,
+				1CEE48B91797E336009D0105 /* ONSnapshotCollectionViewCell.m */,
 				1C8AE1101793D63300174072 /* Supporting Files */,
 			);
 			name = Photobook;
@@ -830,6 +835,7 @@
 				1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */,
 				1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */,
 				1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */,
+				1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

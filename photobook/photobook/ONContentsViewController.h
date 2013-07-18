@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ONContentsViewController : UIViewController {
+@interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate> {
     int currentViewIndex;
     int maxViewIndex;
     
@@ -19,10 +19,18 @@
     UIButton *menuIcon;
     
     NSArray *contentsList;
+    
+    NSMutableDictionary *searchResults;
+    NSMutableArray *searches;
+    UICollectionView *onCollectionView;
+    UIView *pageView;
 }
 
+//@property (strong, nonatomic) IBOutlet UICollectionView *collectuinView;
 @property (nonatomic, retain) IBOutlet UIImageView *contentsViewer;
 @property (nonatomic, retain) IBOutlet UIView *menuBar;
 @property (nonatomic, retain) IBOutlet UIButton *menuIcon;
+@property (nonatomic, retain) IBOutlet UICollectionView *onCollectionView;
+@property (nonatomic, retain) IBOutlet UIView *pageView;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ONContentsViewController.h"
+#import "ONSnapshotCollectionViewCell.h"
 
 @interface ONContentsViewController ()
 
@@ -15,6 +16,7 @@
 - (IBAction)doRight;
 - (IBAction)doMosaic;
 - (IBAction)doPageAnimation;
+- (IBAction)doPageSelection;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
 
 - (void)playBookWithIndex:(int)index;
@@ -23,6 +25,8 @@
 
 @implementation ONContentsViewController
 
+@synthesize pageView;
+@synthesize onCollectionView;
 @synthesize menuBar;
 @synthesize menuIcon;
 @synthesize contentsViewer;
@@ -56,6 +60,11 @@
     maxViewIndex = contentsList.count;
     [self playBookWithIndex:currentViewIndex];
 	// Do any additional setup after loading the view.
+    
+    /*self.searches = [@[] mutableCopy];
+    self.searchResults = [@{} mutableCopy];
+    */
+    [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,45 +84,37 @@
         [menuIcon setCenter:cp];
         
     } else {
-        isMenuOn = !isMenuOn;
-        NSLog(@"MenuBarOff");
-        [menuBar setHidden:true];
-        cp = [menuIcon center];
-        cp.y += 30;
-        [menuIcon setCenter:cp];
+        [self setMenuBarHidden];
     }
     
 }
 
+- (void)setMenuBarHidden {
+    [pageView setHidden:YES];
+    CGPoint cp;
+    isMenuOn = !isMenuOn;
+    NSLog(@"MenuBarOff");
+    [menuBar setHidden:true];
+    cp = [menuIcon center];
+    cp.y += 30;
+    [menuIcon setCenter:cp];
+}
+
 - (IBAction)doLeft {
-    if( --currentViewIndex < 0) {
-        currentViewIndex = 0;
+    int index = currentViewIndex;
+    if( --index < 0) {
+        index = 0;
     }
+    [self playBookWithIndex:index];
     
-    NSLog(@"index: %d",currentViewIndex);
-    [self playBookWithIndex:currentViewIndex];
-    
-    /* 화면을 좌측으로 넘기는 부분 animation 구현.
-     */
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:NO];
-    [UIView commitAnimations];
 }
 - (IBAction)doRight{
-    if( ++currentViewIndex >= maxViewIndex) {
-        currentViewIndex = maxViewIndex - 1;
+    int index = currentViewIndex;
+    if( ++index >= maxViewIndex) {
+        index = maxViewIndex - 1;
     }
+    [self playBookWithIndex:index];
     
-    NSLog(@"index: %d",currentViewIndex);
-    [self playBookWithIndex:currentViewIndex];
-    
-    /* 화면을 우측으로 넘기는 부분 animation 구현.
-     */
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:NO];
-    [UIView commitAnimations];
 }
 
 - (IBAction)doPageAnimation {
@@ -123,9 +124,29 @@
 }
 
 - (void)playBookWithIndex:(int)index{
+    
+    Boolean animationStart = NO;
+    Boolean isLeft = NO;
+    
     index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
+    
+    if(index != currentViewIndex) {
+        animationStart = YES;
+        
+        index < currentViewIndex ? isLeft = YES : isLeft = NO;
+    }
     NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
     [contentsViewer setImage:[UIImage imageNamed:[contentsList objectAtIndex:index]]];
+    [self doPageAnimation];
+    currentViewIndex = index;
+
+    if(animationStart) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:self.view cache:NO];
+        [UIView commitAnimations];
+    }
+
     [self doPageAnimation];
 }
 
@@ -134,8 +155,69 @@
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
 }
 
+- (IBAction)doPageSelection {
+    [pageView setHidden:!([pageView isHidden])];
+}
+
 - (IBAction)onContents:(UIStoryboardSegue *)segue {
     // Optional place to read data from closing controller
 }
 
+
+#pragma mark - UICollectionView Datasource
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
+    return contentsList.count;
+}
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
+    return 1;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"PhotoCell";
+    ONSnapshotCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *searchTerm = (indexPath.row + 1 < 10 ? [NSString stringWithFormat:@"page_img0%d.png",indexPath.row + 1]: [NSString stringWithFormat:@"page_img%d.png",indexPath.row + 1]);
+    
+    NSLog(@"imageName \"%@\"",searchTerm);
+//    cell.imageViewCell.image = [UIImage imageNamed:searchTerm];
+    
+    [cell.imageViewCell setHidden:NO];
+    [cell.imageViewCell setImage:[UIImage imageNamed:searchTerm]];
+    //[cell.imageViewCell setBackgroundColor:[UIColor yellowColor]];
+
+    //contentsViewer.image = [UIImage imageNamed:searchTerm];
+    //[cell setBackgroundColor:[UIColor whiteColor]];
+//    cell.backgroundColor = [UIColor whiteColor];
+    return cell;
+}
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+/*    NSString *searchTerm = (indexPath.row + 1 < 10 ? [NSString stringWithFormat:@"page_img0%d.png",indexPath.row + 1]: [NSString stringWithFormat:@"page_img%d.png",indexPath.row + 1]);
+    
+    UIImage *thumbnail = [UIImage imageNamed:searchTerm];
+    
+    NSLog(@"Thumbnail%d Size: %f",indexPath.row,thumbnail.size.width); = thumbnail.size.width < 100 ? thumbnail.size : 
+  */  
+    CGSize retval = CGSizeMake(250, 200);
+    //retval.height += 35; retval.width += 35;
+    return retval;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(5, 5, 5, 5);
+}
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self playBookWithIndex:indexPath.row];
+    [self setMenuBarHidden];
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
 @end
