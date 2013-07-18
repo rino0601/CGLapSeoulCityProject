@@ -7,18 +7,19 @@
 //
 
 #import "ONMosaicViewController.h"
+#import "UIImageCVArrConverter.h"
 
 @interface ONMosaicViewController ()
 
 @end
 
 @implementation ONMosaicViewController
-
+@synthesize paperMosaicCanvas;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+		// nothing to do.
     }
     return self;
 }
@@ -26,12 +27,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)doAsAutoMode:(UIButton *)sender {
+	[paperMosaicCanvas doAsAutoMode];
+}
+
+- (IBAction)colorChangeFrom:(UIButton *)sender {
+	UIImage *temp = [sender imageForState:UIControlStateNormal];
+	IplImage *buttonIplImage = [UIImageCVArrConverter CreateIplImageFromUIImage:temp];
+	CGPoint centerPoint = CGPointMake(80, 80);
+	CvScalar centerColor = cvGet2D(buttonIplImage, (int)centerPoint.x, (int)centerPoint.y);
+	cvReleaseImage(&buttonIplImage);
+	[paperMosaicCanvas setPaperColor:[UIColor colorWithRed:centerColor.val[0]/255.0f green:centerColor.val[1]/255.0f blue:centerColor.val[2]/255.0f alpha:centerColor.val[3]/255.0f]];
 }
 @end

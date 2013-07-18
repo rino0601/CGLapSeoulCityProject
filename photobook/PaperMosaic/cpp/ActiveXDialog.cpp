@@ -97,7 +97,7 @@ void ActiveXDialog::DrawCone(int x, int y, Byte r, Byte g, Byte b, int depth){
 	OpenGLView.DrawCone(x, y, r, g, b, depth);
 	// 도대체 몇 중첩이야 이거 ㅋㅋㅋ.
 }
-#define RESOURCE_DIR_NAME "poo"
+
 void ActiveXDialog::SetImage() {
 //	CDC* pdc;				// bmp와 마찬가지. 필요 없다.
 	CGRect rect;			
@@ -110,19 +110,19 @@ void ActiveXDialog::SetImage() {
 	CvSize img_size;
 	
 	// edge image setting
-	pImage1 = IplImage_imageNamed("image_resource/" RESOURCE_DIR_NAME "/edge_img.bmp");
+	pImage1 = IplImage_imageNamed("edge_img.bmp");
 	img_size.height = pImage1->height;
 	img_size.width = pImage1->width;
 	m_pEdge =cvCreateImage(img_size,IPL_DEPTH_8U, 4);
 	cvFlip(pImage1, m_pEdge, 0);
 		
 	// source image setting
-	pImage2 = IplImage_imageNamed("image_resource/" RESOURCE_DIR_NAME "/source_img.bmp");
+	pImage2 = IplImage_imageNamed("/source_img.bmp");
 	m_psource = cvCreateImage(img_size,IPL_DEPTH_8U, 4);
 	cvFlip(pImage2, m_psource, 0);
 
 	// mask image setting
-	pImage3 = IplImage_imageNamed("image_resource/" RESOURCE_DIR_NAME "/mask_img.bmp");
+	pImage3 = IplImage_imageNamed("/mask_img.bmp");
 	mask = cvCreateImage(img_size,IPL_DEPTH_8U, 4);
 	cvFlip(pImage3, mask, 0);
 	

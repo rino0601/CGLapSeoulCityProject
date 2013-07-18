@@ -13,15 +13,14 @@
 @interface PaperMosaicCanvas : UIView<UIAlertViewDelegate> {
 @private
 	CGContextRef ctx;
-	ActiveXDialog *ADelegate;
-	UIImageView *Mosaic;
-	UIImageView *Paper;
 	CGPoint touchPos;
 }
-- (void)doAsAutoMode; //작동을 왜 안하니 ㅠㅠ
-- (BOOL)setPaperColor:(UIColor *)color;
+@property(nonatomic) ActiveXDialog *ADelegate;
+@property(strong,nonatomic) IBOutlet UIImageView *Mosaic;
+@property(strong,nonatomic) IBOutlet UIImageView *Paper;
 
-- (id)initWithFrame:(CGRect)frame scale:(CGSize)factor;
+- (void)doAsAutoMode;
+- (BOOL)setPaperColor:(UIColor *)color;
 
 @end
 

@@ -100,7 +100,6 @@
 		1CEE475A179529F0009D0105 /* btn_paste.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE4758179529F0009D0105 /* btn_paste.png */; };
 		1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CD17953537009D0105 /* OpenGLES.framework */; };
 		1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CF1795354C009D0105 /* QuartzCore.framework */; };
-		1CEE489217955028009D0105 /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484A17955028009D0105 /* ColorPickerView.m */; };
 		1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484C17955028009D0105 /* ActiveXDialog.cpp */; };
 		1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484E17955028009D0105 /* ColoredPaper.cpp */; };
 		1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485017955028009D0105 /* ColoredPaperMosaic.cpp */; };
@@ -121,7 +120,6 @@
 		1CEE48B317955028009D0105 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488617955028009D0105 /* GLView.mm */; };
 		1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488A17955028009D0105 /* RenderingEngine1.cpp */; };
 		1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */; };
-		1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */; };
 		1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */; };
 		EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9A638A17953A9500D11A4E /* opencv2.framework */; };
 /* End PBXBuildFile section */
@@ -238,8 +236,6 @@
 		1CEE4758179529F0009D0105 /* btn_paste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paste.png; sourceTree = "<group>"; };
 		1CEE47CD17953537009D0105 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1CEE47CF1795354C009D0105 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1CEE484917955028009D0105 /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
-		1CEE484A17955028009D0105 /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
 		1CEE484C17955028009D0105 /* ActiveXDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveXDialog.cpp; sourceTree = "<group>"; };
 		1CEE484D17955028009D0105 /* ActiveXDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveXDialog.h; sourceTree = "<group>"; };
 		1CEE484E17955028009D0105 /* ColoredPaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaper.cpp; sourceTree = "<group>"; };
@@ -282,8 +278,6 @@
 		1CEE488B17955028009D0105 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicCanvas.h; sourceTree = "<group>"; };
 		1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicCanvas.mm; sourceTree = "<group>"; };
-		1CEE488E17955028009D0105 /* PaperMosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicViewController.h; sourceTree = "<group>"; };
-		1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicViewController.mm; sourceTree = "<group>"; };
 		1CEE489017955028009D0105 /* UIImageCVArrConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCVArrConverter.h; sourceTree = "<group>"; };
 		1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
 		EA9A638A17953A9500D11A4E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
@@ -526,17 +520,13 @@
 		1CEE484817955028009D0105 /* PaperMosaic */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE484917955028009D0105 /* ColorPickerView.h */,
-				1CEE484A17955028009D0105 /* ColorPickerView.m */,
 				1CEE484B17955028009D0105 /* cpp */,
 				1CEE486917955028009D0105 /* image_resource */,
+				1CEE488417955028009D0105 /* opengles */,
 				1CEE488217955028009D0105 /* ObjectiveC.h */,
 				1CEE488317955028009D0105 /* ObjectiveC.mm */,
-				1CEE488417955028009D0105 /* opengles */,
 				1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */,
 				1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */,
-				1CEE488E17955028009D0105 /* PaperMosaicViewController.h */,
-				1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */,
 				1CEE489017955028009D0105 /* UIImageCVArrConverter.h */,
 				1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */,
 			);
@@ -810,7 +800,6 @@
 				1C8AE1261793D63300174072 /* ONViewController.m in Sources */,
 				1C8AE16D179424F400174072 /* ONMosaicViewController.m in Sources */,
 				1C8AE3FC1794452600174072 /* ONContentsViewController.m in Sources */,
-				1CEE489217955028009D0105 /* ColorPickerView.m in Sources */,
 				1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */,
 				1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */,
 				1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */,
@@ -828,7 +817,6 @@
 				1CEE48B317955028009D0105 /* GLView.mm in Sources */,
 				1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */,
 				1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */,
-				1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */,
 				1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -952,6 +940,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -973,6 +962,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

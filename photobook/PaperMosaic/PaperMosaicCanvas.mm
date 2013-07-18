@@ -8,27 +8,20 @@
 
 #import "PaperMosaicCanvas.h"
 #import "UIImageCVArrConverter.h"
-#import "ColorPickerView.h"
 
 @implementation PaperMosaicCanvas
+@synthesize Paper,Mosaic,ADelegate;
 
-- (id)initWithFrame:(CGRect)frame scale:(CGSize)factor{
-	id inited = [super initWithFrame:frame];
-	if(inited==self) {
-		self.backgroundColor = [UIColor clearColor];
-		Paper = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160*factor.width, 160*factor.height)];
-		[self addSubview:Paper];
-		Mosaic = [[UIImageView alloc] initWithFrame:CGRectMake(200*factor.width, 0, 240*factor.width, 240*factor.height)];
-		[self addSubview:Mosaic];
-		ColorPickerView *colorPicker = [[ColorPickerView alloc] initWithFrame:CGRectMake(0, 168*factor.height, 160*factor.width, 72*factor.height)];
-		// add Notification.
-		[self addSubview:colorPicker];
-		
-		ADelegate = new ActiveXDialog();
-		CUIImageView paper(Paper),canvas(Mosaic);
-		ADelegate->init(self,paper,canvas);
-	}
-	return inited;
+- (void)awakeFromNib {
+	[super awakeFromNib];
+}
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	ADelegate = new ActiveXDialog();
+	CUIImageView paper(Paper),canvas(Mosaic);
+	ADelegate->init(self,paper,canvas);
+	[self setMultipleTouchEnabled:YES];
 }
 
 // Only override drawRect: if you perform custom drawing.
