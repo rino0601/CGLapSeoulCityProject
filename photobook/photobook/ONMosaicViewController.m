@@ -35,7 +35,8 @@
 }
 
 - (IBAction)doAsAutoMode:(UIButton *)sender {
-	[paperMosaicCanvas doAsAutoMode];
+	//[paperMosaicCanvas doAsAutoMode];
+	[paperMosaicCanvas saveResult];
 }
 
 - (IBAction)colorChangeFrom:(UIButton *)sender {

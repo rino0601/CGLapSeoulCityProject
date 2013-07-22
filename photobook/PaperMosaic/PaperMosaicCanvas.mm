@@ -116,12 +116,12 @@
 	} else { // 자동 붙이기 취소
 		ADelegate->m_nMenuBT = -1;
 		ADelegate->m_bAutoGeneration = false;
-
+		
 		// 마지막 타일이 붙여 지고 타이머를 죽임.
 		ADelegate->icpm.AutoGeneration(ADelegate);
 		
 		ADelegate->m_bAutoTileMove = false;
-	}	
+	}
 }
 - (void)OnTimer:(NSTimer *)timer {
 	int size = ADelegate->AutoMovePoint.size();
@@ -165,6 +165,20 @@
 		[marker performSelectorOnMainThread:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil waitUntilDone:NO];
 	}
 	marker = alertView ;
+}
+
+- (void)saveResult {
+	UIImage *image =[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic];
+	UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:finishedSavingWithError:contextInfo:), nil);
+}
+- (void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+	if(error) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"save fail" message:@"fail to save image" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+		[alert show];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"info" message:@"결과이미지가 저장되었습니다." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+		[alert show];
+	}
 }
 
 @end
