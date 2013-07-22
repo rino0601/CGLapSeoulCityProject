@@ -17,6 +17,7 @@
 - (IBAction)doMosaic;
 - (IBAction)doPageAnimation;
 - (IBAction)doPageSelection;
+- (IBAction)doAudioPlay;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
 
 - (void)playBookWithIndex:(int)index;
@@ -25,6 +26,8 @@
 
 @implementation ONContentsViewController
 
+@synthesize right;
+@synthesize left;
 @synthesize pageView;
 @synthesize onCollectionView;
 @synthesize menuBar;
@@ -39,7 +42,6 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -65,6 +67,11 @@
     self.searchResults = [@{} mutableCopy];
     */
     [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +130,17 @@
      */
 }
 
+- (IBAction)doAudioPlay {
+    [audioPlayer stop];
+    int index = currentViewIndex+1;
+    NSString* audioPath = (index < 10 ? [[NSString alloc] initWithFormat:@"0%d",index ] : [[NSString alloc] initWithFormat:@"%d",index ]);
+    
+    
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL];
+    
+    [audioPlayer play];
+    
+}
 - (void)playBookWithIndex:(int)index{
     
     Boolean animationStart = NO;
@@ -130,6 +148,14 @@
     
     index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
     
+    if(index == 0) {
+        [left setHidden:YES];
+    } else if (index == maxViewIndex -1) {
+        [right setHidden:YES];
+    } else {
+        [left setHidden:NO];
+        [right setHidden:NO];
+    }
     if(index != currentViewIndex) {
         animationStart = YES;
         
@@ -143,11 +169,14 @@
     if(animationStart) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.0];
-        [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:self.view cache:NO];
+        [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsViewer cache:YES];
+        [UIView setAnimationBeginsFromCurrentState:NO];
+        [UIView setAnimationDelegate:self];
         [UIView commitAnimations];
     }
 
     [self doPageAnimation];
+    [self doAudioPlay];
 }
 
 - (IBAction)doMosaic{
@@ -202,7 +231,7 @@
     
     NSLog(@"Thumbnail%d Size: %f",indexPath.row,thumbnail.size.width); = thumbnail.size.width < 100 ? thumbnail.size : 
   */  
-    CGSize retval = CGSizeMake(250, 200);
+    CGSize retval = CGSizeMake(300, 240);
     //retval.height += 35; retval.width += 35;
     return retval;
 }

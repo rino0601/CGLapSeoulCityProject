@@ -9,16 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "../PaperMosaic/PaperMosaicCanvas.h"
 
-@interface ONMosaicViewController : UIViewController {
-    CGContextRef ctx;
-	ActiveXDialog *ADelegate;
-	UIImageView *Mosaic;
-	UIImageView *Paper;
-	CGPoint touchPos;
-}
+@interface ONMosaicViewController : UIViewController
 
-- (void)doAsAutoMode; //작동을 왜 안하니 ㅠㅠ
-- (BOOL)setPaperColor:(UIColor *)color;
-- (id)initWithFrame:(CGRect)frame scale:(CGSize)factor;
+@property(strong, nonatomic) IBOutlet PaperMosaicCanvas *paperMosaicCanvas;
+
+- (IBAction)doAsAutoMode:(UIButton *)sender;
+- (IBAction)colorChangeFrom:(UIButton *)sender;
 
 @end

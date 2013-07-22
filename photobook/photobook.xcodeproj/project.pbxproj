@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C0D977F179AD9AC00D79CF4 /* 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9771179AD9AC00D79CF4 /* 01.wav */; };
+		1C0D9780179AD9AC00D79CF4 /* 02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9772179AD9AC00D79CF4 /* 02.wav */; };
+		1C0D9781179AD9AC00D79CF4 /* 03.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9773179AD9AC00D79CF4 /* 03.wav */; };
+		1C0D9782179AD9AC00D79CF4 /* 04.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9774179AD9AC00D79CF4 /* 04.wav */; };
+		1C0D9783179AD9AC00D79CF4 /* 05.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9775179AD9AC00D79CF4 /* 05.wav */; };
+		1C0D9784179AD9AC00D79CF4 /* 06.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9776179AD9AC00D79CF4 /* 06.wav */; };
+		1C0D9785179AD9AC00D79CF4 /* 07.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9777179AD9AC00D79CF4 /* 07.wav */; };
+		1C0D9786179AD9AC00D79CF4 /* 08.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9778179AD9AC00D79CF4 /* 08.wav */; };
+		1C0D9787179AD9AC00D79CF4 /* 09.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D9779179AD9AC00D79CF4 /* 09.wav */; };
+		1C0D9788179AD9AC00D79CF4 /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D977A179AD9AC00D79CF4 /* 10.wav */; };
+		1C0D9789179AD9AC00D79CF4 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D977B179AD9AC00D79CF4 /* 11.wav */; };
+		1C0D978A179AD9AC00D79CF4 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D977C179AD9AC00D79CF4 /* 12.wav */; };
+		1C0D978B179AD9AC00D79CF4 /* Title.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D977D179AD9AC00D79CF4 /* Title.wav */; };
+		1C0D978D179ADDBF00D79CF4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0D978C179ADDBE00D79CF4 /* AudioToolbox.framework */; };
+		1C0D978F179ADEAE00D79CF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0D978E179ADEAE00D79CF4 /* AVFoundation.framework */; };
 		1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE1091793D63300174072 /* UIKit.framework */; };
 		1C8AE10C1793D63300174072 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10B1793D63300174072 /* Foundation.framework */; };
 		1C8AE10E1793D63300174072 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10D1793D63300174072 /* CoreGraphics.framework */; };
@@ -53,7 +68,6 @@
 		1C8AE4F417951F9000174072 /* icon_m_painting_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4AB17951F8E00174072 /* icon_m_painting_down.png */; };
 		1C8AE4F517951F9000174072 /* icon_m_reread.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4AC17951F8E00174072 /* icon_m_reread.png */; };
 		1C8AE4F617951F9000174072 /* icon_m_reread_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4AD17951F8E00174072 /* icon_m_reread_down.png */; };
-		1C8AE4F717951F9000174072 /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4AE17951F8E00174072 /* icon_menu.png */; };
 		1C8AE4F817951F9000174072 /* menu_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4AF17951F8E00174072 /* menu_bar.png */; };
 		1C8AE4F917951F9000174072 /* mosaic_action_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4B117951F8F00174072 /* mosaic_action_box.png */; };
 		1C8AE4FA17951F9000174072 /* mosaic_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C8AE4B217951F8F00174072 /* mosaic_bg.png */; };
@@ -100,7 +114,6 @@
 		1CEE475A179529F0009D0105 /* btn_paste.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE4758179529F0009D0105 /* btn_paste.png */; };
 		1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CD17953537009D0105 /* OpenGLES.framework */; };
 		1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEE47CF1795354C009D0105 /* QuartzCore.framework */; };
-		1CEE489217955028009D0105 /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484A17955028009D0105 /* ColorPickerView.m */; };
 		1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484C17955028009D0105 /* ActiveXDialog.cpp */; };
 		1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE484E17955028009D0105 /* ColoredPaper.cpp */; };
 		1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE485017955028009D0105 /* ColoredPaperMosaic.cpp */; };
@@ -121,7 +134,6 @@
 		1CEE48B317955028009D0105 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488617955028009D0105 /* GLView.mm */; };
 		1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488A17955028009D0105 /* RenderingEngine1.cpp */; };
 		1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */; };
-		1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */; };
 		1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */; };
 		1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE48B91797E336009D0105 /* ONSnapshotCollectionViewCell.m */; };
 		EA9A638B17953A9500D11A4E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9A638A17953A9500D11A4E /* opencv2.framework */; };
@@ -138,6 +150,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C0D9771179AD9AC00D79CF4 /* 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 01.wav; sourceTree = "<group>"; };
+		1C0D9772179AD9AC00D79CF4 /* 02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 02.wav; sourceTree = "<group>"; };
+		1C0D9773179AD9AC00D79CF4 /* 03.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 03.wav; sourceTree = "<group>"; };
+		1C0D9774179AD9AC00D79CF4 /* 04.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 04.wav; sourceTree = "<group>"; };
+		1C0D9775179AD9AC00D79CF4 /* 05.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 05.wav; sourceTree = "<group>"; };
+		1C0D9776179AD9AC00D79CF4 /* 06.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 06.wav; sourceTree = "<group>"; };
+		1C0D9777179AD9AC00D79CF4 /* 07.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 07.wav; sourceTree = "<group>"; };
+		1C0D9778179AD9AC00D79CF4 /* 08.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 08.wav; sourceTree = "<group>"; };
+		1C0D9779179AD9AC00D79CF4 /* 09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 09.wav; sourceTree = "<group>"; };
+		1C0D977A179AD9AC00D79CF4 /* 10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 10.wav; sourceTree = "<group>"; };
+		1C0D977B179AD9AC00D79CF4 /* 11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 11.wav; sourceTree = "<group>"; };
+		1C0D977C179AD9AC00D79CF4 /* 12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 12.wav; sourceTree = "<group>"; };
+		1C0D977D179AD9AC00D79CF4 /* Title.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Title.wav; sourceTree = "<group>"; };
+		1C0D978C179ADDBE00D79CF4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1C0D978E179ADEAE00D79CF4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1C8AE1061793D63300174072 /* photobook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8AE1091793D63300174072 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8AE10B1793D63300174072 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,7 +219,6 @@
 		1C8AE4AB17951F8E00174072 /* icon_m_painting_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_painting_down.png; sourceTree = "<group>"; };
 		1C8AE4AC17951F8E00174072 /* icon_m_reread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_reread.png; sourceTree = "<group>"; };
 		1C8AE4AD17951F8E00174072 /* icon_m_reread_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_reread_down.png; sourceTree = "<group>"; };
-		1C8AE4AE17951F8E00174072 /* icon_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu.png; sourceTree = "<group>"; };
 		1C8AE4AF17951F8E00174072 /* menu_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_bar.png; sourceTree = "<group>"; };
 		1C8AE4B117951F8F00174072 /* mosaic_action_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mosaic_action_box.png; sourceTree = "<group>"; };
 		1C8AE4B217951F8F00174072 /* mosaic_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mosaic_bg.png; sourceTree = "<group>"; };
@@ -239,8 +265,6 @@
 		1CEE4758179529F0009D0105 /* btn_paste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_paste.png; sourceTree = "<group>"; };
 		1CEE47CD17953537009D0105 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1CEE47CF1795354C009D0105 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1CEE484917955028009D0105 /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
-		1CEE484A17955028009D0105 /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
 		1CEE484C17955028009D0105 /* ActiveXDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveXDialog.cpp; sourceTree = "<group>"; };
 		1CEE484D17955028009D0105 /* ActiveXDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveXDialog.h; sourceTree = "<group>"; };
 		1CEE484E17955028009D0105 /* ColoredPaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredPaper.cpp; sourceTree = "<group>"; };
@@ -283,8 +307,6 @@
 		1CEE488B17955028009D0105 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicCanvas.h; sourceTree = "<group>"; };
 		1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicCanvas.mm; sourceTree = "<group>"; };
-		1CEE488E17955028009D0105 /* PaperMosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMosaicViewController.h; sourceTree = "<group>"; };
-		1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaperMosaicViewController.mm; sourceTree = "<group>"; };
 		1CEE489017955028009D0105 /* UIImageCVArrConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCVArrConverter.h; sourceTree = "<group>"; };
 		1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVArrConverter.mm; sourceTree = "<group>"; };
 		1CEE48B81797E336009D0105 /* ONSnapshotCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONSnapshotCollectionViewCell.h; sourceTree = "<group>"; };
@@ -297,6 +319,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C0D978F179ADEAE00D79CF4 /* AVFoundation.framework in Frameworks */,
+				1C0D978D179ADDBF00D79CF4 /* AudioToolbox.framework in Frameworks */,
 				1CEE47D01795354C009D0105 /* QuartzCore.framework in Frameworks */,
 				1CEE47CE17953537009D0105 /* OpenGLES.framework in Frameworks */,
 				1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */,
@@ -319,6 +343,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C0D976F179AD9AC00D79CF4 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				1C0D9770179AD9AC00D79CF4 /* eng */,
+				1C0D977E179AD9AC00D79CF4 /* kor */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		1C0D9770179AD9AC00D79CF4 /* eng */ = {
+			isa = PBXGroup;
+			children = (
+				1C0D9771179AD9AC00D79CF4 /* 01.wav */,
+				1C0D9772179AD9AC00D79CF4 /* 02.wav */,
+				1C0D9773179AD9AC00D79CF4 /* 03.wav */,
+				1C0D9774179AD9AC00D79CF4 /* 04.wav */,
+				1C0D9775179AD9AC00D79CF4 /* 05.wav */,
+				1C0D9776179AD9AC00D79CF4 /* 06.wav */,
+				1C0D9777179AD9AC00D79CF4 /* 07.wav */,
+				1C0D9778179AD9AC00D79CF4 /* 08.wav */,
+				1C0D9779179AD9AC00D79CF4 /* 09.wav */,
+				1C0D977A179AD9AC00D79CF4 /* 10.wav */,
+				1C0D977B179AD9AC00D79CF4 /* 11.wav */,
+				1C0D977C179AD9AC00D79CF4 /* 12.wav */,
+				1C0D977D179AD9AC00D79CF4 /* Title.wav */,
+			);
+			path = eng;
+			sourceTree = "<group>";
+		};
+		1C0D977E179AD9AC00D79CF4 /* kor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = kor;
+			sourceTree = "<group>";
+		};
 		1C8AE0FD1793D63300174072 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +403,8 @@
 		1C8AE1081793D63300174072 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C0D978E179ADEAE00D79CF4 /* AVFoundation.framework */,
+				1C0D978C179ADDBE00D79CF4 /* AudioToolbox.framework */,
 				EA9A638A17953A9500D11A4E /* opencv2.framework */,
 				1CEE47CF1795354C009D0105 /* QuartzCore.framework */,
 				1CEE47CD17953537009D0105 /* OpenGLES.framework */,
@@ -410,6 +472,7 @@
 		1C8AE3811794449900174072 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1C0D976F179AD9AC00D79CF4 /* sounds */,
 				1C8AE49117951F8E00174072 /* contents */,
 				1C8AE4A117951F8E00174072 /* menubar */,
 				1C8AE4B017951F8E00174072 /* mosaic */,
@@ -458,7 +521,6 @@
 				1C8AE4AB17951F8E00174072 /* icon_m_painting_down.png */,
 				1C8AE4AC17951F8E00174072 /* icon_m_reread.png */,
 				1C8AE4AD17951F8E00174072 /* icon_m_reread_down.png */,
-				1C8AE4AE17951F8E00174072 /* icon_menu.png */,
 				1C8AE4AF17951F8E00174072 /* menu_bar.png */,
 			);
 			path = menubar;
@@ -531,17 +593,13 @@
 		1CEE484817955028009D0105 /* PaperMosaic */ = {
 			isa = PBXGroup;
 			children = (
-				1CEE484917955028009D0105 /* ColorPickerView.h */,
-				1CEE484A17955028009D0105 /* ColorPickerView.m */,
 				1CEE484B17955028009D0105 /* cpp */,
 				1CEE486917955028009D0105 /* image_resource */,
+				1CEE488417955028009D0105 /* opengles */,
 				1CEE488217955028009D0105 /* ObjectiveC.h */,
 				1CEE488317955028009D0105 /* ObjectiveC.mm */,
-				1CEE488417955028009D0105 /* opengles */,
 				1CEE488C17955028009D0105 /* PaperMosaicCanvas.h */,
 				1CEE488D17955028009D0105 /* PaperMosaicCanvas.mm */,
-				1CEE488E17955028009D0105 /* PaperMosaicViewController.h */,
-				1CEE488F17955028009D0105 /* PaperMosaicViewController.mm */,
 				1CEE489017955028009D0105 /* UIImageCVArrConverter.h */,
 				1CEE489117955028009D0105 /* UIImageCVArrConverter.mm */,
 			);
@@ -728,7 +786,6 @@
 				1C8AE4F417951F9000174072 /* icon_m_painting_down.png in Resources */,
 				1C8AE4F517951F9000174072 /* icon_m_reread.png in Resources */,
 				1C8AE4F617951F9000174072 /* icon_m_reread_down.png in Resources */,
-				1C8AE4F717951F9000174072 /* icon_menu.png in Resources */,
 				1C8AE4F817951F9000174072 /* menu_bar.png in Resources */,
 				1C8AE4F917951F9000174072 /* mosaic_action_box.png in Resources */,
 				1C8AE4FA17951F9000174072 /* mosaic_bg.png in Resources */,
@@ -776,6 +833,19 @@
 				1CEE48A317955028009D0105 /* edge_img.bmp in Resources */,
 				1CEE48A417955028009D0105 /* mask_img.bmp in Resources */,
 				1CEE48A517955028009D0105 /* source_img.bmp in Resources */,
+				1C0D977F179AD9AC00D79CF4 /* 01.wav in Resources */,
+				1C0D9780179AD9AC00D79CF4 /* 02.wav in Resources */,
+				1C0D9781179AD9AC00D79CF4 /* 03.wav in Resources */,
+				1C0D9782179AD9AC00D79CF4 /* 04.wav in Resources */,
+				1C0D9783179AD9AC00D79CF4 /* 05.wav in Resources */,
+				1C0D9784179AD9AC00D79CF4 /* 06.wav in Resources */,
+				1C0D9785179AD9AC00D79CF4 /* 07.wav in Resources */,
+				1C0D9786179AD9AC00D79CF4 /* 08.wav in Resources */,
+				1C0D9787179AD9AC00D79CF4 /* 09.wav in Resources */,
+				1C0D9788179AD9AC00D79CF4 /* 10.wav in Resources */,
+				1C0D9789179AD9AC00D79CF4 /* 11.wav in Resources */,
+				1C0D978A179AD9AC00D79CF4 /* 12.wav in Resources */,
+				1C0D978B179AD9AC00D79CF4 /* Title.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,7 +885,6 @@
 				1C8AE1261793D63300174072 /* ONViewController.m in Sources */,
 				1C8AE16D179424F400174072 /* ONMosaicViewController.m in Sources */,
 				1C8AE3FC1794452600174072 /* ONContentsViewController.m in Sources */,
-				1CEE489217955028009D0105 /* ColorPickerView.m in Sources */,
 				1CEE489317955028009D0105 /* ActiveXDialog.cpp in Sources */,
 				1CEE489417955028009D0105 /* ColoredPaper.cpp in Sources */,
 				1CEE489517955028009D0105 /* ColoredPaperMosaic.cpp in Sources */,
@@ -833,7 +902,6 @@
 				1CEE48B317955028009D0105 /* GLView.mm in Sources */,
 				1CEE48B417955028009D0105 /* RenderingEngine1.cpp in Sources */,
 				1CEE48B517955028009D0105 /* PaperMosaicCanvas.mm in Sources */,
-				1CEE48B617955028009D0105 /* PaperMosaicViewController.mm in Sources */,
 				1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */,
 				1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */,
 			);
@@ -897,6 +965,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -912,6 +981,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "D06687B1-524F-461E-A19A-70763B77CD20";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -929,6 +999,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -937,6 +1008,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "D06687B1-524F-461E-A19A-70763B77CD20";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -958,6 +1030,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -979,6 +1052,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

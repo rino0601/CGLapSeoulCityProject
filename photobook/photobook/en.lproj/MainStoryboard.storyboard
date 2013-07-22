@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="p1.jpg" highlightedImage="p1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik1-eF-niZ"/>
-                            <button opaque="NO" contentMode="scaleAspectFit" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACJ-Ct-hsj">
+                            <button opaque="NO" contentMode="scaleAspectFit" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACJ-Ct-hsj" userLabel="StartButton">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -49,7 +49,6 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jBb-EH-Q99"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <segue destination="H4r-IT-zQ5" kind="modal" identifier="startContents" modalTransitionStyle="crossDissolve" id="au2-Eq-LLW"/>
@@ -68,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="01.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="0vX-Vx-USL"/>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haz-PY-TgH">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haz-PY-TgH" userLabel="Right Button">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -84,10 +83,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="doRight" destination="H4r-IT-zQ5" eventType="touchUpInside" id="2PD-sO-Dl6"/>
+                                    <action selector="doRight" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ARs-Ki-XKh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xb-dl-xRG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xb-dl-xRG" userLabel="Left Button">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -96,7 +95,7 @@
                                     <constraint firstAttribute="height" constant="75" id="Yms-uZ-EmW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Reft" image="icon_prev.png">
+                                <state key="normal" image="icon_prev.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <state key="highlighted">
@@ -106,7 +105,7 @@
                                     <action selector="doLeft" destination="H4r-IT-zQ5" eventType="touchUpInside" id="iqP-jj-njN"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" restorationIdentifier="pageBackView" translatesAutoresizingMaskIntoConstraints="NO" id="5cL-SG-ak5">
+                            <view hidden="YES" contentMode="scaleToFill" restorationIdentifier="pageBackView" translatesAutoresizingMaskIntoConstraints="NO" id="5cL-SG-ak5" userLabel="PageView">
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="otg-lp-aeP">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -150,18 +149,22 @@
                                             <outlet property="delegate" destination="H4r-IT-zQ5" id="uBa-p8-67o"/>
                                         </connections>
                                     </collectionView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oyQ-3U-qaV"/>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oyQ-3U-qaV">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="pUa-eW-e5y"/>
+                                        </constraints>
+                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="otg-lp-aeP" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6h8-Z5-MPf"/>
+                                    <constraint firstItem="oyQ-3U-qaV" firstAttribute="centerX" secondItem="otg-lp-aeP" secondAttribute="centerX" type="default" id="CjC-Pd-vLb"/>
                                     <constraint firstItem="otg-lp-aeP" firstAttribute="leading" secondItem="5cL-SG-ak5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="app-13-cSc"/>
-                                    <constraint firstItem="oyQ-3U-qaV" firstAttribute="top" secondItem="5cL-SG-ak5" secondAttribute="top" constant="318" id="eTa-pA-LoY"/>
-                                    <constraint firstItem="oyQ-3U-qaV" firstAttribute="centerX" secondItem="otg-lp-aeP" secondAttribute="centerX" type="default" id="gZ1-g7-vxU"/>
-                                    <constraint firstItem="otg-lp-aeP" firstAttribute="top" secondItem="5cL-SG-ak5" secondAttribute="top" constant="351" id="yoy-cW-8iW"/>
+                                    <constraint firstItem="oyQ-3U-qaV" firstAttribute="top" secondItem="5cL-SG-ak5" secondAttribute="top" constant="307" id="oDG-Y4-uZh"/>
+                                    <constraint firstItem="otg-lp-aeP" firstAttribute="top" secondItem="oyQ-3U-qaV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="txr-0D-2Cf"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJg-Gx-bzX">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJg-Gx-bzX" userLabel="MenuBar">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="menu_bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="xxT-jK-qhb">
                                         <constraints>
@@ -169,7 +172,7 @@
                                             <constraint firstAttribute="height" constant="88" id="u0V-sb-Ns0"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Page" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WY-H0-OIi">
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Page" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WY-H0-OIi" userLabel="PageButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -188,7 +191,7 @@
                                             <action selector="doPageSelection" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ttQ-EE-LQd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L2-I5-xDa">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L2-I5-xDa" userLabel="MosaicButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -208,7 +211,7 @@
                                             <action selector="doMosaic" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ij3-p5-1ZJ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jL0-Oc-30H">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jL0-Oc-30H" userLabel="RereadButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -224,10 +227,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doPageAnimation" destination="H4r-IT-zQ5" eventType="touchDragInside" id="6NB-tz-GG5"/>
+                                            <action selector="doAudioPlay" destination="H4r-IT-zQ5" eventType="touchUpInside" id="xr1-Rs-DkF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXN-gF-X6w">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXN-gF-X6w" userLabel="HomeButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -244,10 +247,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Uvq-VU-UbG" kind="unwind" unwindAction="home:" id="zSf-1I-0yy"/>
+                                            <segue destination="qZd-np-2eo" kind="unwind" unwindAction="home:" id="7VS-0A-CPu"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-TG-zwE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-TG-zwE" userLabel="PaintingButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -263,7 +266,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-Sv-r7o">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-Sv-r7o" userLabel="InformationButton">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
@@ -304,7 +307,7 @@
                                     <constraint firstItem="1L2-I5-xDa" firstAttribute="bottom" secondItem="ENL-TG-zwE" secondAttribute="bottom" type="default" id="ylg-vZ-QFd"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhI-po-ybb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhI-po-ybb" userLabel="MenuButton">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -355,16 +358,17 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="contentsViewer" destination="0vX-Vx-USL" id="uX5-vE-Gkg"/>
+                        <outlet property="left" destination="4Xb-dl-xRG" id="YPx-qV-QXf"/>
                         <outlet property="menuBar" destination="lJg-Gx-bzX" id="Za5-dq-xOM"/>
                         <outlet property="menuIcon" destination="vhI-po-ybb" id="cnP-nF-ikz"/>
                         <outlet property="onCollectionView" destination="otg-lp-aeP" id="zJ8-o1-KAZ"/>
                         <outlet property="pageView" destination="5cL-SG-ak5" id="uLb-dF-rVn"/>
-                        <segue destination="GSu-kb-PhV" kind="modal" identifier="test" id="Vte-iJ-hkc"/>
+                        <outlet property="right" destination="haz-PY-TgH" id="C3n-qa-H9y"/>
                         <segue destination="8mp-NZ-myq" kind="modal" identifier="doMosaic" modalTransitionStyle="flipHorizontal" id="FwU-dx-tSw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgX-O2-gwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Uvq-VU-UbG" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="qZd-np-2eo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="894" y="47"/>
         </scene>
@@ -376,94 +380,135 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="cWW-N2-RHT"/>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty4-PW-sYc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="cWW-N2-RHT" userLabel="backgroundImage"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klM-t6-0HD" userLabel="PaperMosaicCanvas" customClass="PaperMosaicCanvas">
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8e-c2-ym2">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_action_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pra-o4-Sfa"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYR-C0-McX" userLabel="MosaicCanvas">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="565" id="3SE-Hw-ZNf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1mH-wB-X0J" userLabel="Paper">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="383" id="26L-wg-RgE"/>
+                                            <constraint firstAttribute="height" constant="325" id="W3B-Gf-YsX"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" image="YES"/>
-                                </accessibility>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="f8e-c2-ym2" firstAttribute="trailing" secondItem="ty4-PW-sYc" secondAttribute="trailing" type="default" id="0Tc-Wi-mcd"/>
-                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="top" secondItem="ty4-PW-sYc" secondAttribute="top" type="default" id="Cxo-g0-JBb"/>
-                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="trailing" secondItem="ty4-PW-sYc" secondAttribute="trailing" type="default" id="Gqq-8b-r2h"/>
-                                    <constraint firstItem="f8e-c2-ym2" firstAttribute="bottom" secondItem="ty4-PW-sYc" secondAttribute="bottom" type="default" id="Kdl-XQ-6g8"/>
-                                    <constraint firstItem="f8e-c2-ym2" firstAttribute="top" secondItem="ty4-PW-sYc" secondAttribute="top" type="default" id="Kot-lk-GsF"/>
-                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="leading" secondItem="ty4-PW-sYc" secondAttribute="leading" type="default" id="b6O-aV-W0o"/>
-                                    <constraint firstItem="Pra-o4-Sfa" firstAttribute="bottom" secondItem="ty4-PW-sYc" secondAttribute="bottom" type="default" id="cEt-9K-tra"/>
-                                    <constraint firstItem="f8e-c2-ym2" firstAttribute="leading" secondItem="ty4-PW-sYc" secondAttribute="leading" type="default" id="dpe-uj-uLf"/>
+                                    <constraint firstItem="1mH-wB-X0J" firstAttribute="leading" secondItem="klM-t6-0HD" secondAttribute="leading" type="default" id="8NG-48-ln9"/>
+                                    <constraint firstItem="tYR-C0-McX" firstAttribute="top" secondItem="klM-t6-0HD" secondAttribute="top" type="default" id="di2-Aw-Wya"/>
+                                    <constraint firstAttribute="trailing" secondItem="tYR-C0-McX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mtP-us-kYd"/>
+                                    <constraint firstItem="1mH-wB-X0J" firstAttribute="top" secondItem="klM-t6-0HD" secondAttribute="top" type="default" id="sST-Gp-r1z"/>
+                                    <constraint firstItem="tYR-C0-McX" firstAttribute="bottom" secondItem="klM-t6-0HD" secondAttribute="bottom" type="default" id="z61-Dg-7zK"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="Mosaic" destination="tYR-C0-McX" id="L1g-qi-WoI"/>
+                                    <outlet property="Paper" destination="1mH-wB-X0J" id="j0v-kK-Er5"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-1T-pDD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgE-vb-oHc" userLabel="AutoButton">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="QR9-DL-2C9"/>
+                                    <constraint firstAttribute="height" constant="53" id="xvm-wD-Aw2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="btn_paste.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doAsAutoMode:" destination="8mp-NZ-myq" eventType="touchUpInside" id="5yk-xA-kgW"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-1T-pDD" userLabel="ColorPanel">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-sx-A1a">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-sx-A1a" userLabel="RedButton">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="KpM-Y7-iZQ"/>
                                             <constraint firstAttribute="width" constant="80" id="nHK-si-XIe"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="01" image="mosaic_c01.png">
+                                        <state key="normal" image="mosaic_c01.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="98w-tb-2BB"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-zP-wNl">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-zP-wNl" userLabel="OrangeButton">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="fpr-jt-sm6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="02" image="mosaic_c02.png">
+                                        <state key="normal" image="mosaic_c02.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="Pha-02-Bgw"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1x-gS-7pp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1x-gS-7pp" userLabel="PeachButton">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="OnK-5T-CKF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="03" image="mosaic_c03.png">
+                                        <state key="normal" image="mosaic_c03.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="urO-dW-EZZ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPj-T5-CPm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPj-T5-CPm" userLabel="YellowButton">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="j1e-5V-f7F"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="04" image="mosaic_c04.png">
+                                        <state key="normal" image="mosaic_c04.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="LBN-NP-nZy"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-uY-93d">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-uY-93d" userLabel="GreenButton">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="lbO-eC-hyo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="05" image="mosaic_c05.png">
+                                        <state key="normal" image="mosaic_c05.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="fOu-V8-dqM"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKB-TX-kQJ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKB-TX-kQJ" userLabel="LightGreenButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" image="mosaic_c06.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -472,11 +517,11 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="WhK-BK-gXQ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-ts-chU">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="4l3-5d-KEW"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-ts-chU" userLabel="SkyBlueButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c07.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -485,8 +530,11 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="Bmr-P8-TUP"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-Sy-rOQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-Sy-rOQ" userLabel="BlueButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c08.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -495,8 +543,14 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="Zu5-vM-7xq"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-cr-e51">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-cr-e51" userLabel="PinkButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="JcO-IC-oCr"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c09.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -505,8 +559,11 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="AZh-Dd-ZrM"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N14-2t-g2x">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N14-2t-g2x" userLabel="PuppleButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c10.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -515,8 +572,11 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="DzF-Et-HFI"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7P-sB-NI4">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7P-sB-NI4" userLabel="BrownButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c11.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -525,11 +585,11 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="36B-12-6sT"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRJ-ky-B0s">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="zTr-NP-oqw"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRJ-ky-B0s" userLabel="BlackButton">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="mosaic_c12.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -538,11 +598,16 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="colorChangeFrom:" destination="8mp-NZ-myq" eventType="touchUpInside" id="Q78-D5-4jd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="cg4-zP-wNl" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="0GO-gN-9JO"/>
                                     <constraint firstItem="N14-2t-g2x" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="3jN-UG-4jY"/>
+                                    <constraint firstAttribute="trailing" secondItem="o1x-gS-7pp" secondAttribute="trailing" constant="101" id="4eh-wm-42x"/>
                                     <constraint firstItem="Q3D-ts-chU" firstAttribute="bottom" secondItem="qfH-Sy-rOQ" secondAttribute="bottom" type="default" id="7by-J0-ghO"/>
                                     <constraint firstItem="Q3D-ts-chU" firstAttribute="trailing" secondItem="o1x-gS-7pp" secondAttribute="trailing" type="default" id="7c5-if-fHs"/>
                                     <constraint firstItem="fRJ-ky-B0s" firstAttribute="leading" secondItem="qfH-Sy-rOQ" secondAttribute="leading" type="default" id="9GM-Gu-7V6"/>
@@ -564,6 +629,7 @@
                                     <constraint firstItem="Q3D-ts-chU" firstAttribute="leading" secondItem="k7P-sB-NI4" secondAttribute="leading" type="default" id="aPV-0I-b0g"/>
                                     <constraint firstItem="o1x-gS-7pp" firstAttribute="bottom" secondItem="kPj-T5-CPm" secondAttribute="bottom" type="default" id="bPk-Qj-LbB"/>
                                     <constraint firstItem="k7P-sB-NI4" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="gQ3-jA-F7C"/>
+                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="centerY" secondItem="3f1-1T-pDD" secondAttribute="centerY" type="default" id="iBD-bH-NaQ"/>
                                     <constraint firstItem="Co0-sx-A1a" firstAttribute="bottom" secondItem="cg4-zP-wNl" secondAttribute="bottom" type="default" id="iQ9-E6-qQ5"/>
                                     <constraint firstItem="k7P-sB-NI4" firstAttribute="trailing" secondItem="Q3D-ts-chU" secondAttribute="trailing" type="default" id="j1t-1V-UUI"/>
                                     <constraint firstItem="fuM-cr-e51" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="jMg-cm-dub"/>
@@ -577,48 +643,12 @@
                                     <constraint firstItem="kPj-T5-CPm" firstAttribute="top" secondItem="3f1-1T-pDD" secondAttribute="top" type="default" id="pxz-qO-Bxf"/>
                                     <constraint firstItem="qfH-Sy-rOQ" firstAttribute="leading" secondItem="kPj-T5-CPm" secondAttribute="leading" type="default" id="qB4-sj-7Uh"/>
                                     <constraint firstItem="IKB-TX-kQJ" firstAttribute="bottom" secondItem="5Wx-uY-93d" secondAttribute="bottom" type="default" id="rmA-ha-uAT"/>
-                                    <constraint firstAttribute="trailing" secondItem="Q3D-ts-chU" secondAttribute="trailing" constant="101" id="rwS-g4-hZv"/>
                                     <constraint firstItem="fuM-cr-e51" firstAttribute="leading" secondItem="3f1-1T-pDD" secondAttribute="leading" type="default" id="wLP-kT-4b1"/>
                                     <constraint firstItem="fRJ-ky-B0s" firstAttribute="top" secondItem="k7P-sB-NI4" secondAttribute="top" type="default" id="xoP-9M-oGj"/>
                                     <constraint firstItem="Q3D-ts-chU" firstAttribute="leading" secondItem="o1x-gS-7pp" secondAttribute="leading" type="default" id="zEW-xY-YLd"/>
-                                    <constraint firstItem="qfH-Sy-rOQ" firstAttribute="centerY" secondItem="3f1-1T-pDD" secondAttribute="centerY" type="default" id="zfU-ce-qDz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sg-Dp-n1w">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Lv-nO-nWH">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mosaic_book.png" translatesAutoresizingMaskIntoConstraints="NO" id="zt0-CF-Rjm"/>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgE-vb-oHc">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="114" id="QR9-DL-2C9"/>
-                                            <constraint firstAttribute="height" constant="53" id="xvm-wD-Aw2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="btn_paste.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="8Lv-nO-nWH" firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" type="default" id="2xj-NO-ZIb"/>
-                                    <constraint firstItem="8Lv-nO-nWH" firstAttribute="top" secondItem="5Sg-Dp-n1w" secondAttribute="top" type="default" id="38x-kh-sLd"/>
-                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="top" secondItem="5Sg-Dp-n1w" secondAttribute="top" type="default" id="8vy-rz-0qG"/>
-                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="leading" secondItem="5Sg-Dp-n1w" secondAttribute="leading" type="default" id="DVp-Oy-644"/>
-                                    <constraint firstItem="MgE-vb-oHc" firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" type="default" id="Op1-7g-XWJ"/>
-                                    <constraint firstItem="8Lv-nO-nWH" firstAttribute="bottom" secondItem="5Sg-Dp-n1w" secondAttribute="bottom" type="default" id="PgJ-Pm-pFi"/>
-                                    <constraint firstItem="8Lv-nO-nWH" firstAttribute="leading" secondItem="5Sg-Dp-n1w" secondAttribute="leading" type="default" id="Ye4-rA-MWE"/>
-                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" type="default" id="fsW-cc-9VW"/>
-                                    <constraint firstItem="zt0-CF-Rjm" firstAttribute="bottom" secondItem="5Sg-Dp-n1w" secondAttribute="bottom" type="default" id="gog-bA-8QQ"/>
-                                    <constraint firstItem="MgE-vb-oHc" firstAttribute="top" secondItem="5Sg-Dp-n1w" secondAttribute="top" type="default" id="m3L-ZK-Bd7"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-xy-dDq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-xy-dDq" userLabel="BackButton">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -641,48 +671,34 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ty4-PW-sYc" firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" type="default" id="0Na-A8-Dax"/>
-                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="439" id="RFo-lv-vUd"/>
+                            <constraint firstItem="klM-t6-0HD" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GmF-6A-7E9"/>
+                            <constraint firstAttribute="trailing" secondItem="MgE-vb-oHc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ja5-9p-3Xn"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" type="default" id="UQj-IE-0hz"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" type="default" id="V2r-6o-Jxy"/>
+                            <constraint firstItem="3f1-1T-pDD" firstAttribute="bottom" secondItem="klM-t6-0HD" secondAttribute="bottom" type="default" id="WAT-WH-plR"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="bottom" secondItem="RVw-yR-6n9" secondAttribute="bottom" type="default" id="XTO-Ha-Y40"/>
-                            <constraint firstItem="ty4-PW-sYc" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="XtA-AJ-STp"/>
                             <constraint firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" constant="104" id="a6a-F6-ZHZ"/>
-                            <constraint firstAttribute="trailing" secondItem="ty4-PW-sYc" secondAttribute="trailing" constant="621" id="a9u-UW-Tfa"/>
-                            <constraint firstItem="ty4-PW-sYc" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="cIz-8O-gUQ"/>
+                            <constraint firstItem="klM-t6-0HD" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="d0w-4n-ZKK"/>
                             <constraint firstItem="3f1-1T-pDD" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="d1o-yF-lMC"/>
-                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="leading" secondItem="QFP-xy-dDq" secondAttribute="leading" type="default" id="dRW-sg-tA8"/>
-                            <constraint firstAttribute="bottom" secondItem="ty4-PW-sYc" secondAttribute="bottom" constant="403" id="ef5-HM-9nL"/>
+                            <constraint firstItem="QFP-xy-dDq" firstAttribute="leading" secondItem="RVw-yR-6n9" secondAttribute="leading" constant="439" id="dbV-PQ-a91"/>
                             <constraint firstItem="3f1-1T-pDD" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="370" id="fHY-Pq-M30"/>
+                            <constraint firstItem="MgE-vb-oHc" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" type="default" id="fKg-aH-i8Y"/>
                             <constraint firstItem="cWW-N2-RHT" firstAttribute="trailing" secondItem="RVw-yR-6n9" secondAttribute="trailing" type="default" id="iej-TH-Tew"/>
-                            <constraint firstAttribute="trailing" secondItem="5Sg-Dp-n1w" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ifH-X9-27n"/>
                             <constraint firstItem="QFP-xy-dDq" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="667" id="nUL-tH-Ymu"/>
-                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="top" secondItem="RVw-yR-6n9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="q2n-bM-Jxp"/>
-                            <constraint firstItem="5Sg-Dp-n1w" firstAttribute="bottom" secondItem="3f1-1T-pDD" secondAttribute="bottom" type="default" id="sbz-6P-a0a"/>
+                            <constraint firstAttribute="trailing" secondItem="3f1-1T-pDD" secondAttribute="trailing" constant="621" id="r3L-oY-4W3"/>
+                            <constraint firstItem="klM-t6-0HD" firstAttribute="trailing" secondItem="RVw-yR-6n9" secondAttribute="trailing" type="default" id="wO7-F0-7Yb"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="paperMosaicCanvas" destination="klM-t6-0HD" id="Bep-Df-yXL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m23-4R-Fdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iq4-xG-qIK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2308" y="469"/>
-        </scene>
-        <!--Paper Mosaic View Controller-->
-        <scene sceneID="e0k-n8-H1Y">
-            <objects>
-                <viewController id="GSu-kb-PhV" customClass="PaperMosaicViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aDh-G6-JrC">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SLy-o8-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2308" y="-590"/>
         </scene>
     </scenes>
     <resources>
@@ -699,9 +715,7 @@
         <image name="icon_play.png" width="448" height="448"/>
         <image name="icon_prev.png" width="135" height="135"/>
         <image name="menu_bar.png" width="2048" height="142"/>
-        <image name="mosaic_action_box.png" width="742" height="742"/>
         <image name="mosaic_bg.png" width="2048" height="1536"/>
-        <image name="mosaic_book.png" width="1172" height="1348"/>
         <image name="mosaic_c01.png" width="168" height="172"/>
         <image name="mosaic_c02.png" width="168" height="172"/>
         <image name="mosaic_c03.png" width="168" height="172"/>
@@ -717,59 +731,6 @@
         <image name="p1.jpg" width="2048" height="1536"/>
         <image name="page_img01.png" width="450" height="320"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ONContentsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONContentsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doLeft"/>
-                <relationship kind="action" name="doMenu"/>
-                <relationship kind="action" name="doMosaic"/>
-                <relationship kind="action" name="doPageAnimation"/>
-                <relationship kind="action" name="doPageSelection"/>
-                <relationship kind="action" name="doRight"/>
-                <relationship kind="action" name="onContents:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="contentsViewer" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="menuBar" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuIcon" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="onCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="pageView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="ONMosaicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONMosaicViewController.h"/>
-        </class>
-        <class className="ONSnapshotCollectionViewCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONSnapshotCollectionViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageViewCell" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ONViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doStartButton:"/>
-                <relationship kind="action" name="home:" candidateClass="UIStoryboardSegue"/>
-            </relationships>
-        </class>
-        <class className="PaperMosaicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaperMosaicViewController.h"/>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

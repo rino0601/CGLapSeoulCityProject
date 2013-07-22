@@ -19,6 +19,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    startAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Title" ofType:@"wav"]] error:NULL];
+    
+    [startAudio play];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,6 +32,7 @@
 }
 
 - (IBAction)doStartButton:(id)sender {
+    [startAudio stop];
     [self performSegueWithIdentifier:@"startContents" sender:self];
     
 }

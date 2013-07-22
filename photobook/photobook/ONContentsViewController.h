@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate> {
+@interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, AVAudioPlayerDelegate> {
+    
+    AVAudioPlayer* audioPlayer;
     int currentViewIndex;
     int maxViewIndex;
     
@@ -17,6 +20,8 @@
     UIView *menuBar;
     UIImageView *contentsViewer;
     UIButton *menuIcon;
+    UIButton *right;
+    UIButton *left;
     
     NSArray *contentsList;
     
@@ -32,5 +37,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *menuIcon;
 @property (nonatomic, retain) IBOutlet UICollectionView *onCollectionView;
 @property (nonatomic, retain) IBOutlet UIView *pageView;
+@property (nonatomic, retain) IBOutlet UIButton *right;
+@property (nonatomic, retain) IBOutlet UIButton *left;
 
 @end
