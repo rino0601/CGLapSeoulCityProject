@@ -246,9 +246,7 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="qZd-np-2eo" kind="unwind" unwindAction="home:" id="7VS-0A-CPu"/>
-                                        </connections>
+
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-TG-zwE" userLabel="PaintingButton">
                                         <accessibility key="accessibilityConfiguration">
@@ -369,6 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgX-O2-gwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qZd-np-2eo" userLabel="Exit" sceneMemberID="exit"/>
+                
             </objects>
             <point key="canvasLocation" x="894" y="47"/>
         </scene>
@@ -731,6 +730,50 @@
         <image name="p1.jpg" width="2048" height="1536"/>
         <image name="page_img01.png" width="450" height="320"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ONContentsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONContentsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doLeft"/>
+                <relationship kind="action" name="doMenu"/>
+                <relationship kind="action" name="doMosaic"/>
+                <relationship kind="action" name="doPageAnimation"/>
+                <relationship kind="action" name="doRight"/>
+                <relationship kind="action" name="onContents:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="contentsViewer" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="menuBar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuIcon" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ONMosaicViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONMosaicViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorChangeFrom:" candidateClass="UIButton"/>
+                <relationship kind="action" name="doAsAutoMode:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="paperMosaicCanvas" candidateClass="PaperMosaicCanvas"/>
+            </relationships>
+        </class>
+        <class className="ONViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doStartButton:"/>
+                <relationship kind="action" name="home:" candidateClass="UIStoryboardSegue"/>
+            </relationships>
+        </class>
+        <class className="PaperMosaicCanvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaperMosaicCanvas.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Mosaic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="Paper" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
