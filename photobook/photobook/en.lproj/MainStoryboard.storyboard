@@ -247,7 +247,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="qZd-np-2eo" kind="unwind" unwindAction="home:" id="qDy-Dd-862"/>
+                                            <segue destination="qZd-np-2eo" kind="unwind" unwindAction="home:" id="oLu-zt-hFv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-TG-zwE" userLabel="PaintingButton">
