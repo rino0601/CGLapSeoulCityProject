@@ -13,8 +13,8 @@
 @interface ONContentsViewController ()
 
 - (IBAction)doMenu;
-- (IBAction)doLeft;
-- (IBAction)doRight;
+- (IBAction)doPrev;
+- (IBAction)doNext;
 - (IBAction)doMosaic;
 - (IBAction)doPageAnimation;
 - (IBAction)doPageSelection;
@@ -110,18 +110,20 @@
     [menuIcon setCenter:cp];
 }
 
-- (IBAction)doLeft {
+- (IBAction)doPrev{
     int index = currentViewIndex;
     if( --index < 0) {
         index = 0;
+        return;
     }
     [self playBookWithIndex:index];
     
 }
-- (IBAction)doRight{
+- (IBAction)doNext{
     int index = currentViewIndex;
     if( ++index >= maxViewIndex) {
         index = maxViewIndex - 1;
+        return;
     }
     [self playBookWithIndex:index];
     
@@ -141,9 +143,18 @@
     
     audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL];
     
+    [audioPlayer setDelegate:self];
+    
     [audioPlayer play];
     
 }
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)avp successfully:(BOOL)flag {
+    //NSLog(@"asdf");
+    if(flag) {
+        [self doNext];
+    }
+}
+
 - (void)playBookWithIndex:(int)index{
     
     Boolean animationStart = NO;
