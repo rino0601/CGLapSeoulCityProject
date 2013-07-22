@@ -167,6 +167,9 @@
 	marker = alertView ;
 }
 
+- (UIImage*)resultImage{
+    return [UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic];
+}
 - (void)saveResult {
 	UIImage *image =[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic];
 	UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:finishedSavingWithError:contextInfo:), nil);

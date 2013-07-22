@@ -33,6 +33,9 @@
 {
     [super didReceiveMemoryWarning];
 }
+- (UIImage*)resultImage {
+    return [paperMosaicCanvas resultImage];
+}
 
 - (IBAction)doAsAutoMode:(UIButton *)sender {
 	//[paperMosaicCanvas doAsAutoMode];
@@ -47,4 +50,5 @@
 	cvReleaseImage(&buttonIplImage);
 	[paperMosaicCanvas setPaperColor:[UIColor colorWithRed:centerColor.val[0]/255.0f green:centerColor.val[1]/255.0f blue:centerColor.val[2]/255.0f alpha:centerColor.val[3]/255.0f]];
 }
+
 @end

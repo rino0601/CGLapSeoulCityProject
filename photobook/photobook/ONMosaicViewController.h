@@ -15,5 +15,6 @@
 
 - (IBAction)doAsAutoMode:(UIButton *)sender;
 - (IBAction)colorChangeFrom:(UIButton *)sender;
+- (UIImage*)resultImage;
 
 @end

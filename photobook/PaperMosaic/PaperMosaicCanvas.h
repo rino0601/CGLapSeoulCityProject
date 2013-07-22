@@ -22,6 +22,7 @@
 - (void)doAsAutoMode;
 - (BOOL)setPaperColor:(UIColor *)color;
 - (void)saveResult;
+- (UIImage*)resultImage;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "ONContentsViewController.h"
 #import "ONSnapshotCollectionViewCell.h"
+#import "ONMosaicViewController.h"
 
 @interface ONContentsViewController ()
 
@@ -67,6 +68,8 @@
     self.searchResults = [@{} mutableCopy];
     */
     [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
+    
+    mosaicImageView = [[UIImageView alloc] init];
     
 }
 
@@ -189,7 +192,13 @@
 }
 
 - (IBAction)onContents:(UIStoryboardSegue *)segue {
-    // Optional place to read data from closing controller
+    if([[[[segue sourceViewController] class] description] isEqual: @"ONMosaicViewController"]){
+        ONMosaicViewController* t = [segue sourceViewController];
+        [mosaicImageView setImage:[t resultImage]];
+        [mosaicImageView setFrame:CGRectMake(50, 50, 500, 500)];
+        [contentsViewer addSubview:mosaicImageView];
+        
+    }
 }
 
 

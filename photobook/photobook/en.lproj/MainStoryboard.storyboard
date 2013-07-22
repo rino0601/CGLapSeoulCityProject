@@ -66,7 +66,7 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="01.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="0vX-Vx-USL"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="03.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="0vX-Vx-USL"/>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haz-PY-TgH" userLabel="Right Button">
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
@@ -196,7 +196,6 @@
                                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="101" id="Qyy-e5-95V"/>
                                             <constraint firstAttribute="width" constant="115" id="eks-82-4YY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -217,6 +216,7 @@
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="IDf-Vr-jh4"/>
+                                            <constraint firstAttribute="height" constant="101" id="gMP-15-zz9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="icon_m_reread.png">
@@ -236,7 +236,6 @@
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="Dez-Jx-bqv"/>
-                                            <constraint firstAttribute="height" constant="101" id="DtU-RI-uJ8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="icon_m_home.png">
@@ -283,28 +282,31 @@
                                         </state>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstItem="ENL-TG-zwE" firstAttribute="top" secondItem="lJg-Gx-bzX" secondAttribute="top" constant="20" symbolic="YES" type="default" id="07R-Rk-x3g"/>
-                                    <constraint firstItem="jL0-Oc-30H" firstAttribute="leading" secondItem="lJg-Gx-bzX" secondAttribute="leading" constant="149" id="2rS-OI-2mX"/>
-                                    <constraint firstItem="sqN-Sv-r7o" firstAttribute="top" secondItem="lJg-Gx-bzX" secondAttribute="top" constant="20" symbolic="YES" type="default" id="LX2-HM-64Q"/>
+                                    <constraint firstItem="1L2-I5-xDa" firstAttribute="bottom" secondItem="7WY-H0-OIi" secondAttribute="bottom" type="default" id="7tw-go-xxb"/>
+                                    <constraint firstAttribute="trailing" secondItem="1L2-I5-xDa" secondAttribute="trailing" constant="304" id="Bt7-j7-Bqu"/>
+                                    <constraint firstItem="sqN-Sv-r7o" firstAttribute="top" secondItem="ENL-TG-zwE" secondAttribute="top" type="default" id="Hzh-L7-8z7"/>
                                     <constraint firstItem="jL0-Oc-30H" firstAttribute="top" secondItem="XXN-gF-X6w" secondAttribute="top" type="default" id="PUp-ug-erR"/>
-                                    <constraint firstAttribute="trailing" secondItem="1L2-I5-xDa" secondAttribute="trailing" constant="294" id="Pqb-5c-K5y"/>
-                                    <constraint firstAttribute="trailing" secondItem="ENL-TG-zwE" secondAttribute="trailing" constant="145" id="SoK-6F-uzd"/>
                                     <constraint firstItem="xxT-jK-qhb" firstAttribute="top" secondItem="lJg-Gx-bzX" secondAttribute="top" constant="47" id="TSA-Ca-ywm"/>
-                                    <constraint firstItem="ENL-TG-zwE" firstAttribute="bottom" secondItem="sqN-Sv-r7o" secondAttribute="bottom" type="default" id="UnY-Fd-JhR"/>
+                                    <constraint firstItem="jL0-Oc-30H" firstAttribute="top" secondItem="lJg-Gx-bzX" secondAttribute="top" constant="12" id="Te5-j5-884"/>
                                     <constraint firstItem="7WY-H0-OIi" firstAttribute="bottom" secondItem="jL0-Oc-30H" secondAttribute="bottom" type="default" id="XHV-ha-VZa"/>
                                     <constraint firstItem="XXN-gF-X6w" firstAttribute="leading" secondItem="lJg-Gx-bzX" secondAttribute="leading" type="default" id="Z0H-5w-geT"/>
                                     <constraint firstItem="sqN-Sv-r7o" firstAttribute="trailing" secondItem="lJg-Gx-bzX" secondAttribute="trailing" type="default" id="aPS-BD-EbQ"/>
+                                    <constraint firstItem="ENL-TG-zwE" firstAttribute="bottom" secondItem="1L2-I5-xDa" secondAttribute="bottom" type="default" id="bgg-fS-A9d"/>
                                     <constraint firstItem="7WY-H0-OIi" firstAttribute="top" secondItem="jL0-Oc-30H" secondAttribute="top" type="default" id="fQz-tw-Dw4"/>
-                                    <constraint firstItem="1L2-I5-xDa" firstAttribute="top" secondItem="lJg-Gx-bzX" secondAttribute="top" constant="20" symbolic="YES" type="default" id="jMc-zh-8Px"/>
+                                    <constraint firstItem="ENL-TG-zwE" firstAttribute="centerY" secondItem="lJg-Gx-bzX" secondAttribute="centerY" type="default" id="hH3-08-cWZ"/>
+                                    <constraint firstItem="sqN-Sv-r7o" firstAttribute="bottom" secondItem="ENL-TG-zwE" secondAttribute="bottom" type="default" id="jVN-B7-n2O"/>
+                                    <constraint firstItem="1L2-I5-xDa" firstAttribute="top" secondItem="7WY-H0-OIi" secondAttribute="top" type="default" id="nNl-I5-Ug6"/>
                                     <constraint firstItem="7WY-H0-OIi" firstAttribute="leading" secondItem="lJg-Gx-bzX" secondAttribute="leading" constant="284" id="nQg-rE-rs3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ENL-TG-zwE" secondAttribute="trailing" constant="148" id="rMZ-sv-8r0"/>
+                                    <constraint firstItem="jL0-Oc-30H" firstAttribute="leading" secondItem="lJg-Gx-bzX" secondAttribute="leading" constant="137" id="rh2-lR-Bni"/>
                                     <constraint firstItem="xxT-jK-qhb" firstAttribute="leading" secondItem="lJg-Gx-bzX" secondAttribute="leading" constant="-1" id="sV7-37-1md"/>
                                     <constraint firstItem="jL0-Oc-30H" firstAttribute="bottom" secondItem="XXN-gF-X6w" secondAttribute="bottom" type="default" id="wLp-h3-TIU"/>
-                                    <constraint firstItem="7WY-H0-OIi" firstAttribute="centerY" secondItem="lJg-Gx-bzX" secondAttribute="centerY" type="default" id="xCl-xV-e50"/>
-                                    <constraint firstItem="1L2-I5-xDa" firstAttribute="bottom" secondItem="ENL-TG-zwE" secondAttribute="bottom" type="default" id="ylg-vZ-QFd"/>
+                                    <constraint firstItem="ENL-TG-zwE" firstAttribute="top" secondItem="1L2-I5-xDa" secondAttribute="top" type="default" id="yOI-qS-0sC"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhI-po-ybb" userLabel="MenuButton">
@@ -347,7 +349,6 @@
                             <constraint firstItem="0vX-Vx-USL" firstAttribute="bottom" secondItem="hld-Pe-zT2" secondAttribute="bottom" type="default" id="ddM-2Z-b78"/>
                             <constraint firstItem="5cL-SG-ak5" firstAttribute="trailing" secondItem="hld-Pe-zT2" secondAttribute="trailing" type="default" id="ejH-bc-wG0"/>
                             <constraint firstItem="0vX-Vx-USL" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" type="default" id="mCs-jF-X6p"/>
-                            <constraint firstItem="lJg-Gx-bzX" firstAttribute="top" secondItem="hld-Pe-zT2" secondAttribute="top" constant="623" id="qea-Km-dcK"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="leading" secondItem="hld-Pe-zT2" secondAttribute="leading" type="default" id="rXP-2O-28O"/>
                             <constraint firstItem="vhI-po-ybb" firstAttribute="centerX" secondItem="lJg-Gx-bzX" secondAttribute="centerX" type="default" id="sJy-TU-H4l"/>
                             <constraint firstItem="lJg-Gx-bzX" firstAttribute="bottom" secondItem="hld-Pe-zT2" secondAttribute="bottom" type="default" id="xcU-vk-T5R"/>
@@ -702,7 +703,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="01.JPG" width="2400" height="1503"/>
+        <image name="03.JPG" width="2400" height="1504"/>
         <image name="btn_paste.png" width="285" height="150"/>
         <image name="icon_m_home.png" width="225" height="225"/>
         <image name="icon_m_info.png" width="225" height="225"/>

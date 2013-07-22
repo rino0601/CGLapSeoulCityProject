@@ -11,6 +11,7 @@
 
 @interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, AVAudioPlayerDelegate> {
     
+@private
     AVAudioPlayer* audioPlayer;
     int currentViewIndex;
     int maxViewIndex;
@@ -29,6 +30,8 @@
     NSMutableArray *searches;
     UICollectionView *onCollectionView;
     UIView *pageView;
+    
+    UIImageView* mosaicImageView;
 }
 
 //@property (strong, nonatomic) IBOutlet UICollectionView *collectuinView;
