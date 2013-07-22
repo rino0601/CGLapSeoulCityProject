@@ -194,10 +194,12 @@
 - (IBAction)onContents:(UIStoryboardSegue *)segue {
     if([[[[segue sourceViewController] class] description] isEqual: @"ONMosaicViewController"]){
         ONMosaicViewController* t = [segue sourceViewController];
-        [mosaicImageView setImage:[t resultImage]];
+        //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
+        CGFloat maskColor[6] = {255,255,255,255,255,255};
+        [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
         [mosaicImageView setFrame:CGRectMake(50, 50, 500, 500)];
+        [mosaicImageView removeFromSuperview];
         [contentsViewer addSubview:mosaicImageView];
-        
     }
 }
 
