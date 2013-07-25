@@ -194,6 +194,7 @@
 }
 
 - (IBAction)doMosaic{
+    [audioPlayer stop];
     [self doMenu];
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
 }
