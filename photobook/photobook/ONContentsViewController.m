@@ -9,6 +9,7 @@
 #import "ONContentsViewController.h"
 #import "ONSnapshotCollectionViewCell.h"
 #import "ONMosaicViewController.h"
+#import "ONAppDelegate.h"
 
 @interface ONContentsViewController ()
 
@@ -196,6 +197,14 @@
 - (IBAction)doMosaic{
     [audioPlayer stop];
     [self doMenu];
+	/**************리소스 이미지 결정하는 코드입니다. 한줄이라도 빠지면 안되요.**************/
+	ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate setMosaicSource:[UIImage imageNamed:@"source_img.bmp"]];
+	[appDelegate setMosaicMask:[UIImage imageNamed:@"mask_img.bmp"]];
+	[appDelegate setMosaicEdge:[UIImage imageNamed:@"edge_img.bmp"]];
+	[appDelegate setStartSectionCode:102];
+	/*************************************************************************/
+	
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
 }
 

@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -38,8 +37,8 @@
 }
 
 - (IBAction)doAsAutoMode:(UIButton *)sender {
-	//[paperMosaicCanvas doAsAutoMode];
-	[paperMosaicCanvas saveResult];
+	[paperMosaicCanvas doAsAutoMode];
+	//[paperMosaicCanvas saveResult];
 }
 
 - (IBAction)colorChangeFrom:(UIButton *)sender {

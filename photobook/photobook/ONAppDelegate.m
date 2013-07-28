@@ -8,7 +8,13 @@
 
 #import "ONAppDelegate.h"
 
+@interface ONAppDelegate ()
+
+@end
+
 @implementation ONAppDelegate
+
+#pragma mark - life cycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

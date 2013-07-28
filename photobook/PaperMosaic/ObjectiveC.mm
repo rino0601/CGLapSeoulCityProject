@@ -12,6 +12,7 @@
 class ActiveXDialog;
 
 IplImage *IplImage_imageNamed(const char *text) {
+	//FIXME: dead code. 지워도 좋습니다. 안쓸거라면요.
 	IplImage *loadImage = [UIImageCVArrConverter CreateIplImageFromUIImage:[UIImage imageNamed:[NSString stringWithCString:text encoding:NSUTF8StringEncoding]]];
 	cvFlip(loadImage);
 	return loadImage;

@@ -672,7 +672,7 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 void ColoredPaperMosaic::setEdgeDistanceMap()
 {
 	int w,h;
-	MPoint p;
+
 	Byte r,g,b;
 
 	int x, y;
@@ -692,6 +692,7 @@ void ColoredPaperMosaic::setEdgeDistanceMap()
 	{
 		if(125 > (Byte)m_pDlg->gray->imageData[j*m_pDlg->gray->widthStep + i])
 		{
+			MPoint p;
 			p.x = i;
 			p.y = j;
 			vEdge.push_back(p);
@@ -760,7 +761,7 @@ void ColoredPaperMosaic::setEdgeDistanceMap()
 		else if(0< dis && dis<=side)
 		{
 			val = powf(dis/side,0.5);
-			if(val > 1.0)
+			if(val >= 1.0)
 			{
 				val = 1.0;
 			}
@@ -771,7 +772,7 @@ void ColoredPaperMosaic::setEdgeDistanceMap()
 		{
 			val = powf(2,(side-dis)/6);
 
-			if(val > 1.0)
+			if(val >= 1.0)
 			{
 				val = 1.0;
 			}
@@ -999,9 +1000,10 @@ bool ColoredPaperMosaic::Odering()
 			for(int i =0; i < width; i++) {
 				int n = j*m_pRegion->widthStep+i;
 
-				if((Byte)LayerMask->imageData[n] != 101) // 시작위치 하드 코딩. 닭109(가슴), 개 103
-					continue;	
-
+// TODO: start tag
+				if((Byte)LayerMask->imageData[n] != this->m_pDlg->getStartSectionCode())
+					continue;
+				
 				if((Byte)tileMap->imageData[n] == TILE) // 타일이 있을 때 제외
 					continue;
 
@@ -1013,7 +1015,11 @@ bool ColoredPaperMosaic::Odering()
 
 				Ee = EdgeEval(current);      // 에지와 픽셀 사이의 거리에 대한 평가 값 리턴
 				Et = PositionEval(current);  // 위치가 지정 된 픽셀일 경우 1값 리턴
-							
+				
+//				if (Et ==1 || Ee > 0.9) {
+//					int k;
+//				}
+				
 				if(Et == 1 && Ee > 0.9 ) {
 					previous1.x = i;
 					previous1.y = j;
@@ -1022,7 +1028,7 @@ bool ColoredPaperMosaic::Odering()
 					search = false;
 					break;
 				}
-			};
+			}
 			
 			if(search == false) {
 				search = true;
