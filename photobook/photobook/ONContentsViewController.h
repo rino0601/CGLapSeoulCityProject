@@ -16,15 +16,17 @@
     int currentViewIndex;
     int maxViewIndex;
     
-    Boolean isMenuOn;
-    
     UIView *menuBar;
     UIImageView *contentsViewer;
     UIButton *menuIcon;
     UIButton *right;
     UIButton *left;
+    UITextView *subtitleView;
     
     NSArray *contentsList;
+    NSArray *soundsList;
+    NSArray *subsList;
+    int audioIndex;
     
     NSMutableDictionary *searchResults;
     NSMutableArray *searches;
@@ -42,5 +44,6 @@
 @property (nonatomic, retain) IBOutlet UIView *pageView;
 @property (nonatomic, retain) IBOutlet UIButton *right;
 @property (nonatomic, retain) IBOutlet UIButton *left;
+@property (nonatomic, retain) IBOutlet UITextView *subtitleView;
 
 @end

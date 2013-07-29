@@ -144,11 +144,13 @@ void ActiveXDialog::SetImage() {
 	w = (int)CGRectGetWidth(rect);
 	h = (int)CGRectGetHeight(rect);
 	m_pMosaic = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
-	IplImage *t_pEdge = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
+	
+    IplImage *t_pEdge = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
 	cvResize(m_pEdge, m_pMosaic,CV_INTER_LINEAR);
 	cvResize(m_pEdge, t_pEdge,CV_INTER_LINEAR);
 	m_pEdge = t_pEdge; t_pEdge = NULL;
-	
+	cvReleaseImage(&t_pEdge);
+    
 	//ColoredPaperMosaic 클래스에서 사용할 이미지들 생성 및 초기화.	
 	gray = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
 	cvCvtColor(m_pMosaic, gray, CV_RGB2GRAY);
@@ -166,6 +168,8 @@ void ActiveXDialog::SetImage() {
 	IplImage* reSizedMask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
 	cvResize(mask, reSizedMask, CV_INTER_LINEAR);
 	cvCvtColor(reSizedMask, icpm.m_oCPM.LayerMask, CV_RGB2GRAY);
+    
+    cvReleaseImage(&reSizedMask);
 	
 	// 자동 붙이기를 위한 맵 생성
 	icpm.m_oCPM.preSetting(0.3);

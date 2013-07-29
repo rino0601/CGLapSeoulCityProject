@@ -16,7 +16,6 @@
 - (IBAction)doPrev;
 - (IBAction)doNext;
 - (IBAction)doMosaic;
-- (IBAction)doPageAnimation;
 - (IBAction)doPageSelection;
 - (IBAction)doAudioPlay;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
@@ -34,19 +33,21 @@
 @synthesize menuBar;
 @synthesize menuIcon;
 @synthesize contentsViewer;
+@synthesize subtitleView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+           audioPlayer = [[AVAudioPlayer alloc] init];
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isMenuOn = false;
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
     
@@ -56,25 +57,23 @@
     
     contentsList = [contentsPlist objectForKey:@"contentsList"];
     
-    
-    //currentViewIndex = (int)[contentsPlist valueForKey:@"readPage"] - 1;
     currentViewIndex = 0;
     
     maxViewIndex = contentsList.count;
     [self playBookWithIndex:currentViewIndex];
-	// Do any additional setup after loading the view.
-    
-    /*self.searches = [@[] mutableCopy];
-    self.searchResults = [@{} mutableCopy];
-    */
+	
     [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
     mosaicImageView = [[UIImageView alloc] init];
     
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+    subsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"subs"];
+    soundsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"sounds"];
+    
+    //[mosaicImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    audioIndex = 0;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,30 +83,58 @@
 }
 
 - (IBAction)doMenu {
-    CGPoint cp;
-    if( !isMenuOn ){
-        isMenuOn = !isMenuOn;
+    
+    if( [menuBar isHidden] ){
+        
+        CGPoint cp = [menuIcon center];
+        CGPoint menuBarCenterPoint = [menuBar center];
+        CGPoint menuBarOriginPoint = [menuBar center];
+        
         NSLog(@"MenuBarOn");
+        
+        menuBarCenterPoint.y += 100;
+        [menuBar setCenter:menuBarCenterPoint];
         [menuBar setHidden:false];
-        cp = [menuIcon center];
-        cp.y -= 30;
-        [menuIcon setCenter:cp];
+        
+        cp.y -= 50;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            menuBar.transform = CGAffineTransformMakeTranslation(0.5, 0.5);
+            [menuBar setCenter:menuBarOriginPoint];
+            [menuIcon setCenter:cp];
+        }];
         
     } else {
+    
         [self setMenuBarHidden];
+    
     }
     
 }
 
 - (void)setMenuBarHidden {
     [pageView setHidden:YES];
-    CGPoint cp;
-    isMenuOn = !isMenuOn;
+    
+    CGPoint cp, mcp, mop;
+    
+    mop = [menuBar center];
+    mcp = [menuBar center];
+    
     NSLog(@"MenuBarOff");
-    [menuBar setHidden:true];
+    
     cp = [menuIcon center];
-    cp.y += 30;
-    [menuIcon setCenter:cp];
+    cp.y += 50;
+    
+    mcp.y += 100;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        menuBar.transform = CGAffineTransformMakeTranslation(0.5, 0.5);
+        [menuBar setCenter:mcp];
+        [menuIcon setCenter:cp];
+    } completion:^(BOOL finished) {
+        [menuBar setHidden:true];
+        [menuBar setCenter:mop];
+    }];
 }
 
 - (IBAction)doPrev{
@@ -129,29 +156,40 @@
     
 }
 
-- (IBAction)doPageAnimation {
-    /* 페이지를 읽기 시작할 때 로딩시의 에니메이션을 설정 및 시작하는 함수.
-     * 추후 구현 예정
-     */
-}
-
 - (IBAction)doAudioPlay {
     [audioPlayer stop];
-    int index = currentViewIndex+1;
-    NSString* audioPath = (index < 10 ? [[NSString alloc] initWithFormat:@"0%d",index ] : [[NSString alloc] initWithFormat:@"%d",index ]);
+    
+    if(audioPlayer == nil)
+        audioPlayer = [AVAudioPlayer alloc];
+
+    NSString *audioPath = [soundsList objectAtIndex:audioIndex];
+    
+    NSLog(@"audio %d, %@ play", audioIndex, audioPath);
+    
+    [[audioPlayer initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL] setDelegate:self];
     
     
-    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL];
+    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
     
-    [audioPlayer setDelegate:self];
+    subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
+    [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        subtitleView.transform = CGAffineTransformIdentity;
+    }];
     
     [audioPlayer play];
-    
 }
+
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)avp successfully:(BOOL)flag {
     //NSLog(@"asdf");
     if(flag) {
-        [self doNext];
+        if( ++audioIndex >= soundsList.count) {
+            audioIndex = 0;
+            [self doNext];
+        } else {
+            [self doAudioPlay];
+        }
     }
 }
 
@@ -162,40 +200,60 @@
     
     index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
     
-    if(index == 0) {
-        [left setHidden:YES];
-    } else if (index == maxViewIndex -1) {
-        [right setHidden:YES];
-    } else {
-        [left setHidden:NO];
-        [right setHidden:NO];
-    }
+    (index == 0) ? [left setHidden:YES] : [left setHidden:NO];
+    (index == maxViewIndex -1) ? [right setHidden:YES] : [right setHidden:NO];
+    
     if(index != currentViewIndex) {
         animationStart = YES;
-        
         index < currentViewIndex ? isLeft = YES : isLeft = NO;
     }
+    
     NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
-    [contentsViewer setImage:[UIImage imageNamed:[contentsList objectAtIndex:index]]];
-    [self doPageAnimation];
+    [contentsViewer setImage:[UIImage imageNamed:[[contentsList objectAtIndex:index] objectForKey:@"backImage"]]];
     currentViewIndex = index;
 
-    if(animationStart) {
+    subsList = [[contentsList objectAtIndex:index] objectForKey:@"subs"];
+    soundsList = [[contentsList objectAtIndex:index] objectForKey:@"sounds"];
+    audioIndex = 0;
+   
+    NSDictionary *subtitleFrame = [[contentsList objectAtIndex:index] objectForKey:@"subtitleFrame"];
+    
+    
+    //[subtitleView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    
+    /*[subtitleView setCenter:CGPointMake
+     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue])];
+    */
+    [subtitleView setFrame:CGRectMake
+     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue])];
+    
+
+    
+    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    
+    //if(animationStart) {
+        [subtitleView setText:@""];
+        [mosaicImageView removeFromSuperview];
+
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.0];
         [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsViewer cache:YES];
         [UIView setAnimationBeginsFromCurrentState:NO];
         [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(doAudioPlay)];
         [UIView commitAnimations];
-    }
-
-    [self doPageAnimation];
-    [self doAudioPlay];
+    //}
+    
+    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
 }
 
 - (IBAction)doMosaic{
     [audioPlayer stop];
-    [self doMenu];
+    [self setMenuBarHidden];
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
 }
 
@@ -209,7 +267,15 @@
         //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
         CGFloat maskColor[6] = {255,255,255,255,255,255};
         [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
-        [mosaicImageView setFrame:CGRectMake(50, 50, 500, 500)];
+        
+        NSDictionary *mosaicFrame = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"frame"];
+        
+        [mosaicImageView setFrame:CGRectMake
+         ([[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"x"] intValue]] floatValue],
+          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"y"] intValue]] floatValue],
+          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"width"] intValue]] floatValue],
+          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
+        
         [mosaicImageView removeFromSuperview];
         [contentsViewer addSubview:mosaicImageView];
     }
@@ -229,33 +295,20 @@
 {
     static NSString *CellIdentifier = @"PhotoCell";
     ONSnapshotCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSString *searchTerm = (indexPath.row + 1 < 10 ? [NSString stringWithFormat:@"page_img0%d.png",indexPath.row + 1]: [NSString stringWithFormat:@"page_img%d.png",indexPath.row + 1]);
+    NSString *searchTerm;
+    searchTerm = [[contentsList objectAtIndex:indexPath.row] objectForKey:@"snapshot"];
     
     NSLog(@"imageName \"%@\"",searchTerm);
-//    cell.imageViewCell.image = [UIImage imageNamed:searchTerm];
     
     [cell.imageViewCell setHidden:NO];
     [cell.imageViewCell setImage:[UIImage imageNamed:searchTerm]];
-    //[cell.imageViewCell setBackgroundColor:[UIColor yellowColor]];
-
-    //contentsViewer.image = [UIImage imageNamed:searchTerm];
-    //[cell setBackgroundColor:[UIColor whiteColor]];
-//    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-/*    NSString *searchTerm = (indexPath.row + 1 < 10 ? [NSString stringWithFormat:@"page_img0%d.png",indexPath.row + 1]: [NSString stringWithFormat:@"page_img%d.png",indexPath.row + 1]);
-    
-    UIImage *thumbnail = [UIImage imageNamed:searchTerm];
-    
-    NSLog(@"Thumbnail%d Size: %f",indexPath.row,thumbnail.size.width); = thumbnail.size.width < 100 ? thumbnail.size : 
-  */  
     CGSize retval = CGSizeMake(300, 240);
-    //retval.height += 35; retval.width += 35;
     return retval;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
