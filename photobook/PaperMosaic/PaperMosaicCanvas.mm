@@ -8,19 +8,21 @@
 
 #import "PaperMosaicCanvas.h"
 #import "UIImageCVArrConverter.h"
+#import "ONAppDelegate.h"
 
 @implementation PaperMosaicCanvas
 @synthesize Paper,Mosaic,ADelegate;
-
-- (void)awakeFromNib {
-	[super awakeFromNib];
-}
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	ADelegate = new ActiveXDialog();
 	CUIImageView paper(Paper),canvas(Mosaic);
-	ADelegate->init(self,paper,canvas);
+	ONAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	ADelegate->init(self,paper,canvas,
+					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicEdge],
+					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicSource],
+					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicMask],
+					appDelegate.startSectionCode);
 	[self setMultipleTouchEnabled:YES];
 }
 
@@ -161,10 +163,15 @@
 - (void)didPresentAlertView:(UIAlertView *)alertView {
 	static UIAlertView *marker = nil;
 	if(alertView==nil) {
-		//[marker dismissWithClickedButtonIndex:[marker cancelButtonIndex] animated:NO];
 		[marker performSelectorOnMainThread:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil waitUntilDone:NO];
 	}
 	marker = alertView ;
+}
+- (void)setMosaicImage:(UIImage *)source Edge:(UIImage *)edge Mask:(UIImage *)mask{
+	[self setMosaicImage:source Edge:edge Mask:mask StartSection:102];
+}
+- (void)setMosaicImage:(UIImage *)source Edge:(UIImage *)edge Mask:(UIImage *)mask StartSection:(NSUInteger)sectionCode {
+	
 }
 
 - (UIImage*)resultImage{

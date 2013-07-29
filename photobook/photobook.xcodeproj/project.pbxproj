@@ -744,6 +744,7 @@
 		1CEE484B17955028009D0105 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				1CEE485417955028009D0105 /* ETF */,
 				1CEE484C17955028009D0105 /* ActiveXDialog.cpp */,
 				1CEE484D17955028009D0105 /* ActiveXDialog.h */,
 				1CEE484E17955028009D0105 /* ColoredPaper.cpp */,
@@ -752,7 +753,6 @@
 				1CEE485117955028009D0105 /* ColoredPaperMosaic.h */,
 				1CEE485217955028009D0105 /* ColoredPapperTile.cpp */,
 				1CEE485317955028009D0105 /* ColoredPapperTile.h */,
-				1CEE485417955028009D0105 /* ETF */,
 				1CEE485D17955028009D0105 /* InteractiveColoredPaperMosaic.cpp */,
 				1CEE485E17955028009D0105 /* InteractiveColoredPaperMosaic.h */,
 				1CEE485F17955028009D0105 /* MNode.cpp */,

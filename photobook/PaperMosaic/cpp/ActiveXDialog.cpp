@@ -52,11 +52,12 @@ ActiveXDialog::~ActiveXDialog() {
 	if(dis)				cvReleaseImage(&dis);
 	if(!AutoMovePoint.empty()) AutoMovePoint.clear();
 }
-void ActiveXDialog::init(PaperMosaicCanvas *view, CUIImageView p, CUIImageView m) { //OnSize, OnInit역할
+void ActiveXDialog::init(PaperMosaicCanvas *view, CUIImageView p, CUIImageView m, IplImage *edge, IplImage *source, IplImage *mask, int code) { //OnSize, OnInit역할
 	m_view 				= view;
 	c_view  			= new CPaperMosaicCanvas(view);
 	m_stColortedPaper 	= p;
 	m_stMosaic 			= m;
+	startSectionCode 	= code;
 	//OnSize()먼저.
 	viewx = view.frame.size.width;
 	viewy = view.frame.size.height;
@@ -67,11 +68,17 @@ void ActiveXDialog::init(PaperMosaicCanvas *view, CUIImageView p, CUIImageView m
 	icpm.m_oCPM.setDlg(this);
 	icpm.setDlg(this);
 	
-	this->SetImage();
+	this->SetImage(edge, source, mask);
 	
 	icpm.SetColoredPaper();
 	icpm.m_oPaper.Render(m_pColordPaper);
 }
+int ActiveXDialog::getStartSectionCode() {
+	// 시작위치를 나타내는 코드, 최소값 101. 최대값은 리소스에 따라 다르다.
+	// 마스크 이미지에 RGB값으로 있는 그 값.
+	return startSectionCode;
+}
+
 
 // OpenGL 
 void ActiveXDialog::getBackBuffer(IplImage * buffer) {
@@ -98,33 +105,18 @@ void ActiveXDialog::DrawCone(int x, int y, Byte r, Byte g, Byte b, int depth){
 	// 도대체 몇 중첩이야 이거 ㅋㅋㅋ.
 }
 
-void ActiveXDialog::SetImage() {
-//	CDC* pdc;				// bmp와 마찬가지. 필요 없다.
-	CGRect rect;			
-//	CBitmap  bmp;			// 확실히 필요 없어보임.
-	IplImage *pImage1;
-	IplImage *pImage2;
-	IplImage *pImage3;
-	
+void ActiveXDialog::SetImage(IplImage *pImage1, IplImage *pImage2, IplImage *pImage3) {
+	CGRect rect;
 	IplImage* mask;
-	CvSize img_size;
 	
 	// edge image setting
-	pImage1 = IplImage_imageNamed("edge_img.bmp");
-	img_size.height = pImage1->height;
-	img_size.width = pImage1->width;
-	m_pEdge =cvCreateImage(img_size,IPL_DEPTH_8U, 4);
-	cvFlip(pImage1, m_pEdge, 0);
+	m_pEdge = cvCloneImage(pImage1);
 		
 	// source image setting
-	pImage2 = IplImage_imageNamed("/source_img.bmp");
-	m_psource = cvCreateImage(img_size,IPL_DEPTH_8U, 4);
-	cvFlip(pImage2, m_psource, 0);
+	m_psource = cvCloneImage(pImage2);
 
 	// mask image setting
-	pImage3 = IplImage_imageNamed("/mask_img.bmp");
-	mask = cvCreateImage(img_size,IPL_DEPTH_8U, 4);
-	cvFlip(pImage3, mask, 0);
+	mask = cvCloneImage(pImage3);
 	
 	///////////////////////////////////////////////////////
 	
