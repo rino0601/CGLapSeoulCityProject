@@ -67,16 +67,38 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="03.JPG" id="0vX-Vx-USL" userLabel="ContentsViewer">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" id="XmA-yw-bV3">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" id="XmA-yw-bV3">
                                         <rect key="frame" x="0.0" y="0.0" width="304" height="304"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="35"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="ㅁㄴㅇㄹasdf">
+                                                <attributes>
+                                                    <font key="NSFont" size="35" name="DotumChe"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="clipping" baseWritingDirection="natural" hyphenationFactor="0.019999999552965164"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yRB-Vt-cfN" userLabel="languageButton">
+                                <rect key="frame" x="935" y="20" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="eng.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doChangeLang" destination="H4r-IT-zQ5" eventType="touchUpInside" id="5Ml-w8-mUf"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="haz-PY-TgH" userLabel="Right Button">
                                 <rect key="frame" x="925" y="352" width="64" height="64"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -114,7 +136,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="otg-lp-aeP">
-                                        <rect key="frame" x="67" y="300" width="900" height="300"/>
+                                        <rect key="frame" x="12" y="300" width="1000" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="15" id="Cke-dB-w94">
                                             <size key="itemSize" width="300" height="241"/>
@@ -188,7 +211,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doAudioPlay" destination="H4r-IT-zQ5" eventType="touchUpInside" id="xr1-Rs-DkF"/>
+                                            <action selector="doReplay:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="aOK-uc-EDj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Page" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7WY-H0-OIi" userLabel="PageButton">
@@ -252,6 +275,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doChangeLang" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ZSV-IM-hFR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -286,7 +312,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="contentsViewer" destination="0vX-Vx-USL" id="uX5-vE-Gkg"/>
+                        <outlet property="contentsImageView" destination="0vX-Vx-USL" id="oFM-Lv-zUf"/>
+                        <outlet property="contentsView" destination="fni-mS-3S4" id="65l-tl-HtX"/>
+                        <outlet property="languageButton" destination="yRB-Vt-cfN" id="hiG-0X-DyU"/>
                         <outlet property="left" destination="4Xb-dl-xRG" id="YPx-qV-QXf"/>
                         <outlet property="menuBar" destination="lJg-Gx-bzX" id="Za5-dq-xOM"/>
                         <outlet property="menuIcon" destination="vhI-po-ybb" id="cnP-nF-ikz"/>
@@ -553,6 +581,7 @@
         <image name="03.JPG" width="2400" height="1504"/>
         <image name="btn_paste.png" width="285" height="150"/>
         <image name="btn_paste_down.png" width="285" height="150"/>
+        <image name="eng.png" width="128" height="128"/>
         <image name="icon_m_home.png" width="225" height="225"/>
         <image name="icon_m_home_down.png" width="225" height="225"/>
         <image name="icon_m_info.png" width="225" height="225"/>
@@ -596,68 +625,6 @@
         <image name="p1.jpg" width="2048" height="1536"/>
         <image name="page_img01.png" width="450" height="320"/>
     </resources>
-    <classes>
-        <class className="ONContentsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONContentsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doAudioPlay"/>
-                <relationship kind="action" name="doMenu"/>
-                <relationship kind="action" name="doMosaic"/>
-                <relationship kind="action" name="doNext"/>
-                <relationship kind="action" name="doPageSelection"/>
-                <relationship kind="action" name="doPrev"/>
-                <relationship kind="action" name="onContents:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="contentsViewer" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="left" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="menuBar" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuIcon" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="onCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="pageView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="right" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="subtitleView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="ONMosaicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONMosaicViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="colorChangeFrom:" candidateClass="UIButton"/>
-                <relationship kind="action" name="doAsAutoMode:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="paperMosaicCanvas" candidateClass="PaperMosaicCanvas"/>
-            </relationships>
-        </class>
-        <class className="ONSnapshotCollectionViewCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONSnapshotCollectionViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageViewCell" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ONViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doStartButton:"/>
-                <relationship kind="action" name="home:" candidateClass="UIStoryboardSegue"/>
-            </relationships>
-        </class>
-        <class className="PaperMosaicCanvas" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaperMosaicCanvas.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Mosaic" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="Paper" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

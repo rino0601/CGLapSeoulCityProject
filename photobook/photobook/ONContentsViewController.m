@@ -10,6 +10,7 @@
 #import "ONSnapshotCollectionViewCell.h"
 #import "ONMosaicViewController.h"
 #import "ONAppDelegate.h"
+#import "UIImage+SetAlpha.h"
 
 @interface ONContentsViewController ()
 
@@ -19,6 +20,8 @@
 - (IBAction)doMosaic;
 - (IBAction)doPageSelection;
 - (IBAction)doAudioPlay;
+- (IBAction)doReplay:(id)sender;
+- (IBAction)doChangeLang;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
 
 - (void)playBookWithIndex:(int)index;
@@ -33,15 +36,15 @@
 @synthesize onCollectionView;
 @synthesize menuBar;
 @synthesize menuIcon;
-@synthesize contentsViewer;
+@synthesize contentsView;
+@synthesize contentsImageView;
 @synthesize subtitleView;
+@synthesize languageButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-           audioPlayer = [[AVAudioPlayer alloc] init];
     }
     return self;
 }
@@ -52,35 +55,65 @@
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
     
-    NSString *finalPath = [path stringByAppendingPathComponent:@"settings.plist"];
+    NSString *settingPath = [path stringByAppendingPathComponent:@"settings.plist"];
     
-    NSMutableDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:finalPath];
+    NSDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:settingPath];
     
     contentsList = [contentsPlist objectForKey:@"contentsList"];
     
-    currentViewIndex = 0;
+    currentViewIndex = -1;
     
     maxViewIndex = contentsList.count;
-    [self playBookWithIndex:currentViewIndex];
 	
     [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
     mosaicImageView = [[UIImageView alloc] init];
     
-    subsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"subs"];
-    soundsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"sounds"];
-    
     //[mosaicImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.lang == nil ? lang = [contentsPlist objectForKey:@"language"] : lang = appDelegate.lang;
     
     audioIndex = 0;
     
+    NSString *temp = [[NSBundle mainBundle] pathForResource:lang ofType:@"png"];
     
-}
+    NSLog(@"%@",temp);
+    
+    [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
+    
+    [self playBookWithIndex:currentViewIndex];
 
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)setLanguege:(NSString* )lng{
+    ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    if([lng isEqualToString:@"kor"]){
+        lang = lng;
+        [appDelegate setLang:lng];
+    } else if ([lng isEqualToString:@"eng"]){
+        lang = lng;
+        [appDelegate setLang:lng];
+    }
+    
+    subsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
+    [self doAudioPlay];
+}
+- (IBAction)doChangeLang {
+    if([lang isEqualToString:@"kor"]){
+        [self setLanguege:@"eng"];
+    } else {
+        [self setLanguege:@"kor"];
+    }
+    
+    NSString *temp = [[NSBundle mainBundle] pathForResource:lang ofType:@"png"];
+    
+    [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
 }
 
 - (IBAction)doMenu {
@@ -149,7 +182,7 @@
 }
 - (IBAction)doNext{
     int index = currentViewIndex;
-    if( ++index >= maxViewIndex) {
+    if( ++index >= maxViewIndex ) {
         index = maxViewIndex - 1;
         return;
     }
@@ -157,23 +190,31 @@
     
 }
 
+- (IBAction)doReplay:(id)sender {
+    audioIndex = 0;
+    [self doAudioPlay];
+}
 - (IBAction)doAudioPlay {
     [audioPlayer stop];
     
     if(audioPlayer == nil)
         audioPlayer = [AVAudioPlayer alloc];
 
-    NSString *audioPath = [soundsList objectAtIndex:audioIndex];
+    NSString *audioPath = [lang isEqualToString:@"eng"] ? [soundsList objectAtIndex:audioIndex] : [NSString stringWithFormat:@"%@_%@",[soundsList objectAtIndex:audioIndex],lang];
     
     NSLog(@"audio %d, %@ play", audioIndex, audioPath);
     
     [[audioPlayer initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL] setDelegate:self];
     
     
-    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    
+    [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+    CGRect rect          = subtitleView.frame;
+    rect.size.height     = subtitleView.contentSize.height;
+    subtitleView.frame   = rect;
     
     subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
-    [subtitleView setText:[subsList objectAtIndex:audioIndex]];
     
     [UIView animateWithDuration:0.5 animations:^{
         subtitleView.transform = CGAffineTransformIdentity;
@@ -193,6 +234,39 @@
         }
     }
 }
+- (void)pageAnimationDidStop:(NSString *)anim finished:(NSNumber* )finished{
+    if([finished isEqual:@YES] && [anim isEqualToString:@"page"]) {
+        [self pageAnimation];
+        [self doAudioPlay];
+    }
+}
+
+- (void)pageAnimation{
+    NSDictionary *subtitleFrame = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"zoomInFrame"];
+    
+    CGRect ori = [contentsImageView frame];
+    CGRect wannabe = CGRectMake
+    ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
+     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
+     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
+     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue]);
+    
+    double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 2;
+    double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 2;
+    
+    double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+    
+    [UIView animateWithDuration:2.0 animations:^{
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [contentsImageView setFrame:CGRectMake(-wannabe.origin.x * ratio,-wannabe.origin.y * ratio,ori.size.width * ratio,ori.size.height * ratio)];
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.0 animations:^{
+            [UIView setAnimationDelay:2.0];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            [contentsImageView setFrame:ori];
+        }];
+    }];
+}
 
 - (void)playBookWithIndex:(int)index{
     
@@ -209,53 +283,64 @@
         index < currentViewIndex ? isLeft = YES : isLeft = NO;
     }
     
-    NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
-    [contentsViewer setImage:[UIImage imageNamed:[[contentsList objectAtIndex:index] objectForKey:@"backImage"]]];
+    //NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
+    
+    [contentsImageView setImage:[UIImage imageNamed:[[contentsList objectAtIndex:index] objectForKey:@"backImage"]]];
+    [contentsImageView.layer removeAllAnimations]; // remove animation & frame
+    [contentsImageView setFrame:CGRectMake(0, 0, 1024, 768)]; // init frame.
     currentViewIndex = index;
 
-    subsList = [[contentsList objectAtIndex:index] objectForKey:@"subs"];
+    subsList = [[contentsList objectAtIndex:index] objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
     soundsList = [[contentsList objectAtIndex:index] objectForKey:@"sounds"];
     audioIndex = 0;
    
     NSDictionary *subtitleFrame = [[contentsList objectAtIndex:index] objectForKey:@"subtitleFrame"];
     
-    
-    //[subtitleView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    
-    /*[subtitleView setCenter:CGPointMake
-     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue])];
-    */
     [subtitleView setFrame:CGRectMake
      ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
       [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
       [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
       [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue])];
     
-
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
     
-    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
-    
-    //if(animationStart) {
+    if(animationStart) {
         [subtitleView setText:@""];
         [mosaicImageView removeFromSuperview];
+        [audioPlayer stop];
+        
+        if(efectPlayer == nil) {
+            efectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"page-flip-1" ofType:@"wav"]] error:NULL];
+        }
+        [efectPlayer play];
 
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1.0];
-        [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsViewer cache:YES];
-        [UIView setAnimationBeginsFromCurrentState:NO];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(doAudioPlay)];
+        [bgmPlayer stop];
+        if(bgmPlayer == nil) {
+            bgmPlayer = [AVAudioPlayer alloc];
+        }
+        NSLog(@"bgm %d, %@ play", index, [[contentsList objectAtIndex:index] objectForKey:@"BGM"]);
+        [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[[contentsList objectAtIndex:index] objectForKey:@"BGM"] ofType:@"MP3"]] error:NULL] play];
+        
+        [bgmPlayer setNumberOfLoops:-1];
+        
+        [UIView beginAnimations:@"page" context:NULL];
+        {
+            [UIView setAnimationDuration:1.2];
+            [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsView cache:YES];
+            [UIView setAnimationBeginsFromCurrentState:NO];
+            [UIView setAnimationDelegate:self];
+            [UIView setAnimationDidStopSelector:@selector(pageAnimationDidStop:finished:)];
+        }
         [UIView commitAnimations];
-    //}
+    }
     
-    NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
 }
 
 - (IBAction)doMosaic{
     [audioPlayer stop];
+    [bgmPlayer pause];
     [self setMenuBarHidden];
-    [self doMenu];
 	/**************리소스 이미지 결정하는 코드입니다. 한줄이라도 빠지면 안되요.**************/
 	ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate setMosaicSource:[UIImage imageNamed:@"source_img.bmp"]];
@@ -287,7 +372,8 @@
           [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
         
         [mosaicImageView removeFromSuperview];
-        [contentsViewer addSubview:mosaicImageView];
+        [contentsImageView addSubview:mosaicImageView];
+        [bgmPlayer play];
     }
 }
 

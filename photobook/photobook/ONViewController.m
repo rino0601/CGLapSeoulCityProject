@@ -7,6 +7,7 @@
 //
 
 #import "ONViewController.h"
+#import "ONAppDelegate.h"
 
 @interface ONViewController ()
 - (IBAction)doStartButton:(id)sender;
@@ -19,10 +20,31 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    startAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"01" ofType:@"wav"]] error:NULL];
     
-    [startAudio play];
+    NSString *path = [[NSBundle mainBundle] bundlePath];
     
+    NSString *finalPath = [path stringByAppendingPathComponent:@"settings.plist"];
+    
+    NSMutableDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:finalPath];
+    
+    ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    appDelegate.lang = [contentsPlist objectForKey:@"language"];
+    
+    [self audioPlay];
+    
+}
+
+- (void)audioPlay {
+    if(startAudio == nil)
+        startAudio = [AVAudioPlayer alloc];
+    
+    ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    
+    NSString* audioPath = [appDelegate.lang isEqualToString:@"eng"] ? [NSString stringWithFormat:@"01"] : [NSString stringWithFormat:@"01_%@",appDelegate.lang];
+    
+    [[startAudio initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL] play];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +60,7 @@
 }
 - (IBAction)home:(UIStoryboardSegue *)segue {
     // Optional place to read data from closing controller
+    [self audioPlay];
 }
 
 @end

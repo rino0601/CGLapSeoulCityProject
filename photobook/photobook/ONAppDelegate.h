@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property UIImage *mosaicSource, *mosaicEdge, *mosaicMask;
 @property NSUInteger startSectionCode;
+@property NSString *lang;
 
 @end

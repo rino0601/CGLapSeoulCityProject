@@ -13,31 +13,24 @@
     
 @private
     AVAudioPlayer* audioPlayer;
+    AVAudioPlayer* efectPlayer;
+    AVAudioPlayer* bgmPlayer;
+    
     int currentViewIndex;
     int maxViewIndex;
-    
-    UIView *menuBar;
-    UIImageView *contentsViewer;
-    UIButton *menuIcon;
-    UIButton *right;
-    UIButton *left;
-    UITextView *subtitleView;
     
     NSArray *contentsList;
     NSArray *soundsList;
     NSArray *subsList;
     int audioIndex;
     
-    NSMutableDictionary *searchResults;
-    NSMutableArray *searches;
-    UICollectionView *onCollectionView;
-    UIView *pageView;
-    
+    NSString *lang;
     UIImageView* mosaicImageView;
 }
 
-//@property (strong, nonatomic) IBOutlet UICollectionView *collectuinView;
-@property (nonatomic, retain) IBOutlet UIImageView *contentsViewer;
+@property (nonatomic, retain) IBOutlet UIButton *languageButton;
+@property (nonatomic, retain) IBOutlet UIImageView *contentsImageView;
+@property (nonatomic, retain) IBOutlet UIView *contentsView;
 @property (nonatomic, retain) IBOutlet UIView *menuBar;
 @property (nonatomic, retain) IBOutlet UIButton *menuIcon;
 @property (nonatomic, retain) IBOutlet UICollectionView *onCollectionView;
