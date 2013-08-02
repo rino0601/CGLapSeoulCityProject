@@ -82,6 +82,8 @@
     [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
     
+    [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:35]];
+    
     [self playBookWithIndex:currentViewIndex];
 
 }
@@ -178,7 +180,6 @@
         return;
     }
     [self playBookWithIndex:index];
-    
 }
 - (IBAction)doNext{
     int index = currentViewIndex;
@@ -187,7 +188,6 @@
         return;
     }
     [self playBookWithIndex:index];
-    
 }
 
 - (IBAction)doReplay:(id)sender {

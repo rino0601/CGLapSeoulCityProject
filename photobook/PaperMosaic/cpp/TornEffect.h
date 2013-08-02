@@ -4,13 +4,6 @@ using namespace std;
 #import "MPoint.h"
 #import "MNode.h"
 
-
-struct MFRACTAL 
-{
-	double mid;
-	double distance;
-};
-
 class TornEffect
 {
 public:

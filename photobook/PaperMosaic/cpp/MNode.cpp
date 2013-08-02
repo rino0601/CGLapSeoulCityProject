@@ -13,7 +13,7 @@ MNode::~MNode(void)
 void MNode::Destroy(){
 	// FIXME: remove void *
 	if(data)
-		delete &data;
+		delete data;
 	data = NULL;
 	int ChildSize;
 	ChildSize = child.size();

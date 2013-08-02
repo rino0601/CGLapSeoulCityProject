@@ -141,6 +141,11 @@ void RenderingEngine1::getBufferImage(IplImage * buffer){
 }
 
 void RenderingEngine1::Clear(float r, float g, float b) { // test 해볼것.
+	vector<vector<Vertex>>::iterator cone = cones.begin();
+    while (cone != cones.end()) { //clean a memory shit.
+        cone->clear();
+        cone++;
+    }
 	cones.clear(); //remove items;
 	glClearColor(r, g, b, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

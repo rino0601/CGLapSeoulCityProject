@@ -191,6 +191,10 @@
 	}
 }
 
+/*- (void) dealloc {
+    delete(ADelegate);
+}*/
+
 @end
 
 

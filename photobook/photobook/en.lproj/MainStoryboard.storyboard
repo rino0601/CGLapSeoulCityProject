@@ -67,18 +67,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="03.JPG" id="0vX-Vx-USL" userLabel="ContentsViewer">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" id="XmA-yw-bV3">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="k" textAlignment="center" id="XmA-yw-bV3">
                                         <rect key="frame" x="0.0" y="0.0" width="304" height="304"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="ㅁㄴㅇㄹasdf">
-                                                <attributes>
-                                                    <font key="NSFont" size="35" name="DotumChe"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="clipping" baseWritingDirection="natural" hyphenationFactor="0.019999999552965164"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="KannadaSangamMN-Bold" family="Kannada Sangam MN" pointSize="35"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -625,6 +619,72 @@
         <image name="p1.jpg" width="2048" height="1536"/>
         <image name="page_img01.png" width="450" height="320"/>
     </resources>
+    <classes>
+        <class className="ONContentsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONContentsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doAudioPlay"/>
+                <relationship kind="action" name="doChangeLang"/>
+                <relationship kind="action" name="doMenu"/>
+                <relationship kind="action" name="doMosaic"/>
+                <relationship kind="action" name="doNext"/>
+                <relationship kind="action" name="doPageSelection"/>
+                <relationship kind="action" name="doPrev"/>
+                <relationship kind="action" name="doReplay:"/>
+                <relationship kind="action" name="onContents:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="contentsImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contentsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="languageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="left" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuBar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuIcon" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="onCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="pageView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="right" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="ONMosaicViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONMosaicViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorChangeFrom:" candidateClass="UIButton"/>
+                <relationship kind="action" name="doAsAutoMode:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="paperMosaicCanvas" candidateClass="PaperMosaicCanvas"/>
+            </relationships>
+        </class>
+        <class className="ONSnapshotCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONSnapshotCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageViewCell" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ONViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ONViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doStartButton:"/>
+                <relationship kind="action" name="home:" candidateClass="UIStoryboardSegue"/>
+            </relationships>
+        </class>
+        <class className="PaperMosaicCanvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaperMosaicCanvas.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Mosaic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="Paper" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

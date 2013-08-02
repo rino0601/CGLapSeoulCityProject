@@ -25,7 +25,7 @@ void TornEffect::Destroy()
 }
 
 //ªˆ¡æ¿Ã øµø™¿« TornEffect(ªˆ¡æ¿Ã ¡∂∞¢¿« TornEffect(∏¬¥›¥¬ ∫Œ∫–)¿« Invers«œø© »ø∞˙ ¿˚øÎ) 
-TornEffect* TornEffect::GetInvers() 
+TornEffect* TornEffect::GetInvers()
 {
 	TornEffect * ret = new TornEffect();
 	if(!m_pNodedata ){
