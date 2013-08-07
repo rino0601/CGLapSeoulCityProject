@@ -81,6 +81,12 @@
     
     [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
+    rightBImage = [right imageForState:UIControlStateNormal];
+    leftBImage = [left imageForState:UIControlStateNormal];
+    [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    
+    
     
     [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:35]];
     
@@ -192,6 +198,7 @@
 
 - (IBAction)doReplay:(id)sender {
     audioIndex = 0;
+    [self pageAnimation];
     [self doAudioPlay];
 }
 - (IBAction)doAudioPlay {
@@ -228,7 +235,8 @@
     if(flag) {
         if( ++audioIndex >= soundsList.count) {
             audioIndex = 0;
-            [self doNext];
+            [right setImage:[rightBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
+            [left setImage:[leftBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
         } else {
             [self doAudioPlay];
         }
@@ -243,6 +251,9 @@
 
 - (void)pageAnimation{
     NSDictionary *subtitleFrame = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"zoomInFrame"];
+    
+    [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     
     CGRect ori = [contentsImageView frame];
     CGRect wannabe = CGRectMake
@@ -320,8 +331,6 @@
         }
         NSLog(@"bgm %d, %@ play", index, [[contentsList objectAtIndex:index] objectForKey:@"BGM"]);
         [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[[contentsList objectAtIndex:index] objectForKey:@"BGM"] ofType:@"MP3"]] error:NULL] play];
-        
-        [bgmPlayer setNumberOfLoops:-1];
         
         [UIView beginAnimations:@"page" context:NULL];
         {

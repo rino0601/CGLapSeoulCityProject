@@ -51,16 +51,9 @@ public:
 	double m_dIndex; // 새로 만듬 4/10
 
 	vector< IplImage* >	 m_vpEdges;	
-
-
 	vector<ColoredPapperTile*> m_vpTileList;
-
-	
 	vector<MPoint> m_vpBestPosition;
-
-	
 	MPoint m_oGuidedPosition;
-
 	MPoint tilePosition;
 
 	

@@ -277,6 +277,13 @@ void ColoredPapperTile::setFractalInfoAsNULL()
 	m_vpTornOfWhite.resize( m_vAlignedVert.size() );
 	
 	for(int i = 0; i < (int)m_vAlignedVert.size(); i++){
+        if(m_vpTornOfColored[i] != NULL){
+            delete m_vpTornOfColored[i];
+        }
+        if(m_vpTornOfWhite[i] != NULL){
+            delete m_vpTornOfWhite[i];
+        }
+            
 		m_vpTornOfColored[i] = new TornEffect();
 		m_vpTornOfWhite[i] = new TornEffect();
 	}

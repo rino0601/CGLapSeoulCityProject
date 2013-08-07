@@ -47,8 +47,8 @@ ColoredPaper::~ColoredPaper(void) // 소멸자
 // 	}
 // 	m_vpPaperTiles.clear();
 
-	if(!CutTile.empty())
-		CutTile.clear();
+	/*if(!CutTile.empty())
+		CutTile.clear();*/
 	
 }
 

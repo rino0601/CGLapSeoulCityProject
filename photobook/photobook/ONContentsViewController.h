@@ -26,6 +26,10 @@
     
     NSString *lang;
     UIImageView* mosaicImageView;
+    
+    UIImage* rightBImage;
+    UIImage* leftBImage;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *languageButton;

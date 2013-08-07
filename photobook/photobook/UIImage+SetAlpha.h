@@ -13,4 +13,5 @@
 - (UIImage *)imageByApplyingAlpha:(CGFloat) alpha;
 
 
+
 @end

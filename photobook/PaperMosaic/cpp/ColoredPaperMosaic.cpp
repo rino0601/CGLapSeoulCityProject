@@ -34,7 +34,8 @@ ColoredPaperMosaic::ColoredPaperMosaic(void) //생성자
 	m_optile = NULL;
 	m_pDirectionAngle = NULL;
 	m_pLICfromImage = NULL;
-
+    m_pEdgeDistanceVal = NULL;
+    m_pBestPosition = NULL;
 	m_bHasMap = false;
 
 	m_nLayerIndex = 0;
@@ -50,56 +51,36 @@ ColoredPaperMosaic::ColoredPaperMosaic(void) //생성자
 
 ColoredPaperMosaic::~ColoredPaperMosaic(void) // 소멸자
 {
-	if(m_pTileImageMask)
-		cvReleaseImage(&m_pTileImageMask);
-
 	if(m_pSource)
 		cvReleaseImage(&m_pSource);
-
+    m_pSource = NULL;
 	if(m_pEdge)
 		cvReleaseImage(&m_pEdge);
-
+	if(m_pTileImageMask)
+		cvReleaseImage(&m_pTileImageMask);
 	if(tempMap)
 		cvReleaseImage(&tempMap);
-
 	if(overlapMap)
 		cvReleaseImage(&overlapMap);
-
 	if(tileMap)
 		cvReleaseImage(&tileMap);
-
 	if(positionMap)
 		cvReleaseImage(&positionMap);
-	
 	if(m_pRegion)
 		cvReleaseImage(&m_pRegion);
-
-
 	if(LayerMask)
 		cvReleaseImage(&LayerMask);
-
 	if(m_pEdgeDistanceVal)
 		cvReleaseImage(&m_pEdgeDistanceVal);
-	
-
 	if(m_pBestPosition)
 		cvReleaseImage(&m_pBestPosition);
-
-	
 	if(m_pDirectionAngle)
 		cvReleaseImage(&m_pDirectionAngle);
-
 	if(m_pLICfromImage)
-		cvReleaseImage(&m_pLICfromImage);	
-	
-
+		cvReleaseImage(&m_pLICfromImage);
 /*	if(m_pDlg)
 		delete [] m_pDlg;	*/
-
-	if(m_optile)
-		delete m_optile;	
-	
-
+	if(m_optile)    delete m_optile;
 /*	int n = m_vpTileList.size();
 	for(int i = 0; i < n-1; i++)
 		delete m_vpTileList[i];
@@ -108,11 +89,16 @@ ColoredPaperMosaic::~ColoredPaperMosaic(void) // 소멸자
 
 /*	for(int i = 0; i < n; i++)
 		cvReleaseImage(&(m_vpEdges[i]));*/
-	m_vpEdges.clear();
-
-
-
-	m_vpBestPosition.clear();
+    
+    /*for(vector<IplImage*>::iterator temp = m_vpEdges.begin(); temp != m_vpEdges.end(); temp ++) {
+        IplImage* tt = *temp;
+        if(tt)
+            cvReleaseImage(&tt);
+    }*/
+    
+    //m_vpEdges.clear();
+    
+	//m_vpBestPosition.clear();
 
 	
 }
@@ -881,7 +867,8 @@ float ColoredPaperMosaic::DirectionEval(MPoint current, MPoint previous1, MPoint
 
 	x = previous1.x;
 	y = previous1.y; 	
-	p1Angle = ((float*)(m_pDirectionAngle->imageData + (m_pDirectionAngle->widthStep * y)))[x] ;
+	p1Angle = 0;
+    //((float*)(m_pDirectionAngle->imageData + (m_pDirectionAngle->widthStep * y)))[x] ;
 
 	
 	if(prev_Angle > 90 && prev_Angle < 270)					//2,3 사분면

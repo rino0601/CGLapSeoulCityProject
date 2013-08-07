@@ -12,7 +12,7 @@ public:
 
 public:
 	ColoredPaper m_oPaper;
-	ColoredPaperMosaic m_oCPM;
+	ColoredPaperMosaic* m_oCPM;
 	ColoredPapperTile* m_opSelectedTile;
 	ActiveXDialog* m_pDlg;
 	
