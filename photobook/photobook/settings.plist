@@ -9,6 +9,8 @@
 	<key>contentsList</key>
 	<array>
 		<dict>
+			<key>xPos</key>
+			<integer>45</integer>
 			<key>snapshot</key>
 			<string>page_img01.png</string>
 			<key>BGM</key>
@@ -18,29 +20,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<integer>15</integer>
 					<key>y</key>
-					<string>200</string>
+					<integer>60</integer>
 					<key>width</key>
-					<string>200</string>
+					<integer>592</integer>
 					<key>height</key>
-					<string>200</string>
+					<integer>320</integer>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p01</string>
 			</dict>
 			<key>backImage</key>
-			<string>01.JPG</string>
+			<string>p01_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string>600</string>
+				<integer>380</integer>
 				<key>height</key>
-				<string>300</string>
+				<integer>285</integer>
 				<key>x</key>
-				<string>50</string>
+				<integer>225</integer>
 				<key>y</key>
-				<string>50</string>
+				<integer>80</integer>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -54,13 +56,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>600</integer>
+				<integer>415</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>30</integer>
+				<integer>590</integer>
 				<key>y</key>
-				<integer>500</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -83,6 +85,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>176</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>어느 매우 추운 겨울날, 폭설로 인하여 호랑이는 수 일 동안 아무 것도 사냥을 할 수가 없었습니다.</string>
@@ -98,29 +102,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<integer>668</integer>
 					<key>y</key>
-					<string>200</string>
+					<integer>0</integer>
 					<key>width</key>
-					<string>200</string>
+					<integer>356</integer>
 					<key>height</key>
-					<string>200</string>
+					<integer>768</integer>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p02</string>
 			</dict>
 			<key>backImage</key>
-			<string>02.JPG</string>
+			<string>p02_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string>400</string>
+				<integer>320</integer>
 				<key>height</key>
-				<string>400</string>
+				<integer>240</integer>
 				<key>x</key>
-				<string>500</string>
+				<integer>500</integer>
 				<key>y</key>
-				<string>100</string>
+				<integer>175</integer>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -131,13 +135,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>600</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>20</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>100</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -147,6 +151,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>95</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>호랑이는 외양간이 있는 농가를 발견했습니다. </string>
@@ -163,29 +169,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<integer>592</integer>
 					<key>y</key>
-					<string>200</string>
+					<integer>318</integer>
 					<key>width</key>
-					<string>200</string>
+					<integer>432</integer>
 					<key>height</key>
-					<string>200</string>
+					<integer>254</integer>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p03</string>
 			</dict>
 			<key>backImage</key>
-			<string>03.JPG</string>
+			<string>p03_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<integer>320</integer>
 				<key>height</key>
-				<string></string>
+				<integer>240</integer>
 				<key>x</key>
-				<string>100</string>
+				<integer>200</integer>
 				<key>y</key>
-				<string>100</string>
+				<integer>295</integer>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -197,13 +203,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -214,6 +220,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>30</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>바로 그때, 호랑이는 집 안에서 어린 아이의 엉엉 우는 울음소리를 들었습니다. </string>
@@ -230,29 +238,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>33</string>
 					<key>y</key>
-					<string>200</string>
+					<string>335</string>
 					<key>width</key>
-					<string>200</string>
+					<string>492</string>
 					<key>height</key>
-					<string>200</string>
+					<string>356</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p04</string>
 			</dict>
 			<key>backImage</key>
-			<string>04.JPG</string>
+			<string>p04_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>320</string>
 				<key>height</key>
-				<string></string>
+				<string>240</string>
 				<key>x</key>
-				<string>100</string>
+				<string>704</string>
 				<key>y</key>
-				<string>100</string>
+				<string>155</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -264,13 +272,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -281,6 +289,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>73</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>&quot;&quot;&quot;앙! 앙!&quot;&quot;</string>
@@ -304,29 +314,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>543</string>
 					<key>y</key>
-					<string>200</string>
+					<string>348</string>
 					<key>width</key>
-					<string>200</string>
+					<string>301</string>
 					<key>height</key>
-					<string>200</string>
+					<string>227</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p05</string>
 			</dict>
 			<key>backImage</key>
-			<string>05.JPG</string>
+			<string>p05_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>320</string>
 				<key>height</key>
-				<string></string>
+				<string>240</string>
 				<key>x</key>
-				<string>100</string>
+				<string>530</string>
 				<key>y</key>
-				<string>100</string>
+				<string>340</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -344,13 +354,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -367,6 +377,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>73</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>“제발, 그만 울어라! 여기 곶감이 있다.”</string>
@@ -384,29 +396,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>746</string>
 					<key>y</key>
-					<string>200</string>
+					<string>267</string>
 					<key>width</key>
-					<string>200</string>
+					<string>278</string>
 					<key>height</key>
-					<string>200</string>
+					<string>318</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p06</string>
 			</dict>
 			<key>backImage</key>
-			<string>06.JPG</string>
+			<string>p06_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>300</string>
 				<key>height</key>
-				<string></string>
+				<string>225</string>
 				<key>x</key>
-				<string>100</string>
+				<string>625</string>
 				<key>y</key>
-				<string>100</string>
+				<string>250</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -419,13 +431,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -437,6 +449,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>135</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>호랑이는 조심스럽게, 조용히 외양간으로 들어갔습니다.</string>
@@ -452,29 +466,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>500</string>
 					<key>y</key>
-					<string>200</string>
+					<string>353</string>
 					<key>width</key>
-					<string>200</string>
+					<string>334</string>
 					<key>height</key>
-					<string>200</string>
+					<string>354</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p07</string>
 			</dict>
 			<key>backImage</key>
-			<string>07.JPG</string>
+			<string>p07_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>300</string>
 				<key>height</key>
-				<string></string>
+				<string>225</string>
 				<key>x</key>
-				<string>100</string>
+				<string>774</string>
 				<key>y</key>
-				<string>100</string>
+				<string>215</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -485,13 +499,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>470</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -501,6 +515,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>135</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>호랑이는 너무 무서워서 움직일 수조차 없었습니다.</string>
@@ -518,29 +534,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>465</string>
 					<key>y</key>
-					<string>200</string>
+					<string>490</string>
 					<key>width</key>
-					<string>200</string>
+					<string>458</string>
 					<key>height</key>
-					<string>200</string>
+					<string>175</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p08</string>
 			</dict>
 			<key>backImage</key>
-			<string>08.JPG</string>
+			<string>p08_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>320</string>
 				<key>height</key>
-				<string></string>
+				<string>240</string>
 				<key>x</key>
-				<string>100</string>
+				<string>550</string>
 				<key>y</key>
-				<string>100</string>
+				<string>200</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -553,13 +569,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -571,6 +587,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>85</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>도둑이 꼬리를 붙잡고 호랑이를 외양간 밖으로 끌어냈을 때, 그는 너무 무서워 와들와들 떨었습니다. </string>
@@ -589,29 +607,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>60</string>
 					<key>y</key>
-					<string>200</string>
+					<string>90</string>
 					<key>width</key>
-					<string>200</string>
+					<string>75</string>
 					<key>height</key>
-					<string>200</string>
+					<string>138</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p09</string>
 			</dict>
 			<key>backImage</key>
-			<string>09.JPG</string>
+			<string>p09_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>300</string>
 				<key>height</key>
-				<string></string>
+				<string>225</string>
 				<key>x</key>
-				<string>100</string>
+				<string>515</string>
 				<key>y</key>
-				<string>100</string>
+				<string>270</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -625,13 +643,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>280</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -644,6 +662,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>176</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>“이렇게 죽을 수는 없지. 죽어라 달려보는 거야.”</string>
@@ -659,29 +679,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>517</string>
 					<key>y</key>
-					<string>200</string>
+					<string>317</string>
 					<key>width</key>
-					<string>200</string>
+					<string>247</string>
 					<key>height</key>
-					<string>200</string>
+					<string>154</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p10</string>
 			</dict>
 			<key>backImage</key>
-			<string>10.JPG</string>
+			<string>p10_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>300</string>
 				<key>height</key>
-				<string></string>
+				<string>225</string>
 				<key>x</key>
-				<string>100</string>
+				<string>33</string>
 				<key>y</key>
-				<string>100</string>
+				<string>423</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -692,13 +712,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -708,6 +728,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>100</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>공포에 질린 호랑이는 위 아래로 정신없이 뛰어 보았지만, 도둑은 점점 더 꽉 잡을 뿐이었습니다. </string>
@@ -723,29 +745,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>695</string>
 					<key>y</key>
-					<string>200</string>
+					<string>90</string>
 					<key>width</key>
-					<string>200</string>
+					<string>247</string>
 					<key>height</key>
-					<string>200</string>
+					<string>164</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p11</string>
 			</dict>
 			<key>backImage</key>
-			<string>11.JPG</string>
+			<string>p11_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>400</string>
 				<key>height</key>
-				<string></string>
+				<string>300</string>
 				<key>x</key>
-				<string>100</string>
+				<string>0</string>
 				<key>y</key>
-				<string>100</string>
+				<string>390</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -756,13 +778,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>50</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>
@@ -772,6 +794,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>xPos</key>
+			<integer>35</integer>
 			<key>subs_kor</key>
 			<array>
 				<string>호랑이는 절대 뒤도 돌아보지 않고 계속 달렸습니다.</string>
@@ -789,29 +813,29 @@
 				<key>frame</key>
 				<dict>
 					<key>x</key>
-					<string>200</string>
+					<string>516</string>
 					<key>y</key>
-					<string>200</string>
+					<string>385</string>
 					<key>width</key>
-					<string>200</string>
+					<string>508</string>
 					<key>height</key>
-					<string>200</string>
+					<string>288</string>
 				</dict>
 				<key>prefix</key>
-				<string></string>
+				<string>p12</string>
 			</dict>
 			<key>backImage</key>
-			<string>12.JPG</string>
+			<string>p12_bg.jpg</string>
 			<key>zoomInFrame</key>
 			<dict>
 				<key>width</key>
-				<string></string>
+				<string>400</string>
 				<key>height</key>
-				<string></string>
+				<string>300</string>
 				<key>x</key>
-				<string>100</string>
+				<string>25</string>
 				<key>y</key>
-				<string>100</string>
+				<string>0</string>
 			</dict>
 			<key>sounds</key>
 			<array>
@@ -824,13 +848,13 @@
 			<key>subtitleFrame</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>490</integer>
 				<key>height</key>
-				<integer>200</integer>
+				<integer>160</integer>
 				<key>x</key>
-				<integer>300</integer>
+				<integer>50</integer>
 				<key>y</key>
-				<integer>400</integer>
+				<integer>230</integer>
 			</dict>
 			<key>subs_eng</key>
 			<array>

@@ -25,13 +25,14 @@
     int audioIndex;
     
     NSString *lang;
-    UIImageView* mosaicImageView;
+    //UIImageView* mosaicImageView;
     
     UIImage* rightBImage;
     UIImage* leftBImage;
     
 }
 
+@property (nonatomic, retain) IBOutlet UIImageView* mosaicImageView;
 @property (nonatomic, retain) IBOutlet UIButton *languageButton;
 @property (nonatomic, retain) IBOutlet UIImageView *contentsImageView;
 @property (nonatomic, retain) IBOutlet UIView *contentsView;

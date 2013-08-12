@@ -573,7 +573,7 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 	for(int n = 0; n < width;   n = n + (m_pDlg->m_fside)/4 +0.5 )
 	{
 		for(y = m; y < m + (m_pDlg->m_fside)/4 +0.5; y++)
-		for(x = n; x < n + (m_pDlg->m_fside)/4 +0.5; x++ )
+		for(x = n; x < n + (m_pDlg->m_fside)/4 +0.5; x++)
 		{
 
 			int p = y*m_pRegion->widthStep+x;

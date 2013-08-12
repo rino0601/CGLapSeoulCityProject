@@ -192,8 +192,7 @@
 }
 - (void)didMoveToSuperview{
     [super didMoveToSuperview];
-    if(ADelegate != NULL)
-        delete ADelegate;
+//    if(ADelegate != NULL)        delete ADelegate;
 }
 
 /*- (void) dealloc {

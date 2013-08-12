@@ -30,6 +30,7 @@
 
 @implementation ONContentsViewController
 
+@synthesize mosaicImageView;
 @synthesize right;
 @synthesize left;
 @synthesize pageView;
@@ -54,20 +55,13 @@
     [super viewDidLoad];
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
-    
     NSString *settingPath = [path stringByAppendingPathComponent:@"settings.plist"];
-    
     NSDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:settingPath];
-    
     contentsList = [contentsPlist objectForKey:@"contentsList"];
-    
     currentViewIndex = -1;
-    
     maxViewIndex = contentsList.count;
-	
-    [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
-    mosaicImageView = [[UIImageView alloc] init];
+    [self.onCollectionView registerClass:[ONSnapshotCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
     //[mosaicImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
@@ -76,20 +70,16 @@
     audioIndex = 0;
     
     NSString *temp = [[NSBundle mainBundle] pathForResource:lang ofType:@"png"];
-    
     NSLog(@"%@",temp);
     
-    [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [languageButton setImage:[[UIImage imageWithContentsOfFile:temp] imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
     [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
     rightBImage = [right imageForState:UIControlStateNormal];
     leftBImage = [left imageForState:UIControlStateNormal];
     [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     
-    
-    
-    [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:35]];
-    
+    [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:30]];
     [self playBookWithIndex:currentViewIndex];
 
 }
@@ -255,26 +245,31 @@
     [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
     
-    CGRect ori = [contentsImageView frame];
+    CGRect ori = [contentsView frame];
     CGRect wannabe = CGRectMake
     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue]);
     
-    double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 2;
-    double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 2;
+    double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 1;
+    double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 1;
     
     double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
     
-    [UIView animateWithDuration:2.0 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [contentsImageView setFrame:CGRectMake(-wannabe.origin.x * ratio,-wannabe.origin.y * ratio,ori.size.width * ratio,ori.size.height * ratio)];
+        
+        CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);
+        [contentsView setTransform:CGAffineTransformTranslate(temp, 512 - wannabe.origin.x - wannabe.size.width/2, 768/2 - wannabe.origin.y - wannabe.size.height/2)];
+        
+        //[contentsView setFrame:CGRectMake(-wannabe.origin.x * ratio,-wannabe.origin.y * ratio,ori.size.width * ratio,ori.size.height * ratio)];
     }completion:^(BOOL finished) {
         [UIView animateWithDuration:2.0 animations:^{
             [UIView setAnimationDelay:2.0];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-            [contentsImageView setFrame:ori];
+            [contentsView setTransform:CGAffineTransformIdentity];
+            //[contentsView setFrame:ori];
         }];
     }];
 }
@@ -296,16 +291,34 @@
     
     //NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
     
-    [contentsImageView setImage:[UIImage imageNamed:[[contentsList objectAtIndex:index] objectForKey:@"backImage"]]];
-    [contentsImageView.layer removeAllAnimations]; // remove animation & frame
-    [contentsImageView setFrame:CGRectMake(0, 0, 1024, 768)]; // init frame.
+    NSDictionary *thisDic = [contentsList objectAtIndex:index];
+    
+    [contentsImageView setImage:[UIImage imageNamed:[thisDic objectForKey:@"backImage"]]];
+    [contentsImageView setFrame:CGRectMake(-[[thisDic objectForKey:@"xPos"] floatValue], 0, 1200, 768)];
+    [contentsView.layer removeAllAnimations]; // remove animation & frame
+    [contentsView setTransform:CGAffineTransformIdentity]; // init frame.
+    
+    NSLog(@"%f",contentsView.frame.origin.x);
+    NSLog(@"%f",contentsImageView.frame.origin.x);
     currentViewIndex = index;
 
-    subsList = [[contentsList objectAtIndex:index] objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
-    soundsList = [[contentsList objectAtIndex:index] objectForKey:@"sounds"];
+    NSDictionary *mosaicDic = [thisDic objectForKey:@"mosaic"];
+    [mosaicImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[mosaicDic objectForKey:@"prefix"],@"_ch.png"]]];
+    
+    NSDictionary *mosaicFrame = [mosaicDic objectForKey:@"frame"];
+    
+    [mosaicImageView setFrame:CGRectMake
+     ([[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"x"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"y"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"width"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
+    
+
+    subsList = [thisDic objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
+    soundsList = [thisDic objectForKey:@"sounds"];
     audioIndex = 0;
    
-    NSDictionary *subtitleFrame = [[contentsList objectAtIndex:index] objectForKey:@"subtitleFrame"];
+    NSDictionary *subtitleFrame = [thisDic objectForKey:@"subtitleFrame"];
     
     [subtitleView setFrame:CGRectMake
      ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
@@ -317,7 +330,6 @@
     
     if(animationStart) {
         [subtitleView setText:@""];
-        [mosaicImageView removeFromSuperview];
         [audioPlayer stop];
         
         if(efectPlayer == nil) {
@@ -347,14 +359,16 @@
 }
 
 - (IBAction)doMosaic{
-    [audioPlayer stop];
+    [audioPlayer pause];
     [bgmPlayer pause];
     [self setMenuBarHidden];
+    
+    NSString *prefix = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"prefix"];
 	/**************리소스 이미지 결정하는 코드입니다. 한줄이라도 빠지면 안되요.**************/
 	ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-	[appDelegate setMosaicSource:[UIImage imageNamed:@"source_img.bmp"]];
-	[appDelegate setMosaicMask:[UIImage imageNamed:@"mask_img.bmp"]];
-	[appDelegate setMosaicEdge:[UIImage imageNamed:@"edge_img.bmp"]];
+	[appDelegate setMosaicSource:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_source_img.bmp"]]];
+	[appDelegate setMosaicMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_mask_img.bmp"]]];
+	[appDelegate setMosaicEdge:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]]];
 	[appDelegate setStartSectionCode:102];
 	/*************************************************************************/
 	
@@ -370,19 +384,11 @@
         ONMosaicViewController* t = [segue sourceViewController];
         //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
         CGFloat maskColor[6] = {255,255,255,255,255,255};
-        [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
-        
-        NSDictionary *mosaicFrame = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"frame"];
-        
-        [mosaicImageView setFrame:CGRectMake
-         ([[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"x"] intValue]] floatValue],
-          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"y"] intValue]] floatValue],
-          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"width"] intValue]] floatValue],
-          [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
-        
         [mosaicImageView removeFromSuperview];
-        [contentsImageView addSubview:mosaicImageView];
+        [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
+        [contentsView addSubview:mosaicImageView];
         [bgmPlayer play];
+        [audioPlayer play];
     }
 }
 
