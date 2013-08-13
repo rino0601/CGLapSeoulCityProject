@@ -257,7 +257,7 @@
     
     double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
     
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:2.0 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         
         CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);

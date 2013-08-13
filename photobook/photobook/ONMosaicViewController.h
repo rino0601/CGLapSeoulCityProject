@@ -11,7 +11,7 @@
 
 @interface ONMosaicViewController : UIViewController
 
-@property(strong, nonatomic) IBOutlet PaperMosaicCanvas *paperMosaicCanvas;
+@property(retain, nonatomic) IBOutlet PaperMosaicCanvas *paperMosaicCanvas;
 
 - (IBAction)doAsAutoMode:(UIButton *)sender;
 - (IBAction)colorChangeFrom:(UIButton *)sender;
