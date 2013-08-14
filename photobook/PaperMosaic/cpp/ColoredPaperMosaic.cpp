@@ -987,7 +987,7 @@ bool ColoredPaperMosaic::Odering()
 			for(int i =0; i < width; i++) {
 				int n = j*m_pRegion->widthStep+i;
 
-// TODO: start tag
+				// 요기입니다. 위에 보이는 2중 for문으로 한 픽셀씩 돌면서 시작위치 찾아 가는 거 인듯요.
 				if((Byte)LayerMask->imageData[n] != this->m_pDlg->getStartSectionCode())
 					continue;
 				
