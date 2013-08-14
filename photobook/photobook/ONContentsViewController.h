@@ -15,9 +15,12 @@
     AVAudioPlayer* audioPlayer;
     AVAudioPlayer* efectPlayer;
     AVAudioPlayer* bgmPlayer;
+    AVAudioPlayer* clickEffectPlayer;
     
     int currentViewIndex;
     int maxViewIndex;
+    
+    int bgmCounter;
     
     NSArray *contentsList;
     NSArray *soundsList;
@@ -32,6 +35,7 @@
     
 }
 
+@property (nonatomic, retain) IBOutlet UIView* zoomInLayer;
 @property (nonatomic, retain) IBOutlet UIImageView* mosaicImageView;
 @property (nonatomic, retain) IBOutlet UIButton *languageButton;
 @property (nonatomic, retain) IBOutlet UIImageView *contentsImageView;

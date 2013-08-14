@@ -190,6 +190,11 @@
 		1C89EF7617B9381000DB9450 /* p12_edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF4617B9381000DB9450 /* p12_edge_img.bmp */; };
 		1C89EF7717B9381000DB9450 /* p12_mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF4717B9381000DB9450 /* p12_mask_img.bmp */; };
 		1C89EF7817B9381000DB9450 /* p12_source_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF4817B9381000DB9450 /* p12_source_img.bmp */; };
+		1C89EF7A17BB246000DB9450 /* but_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7917BB246000DB9450 /* but_click.wav */; };
+		1C89EF7F17BB3DD700DB9450 /* bgm_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7B17BB3DD700DB9450 /* bgm_end.wav */; };
+		1C89EF8017BB3DD700DB9450 /* bgm1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7C17BB3DD700DB9450 /* bgm1.wav */; };
+		1C89EF8117BB3DD700DB9450 /* bgm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7D17BB3DD700DB9450 /* bgm2.wav */; };
+		1C89EF8217BB3DD700DB9450 /* bgm3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7E17BB3DD700DB9450 /* bgm3.wav */; };
 		1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE1091793D63300174072 /* UIKit.framework */; };
 		1C8AE10C1793D63300174072 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10B1793D63300174072 /* Foundation.framework */; };
 		1C8AE10E1793D63300174072 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10D1793D63300174072 /* CoreGraphics.framework */; };
@@ -505,6 +510,11 @@
 		1C89EF4617B9381000DB9450 /* p12_edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = p12_edge_img.bmp; sourceTree = "<group>"; };
 		1C89EF4717B9381000DB9450 /* p12_mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = p12_mask_img.bmp; sourceTree = "<group>"; };
 		1C89EF4817B9381000DB9450 /* p12_source_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = p12_source_img.bmp; sourceTree = "<group>"; };
+		1C89EF7917BB246000DB9450 /* but_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = but_click.wav; sourceTree = "<group>"; };
+		1C89EF7B17BB3DD700DB9450 /* bgm_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_end.wav; sourceTree = "<group>"; };
+		1C89EF7C17BB3DD700DB9450 /* bgm1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm1.wav; sourceTree = "<group>"; };
+		1C89EF7D17BB3DD700DB9450 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
+		1C89EF7E17BB3DD700DB9450 /* bgm3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm3.wav; sourceTree = "<group>"; };
 		1C8AE1061793D63300174072 /* photobook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8AE1091793D63300174072 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8AE10B1793D63300174072 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -689,6 +699,7 @@
 		1C0D976F179AD9AC00D79CF4 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				1C89EF7917BB246000DB9450 /* but_click.wav */,
 				1C4A1D9217AB85870026F6CA /* page-flip-1.wav */,
 				1C0D9770179AD9AC00D79CF4 /* eng */,
 				1C0D977E179AD9AC00D79CF4 /* kor */,
@@ -829,6 +840,10 @@
 		1C4A1D9417AB8C8E0026F6CA /* bgm */ = {
 			isa = PBXGroup;
 			children = (
+				1C89EF7B17BB3DD700DB9450 /* bgm_end.wav */,
+				1C89EF7C17BB3DD700DB9450 /* bgm1.wav */,
+				1C89EF7D17BB3DD700DB9450 /* bgm2.wav */,
+				1C89EF7E17BB3DD700DB9450 /* bgm3.wav */,
 				1C4A1D9517AB8CD90026F6CA /* BGM_1.MP3 */,
 				1C4A1D9617AB8CD90026F6CA /* BGM_2.MP3 */,
 				1C4A1D9717AB8CD90026F6CA /* BGM_3.MP3 */,
@@ -1555,6 +1570,11 @@
 				1C89EF7617B9381000DB9450 /* p12_edge_img.bmp in Resources */,
 				1C89EF7717B9381000DB9450 /* p12_mask_img.bmp in Resources */,
 				1C89EF7817B9381000DB9450 /* p12_source_img.bmp in Resources */,
+				1C89EF7A17BB246000DB9450 /* but_click.wav in Resources */,
+				1C89EF7F17BB3DD700DB9450 /* bgm_end.wav in Resources */,
+				1C89EF8017BB3DD700DB9450 /* bgm1.wav in Resources */,
+				1C89EF8117BB3DD700DB9450 /* bgm2.wav in Resources */,
+				1C89EF8217BB3DD700DB9450 /* bgm3.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

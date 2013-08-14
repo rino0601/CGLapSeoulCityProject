@@ -61,35 +61,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="fni-mS-3S4" userLabel="contentsView">
+                            <view contentMode="scaleToFill" id="fni-mS-3S4" userLabel="contentsView(PageLayer)">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="p01_bg.jpg" id="0vX-Vx-USL" userLabel="ContentsViewer">
+                                    <view contentMode="scaleToFill" id="AdD-41-jbP" userLabel="zoomInLayer">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="p01_ch.png" id="7q1-Qc-xqf" userLabel="mosaicView">
-                                        <rect key="frame" x="50" y="35" width="593" height="321"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="p01_bg.jpg" id="0vX-Vx-USL" userLabel="ContentsViewer">
+                                                <rect key="frame" x="-256" y="-192" width="1536" height="1152"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" id="XmA-yw-bV3" userLabel="subtitle">
+                                                <rect key="frame" x="6" y="232" width="500" height="304"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="sdfasdf">
+                                                        <attributes>
+                                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <font key="NSFont" size="30" name="KoPubBatangBold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="p01_ch.png" id="7q1-Qc-xqf" userLabel="mosaicView">
+                                                <rect key="frame" x="-41" y="32" width="593" height="321"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" id="XmA-yw-bV3" userLabel="subtitle">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="304"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="sdfasdf">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="30" name="KoPubBatangBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yRB-Vt-cfN" userLabel="languageButton">
                                 <rect key="frame" x="935" y="20" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,6 +110,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doChangeLang" destination="H4r-IT-zQ5" eventType="touchUpInside" id="5Ml-w8-mUf"/>
+                                    <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="90J-Jj-VwH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="haz-PY-TgH" userLabel="Right Button">
@@ -120,6 +128,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doNext" destination="H4r-IT-zQ5" eventType="touchUpInside" id="guY-qi-cVc"/>
+                                    <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="iSf-2K-1TP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Xb-dl-xRG" userLabel="Left Button">
@@ -136,6 +145,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doPrev" destination="H4r-IT-zQ5" eventType="touchUpInside" id="NTt-VB-Xqg"/>
+                                    <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="4kz-Hg-HoJ"/>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" restorationIdentifier="pageBackView" id="5cL-SG-ak5" userLabel="PageView">
@@ -200,6 +210,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="lH3-RK-DaU"/>
                                             <segue destination="qZd-np-2eo" kind="unwind" unwindAction="home:" id="oLu-zt-hFv"/>
                                         </connections>
                                     </button>
@@ -218,6 +229,7 @@
                                         </state>
                                         <connections>
                                             <action selector="doReplay:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="aOK-uc-EDj"/>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="0F6-eU-ulm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Page" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7WY-H0-OIi" userLabel="PageButton">
@@ -235,6 +247,7 @@
                                         </state>
                                         <connections>
                                             <action selector="doPageSelection" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ttQ-EE-LQd"/>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="XS8-C9-1hh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1L2-I5-xDa" userLabel="MosaicButton">
@@ -252,6 +265,7 @@
                                         </state>
                                         <connections>
                                             <action selector="doMosaic" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ij3-p5-1ZJ"/>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="XZb-LM-Kdc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ENL-TG-zwE" userLabel="PaintingButton">
@@ -267,6 +281,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="7X3-aX-ES3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sqN-Sv-r7o" userLabel="InformationButton">
                                         <rect key="frame" x="912" y="1" width="112" height="112"/>
@@ -283,6 +300,7 @@
                                         </state>
                                         <connections>
                                             <action selector="doChangeLang" destination="H4r-IT-zQ5" eventType="touchUpInside" id="ZSV-IM-hFR"/>
+                                            <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="bUr-Ju-vFH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -306,6 +324,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doMenu" destination="H4r-IT-zQ5" eventType="touchUpInside" id="eV0-V7-kHc"/>
+                                    <action selector="playButtonClickedEffectSound:" destination="H4r-IT-zQ5" eventType="touchUpInside" id="eVX-Up-dax"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -329,6 +348,7 @@
                         <outlet property="pageView" destination="5cL-SG-ak5" id="uLb-dF-rVn"/>
                         <outlet property="right" destination="haz-PY-TgH" id="C3n-qa-H9y"/>
                         <outlet property="subtitleView" destination="XmA-yw-bV3" id="d28-ip-8oM"/>
+                        <outlet property="zoomInLayer" destination="AdD-41-jbP" id="PGP-gK-0Nl"/>
                         <segue destination="8mp-NZ-myq" kind="modal" identifier="doMosaic" modalTransitionStyle="flipHorizontal" id="FwU-dx-tSw"/>
                     </connections>
                 </viewController>

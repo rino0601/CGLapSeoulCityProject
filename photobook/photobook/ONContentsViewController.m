@@ -23,7 +23,7 @@
 - (IBAction)doReplay:(id)sender;
 - (IBAction)doChangeLang;
 - (IBAction)onContents:(UIStoryboardSegue *)segue;
-
+- (IBAction)playButtonClickedEffectSound:(id)sender;
 - (void)playBookWithIndex:(int)index;
 
 @end
@@ -41,6 +41,7 @@
 @synthesize contentsImageView;
 @synthesize subtitleView;
 @synthesize languageButton;
+@synthesize zoomInLayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +54,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    bgmCounter = 0;
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *settingPath = [path stringByAppendingPathComponent:@"settings.plist"];
@@ -76,8 +79,8 @@
     [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
     rightBImage = [right imageForState:UIControlStateNormal];
     leftBImage = [left imageForState:UIControlStateNormal];
-    [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
-    [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
+    [right setImage:[rightBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
+    [left setImage:[leftBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
     
     [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:30]];
     [self playBookWithIndex:currentViewIndex];
@@ -100,6 +103,15 @@
     
     subsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
     [self doAudioPlay];
+}
+- (IBAction)playButtonClickedEffectSound:(id)sender {
+    if(clickEffectPlayer == nil){
+        clickEffectPlayer = [[AVAudioPlayer alloc]
+                             initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"but_click" ofType:@"wav"]] error:nil];
+        [clickEffectPlayer prepareToPlay];
+        [clickEffectPlayer setVolume:0.1];
+    }
+    [clickEffectPlayer play];
 }
 - (IBAction)doChangeLang {
     if([lang isEqualToString:@"kor"]){
@@ -206,30 +218,54 @@
     
     //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
     
-    [subtitleView setText:[subsList objectAtIndex:audioIndex]];
-    CGRect rect          = subtitleView.frame;
-    rect.size.height     = subtitleView.contentSize.height;
-    subtitleView.frame   = rect;
     
-    subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
+    [bgmPlayer stop];
+    if(bgmPlayer == nil) {
+        bgmPlayer = [AVAudioPlayer alloc];
+    }
     
-    [UIView animateWithDuration:0.5 animations:^{
-        subtitleView.transform = CGAffineTransformIdentity;
-    }];
+    if(bgmCounter == 0) {
+        [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm1" ofType:@"wav"]] error:NULL] setDelegate:self];
+        [bgmPlayer play];
+        bgmCounter = 1;
+    } else {
+        if(![bgmPlayer.description hasPrefix:@"bgm2.wav"]) {
+            [bgmPlayer stop];
+            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:-1];
+            [bgmPlayer play];
+        }
+        
+        [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+        CGRect rect          = subtitleView.frame;
+        rect.size.height     = subtitleView.contentSize.height;
+        subtitleView.frame   = rect;
+        
+        subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
+        [UIView animateWithDuration:0.5 animations:^{
+            subtitleView.transform = CGAffineTransformIdentity;
+        }];
+        
+        [audioPlayer play];
+    }
     
-    [audioPlayer play];
+    
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)avp successfully:(BOOL)flag {
-    //NSLog(@"asdf");
-    if(flag) {
+    //NSLog(@"%@",avp.url);
+    if(flag && avp == audioPlayer) {
         if( ++audioIndex >= soundsList.count) {
             audioIndex = 0;
+            bgmCounter = 0;
             [right setImage:[rightBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
             [left setImage:[leftBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
+            [bgmPlayer stop];
+            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm3" ofType:@"wav"]] error:NULL] play];
         } else {
             [self doAudioPlay];
         }
+    } else if(avp == bgmPlayer && bgmCounter == 1){
+        [self doAudioPlay];
     }
 }
 - (void)pageAnimationDidStop:(NSString *)anim finished:(NSNumber* )finished{
@@ -240,37 +276,12 @@
 }
 
 - (void)pageAnimation{
-    NSDictionary *subtitleFrame = [[contentsList objectAtIndex:currentViewIndex] objectForKey:@"zoomInFrame"];
-    
-    [right setImage:[rightBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
-    [left setImage:[leftBImage imageByApplyingAlpha:0.6] forState:UIControlStateNormal];
-    
-    CGRect ori = [contentsView frame];
-    CGRect wannabe = CGRectMake
-    ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
-     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
-     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
-     [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue]);
-    
-    double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 1;
-    double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 1;
-    
-    double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
-    
-    [UIView animateWithDuration:2.0 animations:^{
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        
-        CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);
-        [contentsView setTransform:CGAffineTransformTranslate(temp, 512 - wannabe.origin.x - wannabe.size.width/2, 768/2 - wannabe.origin.y - wannabe.size.height/2)];
-        
-        //[contentsView setFrame:CGRectMake(-wannabe.origin.x * ratio,-wannabe.origin.y * ratio,ori.size.width * ratio,ori.size.height * ratio)];
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:2.0 animations:^{
-            [UIView setAnimationDelay:2.0];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-            [contentsView setTransform:CGAffineTransformIdentity];
-            //[contentsView setFrame:ori];
-        }];
+    [right setImage:[rightBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
+    [left setImage:[leftBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
+    [UIView animateWithDuration:1.5 animations:^{
+        [UIView setAnimationDelay:.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [zoomInLayer setTransform:CGAffineTransformIdentity];
     }];
 }
 
@@ -295,8 +306,7 @@
     
     [contentsImageView setImage:[UIImage imageNamed:[thisDic objectForKey:@"backImage"]]];
     [contentsImageView setFrame:CGRectMake(-[[thisDic objectForKey:@"xPos"] floatValue], 0, 1200, 768)];
-    [contentsView.layer removeAllAnimations]; // remove animation & frame
-    [contentsView setTransform:CGAffineTransformIdentity]; // init frame.
+    [zoomInLayer.layer removeAllAnimations];
     
     NSLog(@"%f",contentsView.frame.origin.x);
     NSLog(@"%f",contentsImageView.frame.origin.x);
@@ -336,13 +346,24 @@
             efectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"page-flip-1" ofType:@"wav"]] error:NULL];
         }
         [efectPlayer play];
-
-        [bgmPlayer stop];
-        if(bgmPlayer == nil) {
-            bgmPlayer = [AVAudioPlayer alloc];
-        }
-        NSLog(@"bgm %d, %@ play", index, [[contentsList objectAtIndex:index] objectForKey:@"BGM"]);
-        [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[[contentsList objectAtIndex:index] objectForKey:@"BGM"] ofType:@"MP3"]] error:NULL] play];
+        
+        NSDictionary *zoomInFrame = [thisDic objectForKey:@"zoomInFrame"];
+            
+        
+        CGRect ori = [contentsView frame];
+        CGRect wannabe = CGRectMake
+        ([[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"x"] intValue]] floatValue],
+            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"y"] intValue]] floatValue],
+            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"width"] intValue]] floatValue],
+            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"height"] intValue]] floatValue]);
+            
+        double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 1;
+        double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 1;
+            
+        double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+        
+        CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);
+        [zoomInLayer setTransform:CGAffineTransformTranslate(temp, 512 - wannabe.origin.x - wannabe.size.width/2, 768/2 - wannabe.origin.y - wannabe.size.height/2)];
         
         [UIView beginAnimations:@"page" context:NULL];
         {
