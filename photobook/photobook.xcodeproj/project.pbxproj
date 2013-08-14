@@ -195,6 +195,7 @@
 		1C89EF8017BB3DD700DB9450 /* bgm1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7C17BB3DD700DB9450 /* bgm1.wav */; };
 		1C89EF8117BB3DD700DB9450 /* bgm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7D17BB3DD700DB9450 /* bgm2.wav */; };
 		1C89EF8217BB3DD700DB9450 /* bgm3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7E17BB3DD700DB9450 /* bgm3.wav */; };
+		1C89EF8517BB71B000DB9450 /* ONTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C89EF8417BB71B000DB9450 /* ONTextView.m */; };
 		1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE1091793D63300174072 /* UIKit.framework */; };
 		1C8AE10C1793D63300174072 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10B1793D63300174072 /* Foundation.framework */; };
 		1C8AE10E1793D63300174072 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10D1793D63300174072 /* CoreGraphics.framework */; };
@@ -515,6 +516,8 @@
 		1C89EF7C17BB3DD700DB9450 /* bgm1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm1.wav; sourceTree = "<group>"; };
 		1C89EF7D17BB3DD700DB9450 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
 		1C89EF7E17BB3DD700DB9450 /* bgm3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm3.wav; sourceTree = "<group>"; };
+		1C89EF8317BB71B000DB9450 /* ONTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTextView.h; sourceTree = "<group>"; };
+		1C89EF8417BB71B000DB9450 /* ONTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTextView.m; sourceTree = "<group>"; };
 		1C8AE1061793D63300174072 /* photobook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8AE1091793D63300174072 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8AE10B1793D63300174072 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -541,7 +544,7 @@
 		1C8AE16C179424F400174072 /* ONMosaicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONMosaicViewController.m; sourceTree = "<group>"; };
 		1C8AE3FA1794451D00174072 /* ONContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONContentsViewController.h; sourceTree = "<group>"; };
 		1C8AE3FB1794452600174072 /* ONContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONContentsViewController.m; sourceTree = "<group>"; };
-		1C8AE3FD1794477800174072 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = settings.plist; path = ../photobook/settings.plist; sourceTree = "<group>"; };
+		1C8AE3FD1794477800174072 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = settings.plist; path = ../photobook/settings.plist; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = "<none>"; };
 		1C8AE4A217951F8E00174072 /* icon_m_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_home.png; sourceTree = "<group>"; };
 		1C8AE4A317951F8E00174072 /* icon_m_home_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_home_down.png; sourceTree = "<group>"; };
 		1C8AE4A417951F8E00174072 /* icon_m_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_info.png; sourceTree = "<group>"; };
@@ -979,6 +982,8 @@
 				1C8AE1101793D63300174072 /* Supporting Files */,
 				1C4A1D8F17AB84560026F6CA /* UIImage+SetAlpha.h */,
 				1C4A1D9017AB84560026F6CA /* UIImage+SetAlpha.m */,
+				1C89EF8317BB71B000DB9450 /* ONTextView.h */,
+				1C89EF8417BB71B000DB9450 /* ONTextView.m */,
 			);
 			name = Photobook;
 			path = photobook;
@@ -1634,6 +1639,7 @@
 				1CEE48B717955028009D0105 /* UIImageCVArrConverter.mm in Sources */,
 				1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */,
 				1C4A1D9117AB84570026F6CA /* UIImage+SetAlpha.m in Sources */,
+				1C89EF8517BB71B000DB9450 /* ONTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1695,8 +1701,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: john Hong (FPFY7GF3UP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: john Hong (FPFY7GF3UP)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1709,9 +1715,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "D06687B1-524F-461E-A19A-70763B77CD20";
+				PROVISIONING_PROFILE = "337C5441-53F2-43DB-8547-B4FEAF14310B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "337C5441-53F2-43DB-8547-B4FEAF14310B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1729,16 +1736,17 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: john Hong (FPFY7GF3UP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: john Hong (FPFY7GF3UP)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "D06687B1-524F-461E-A19A-70763B77CD20";
+				PROVISIONING_PROFILE = "337C5441-53F2-43DB-8547-B4FEAF14310B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "337C5441-53F2-43DB-8547-B4FEAF14310B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

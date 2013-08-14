@@ -83,6 +83,7 @@
     [left setImage:[leftBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
     
     [subtitleView setFont:[UIFont fontWithName:@"KoPubBatangBold" size:30]];
+    
     [self playBookWithIndex:currentViewIndex];
 
 }
@@ -129,6 +130,8 @@
 - (IBAction)doMenu {
     
     if( [menuBar isHidden] ){
+        [audioPlayer pause];
+        [bgmPlayer pause];
         
         CGPoint cp = [menuIcon center];
         CGPoint menuBarCenterPoint = [menuBar center];
@@ -149,7 +152,8 @@
         }];
         
     } else {
-    
+        [audioPlayer play];
+        [bgmPlayer play];
         [self setMenuBarHidden];
     
     }
@@ -405,9 +409,7 @@
         ONMosaicViewController* t = [segue sourceViewController];
         //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
         CGFloat maskColor[6] = {255,255,255,255,255,255};
-        [mosaicImageView removeFromSuperview];
         [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
-        [contentsView addSubview:mosaicImageView];
         [bgmPlayer play];
         [audioPlayer play];
     }

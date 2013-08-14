@@ -71,7 +71,7 @@
 	CGContextTranslateCTM(ctx, 0, Paper.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
 	
 	if(ADelegate->m_bAutoTileMove || ADelegate->m_bAutoGeneration) { // 자동 붙이기시 타일 이동 (색종이 영역 -> 모자이크 영역)
-		if(ADelegate->icpm.m_oCPM->m_optile) {
+		if(ADelegate->icpm.m_oCPM.m_optile) {
 			ADelegate->icpm.DrawAutoTileAt(ctx, ADelegate->m_pMovePoint);
 		}
 	} else if(ADelegate->icpm.m_opSelectedTile) { // 선택한 타일 이동 (수동 상태 일때.)

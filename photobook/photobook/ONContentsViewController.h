@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ONTextView.h"
 
 @interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, AVAudioPlayerDelegate> {
     
@@ -46,6 +47,6 @@
 @property (nonatomic, retain) IBOutlet UIView *pageView;
 @property (nonatomic, retain) IBOutlet UIButton *right;
 @property (nonatomic, retain) IBOutlet UIButton *left;
-@property (nonatomic, retain) IBOutlet UITextView *subtitleView;
+@property (nonatomic, retain) IBOutlet ONTextView *subtitleView;
 
 @end

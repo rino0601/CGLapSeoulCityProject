@@ -67,7 +67,7 @@ void ActiveXDialog::init(PaperMosaicCanvas *view, CUIImageView p, CUIImageView m
 	OpenGLView.AllocInitWithFrame(p.getInst().frame);
 	//OnInitDialog()차례.
 	icpm.m_oPaper.setDlg(this);
-	icpm.m_oCPM->setDlg(this);
+	icpm.m_oCPM.setDlg(this);
 	icpm.setDlg(this);
 	
 	this->SetImage(edge, source, mask);
@@ -131,7 +131,7 @@ void ActiveXDialog::SetImage(IplImage *pImage1, IplImage *pImage2, IplImage *pIm
 	m_pColordPaper = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
 	
 	m_fside =  sqrt((float)(w*h)/ 81);																//타일 지름
-	icpm.m_oCPM->m_nTileRadius =  (int)((sqrt((m_fside*m_fside) + (m_fside*m_fside)) / 2)+ 0.5) ;	//타일 반지름
+	icpm.m_oCPM.m_nTileRadius =  (int)((sqrt((m_fside*m_fside) + (m_fside*m_fside)) / 2)+ 0.5) ;	//타일 반지름
 
 	//모자이크 영역 랜더링을 위한 IplImage(m_pMosaic)생성
 	m_stMosaic.GetClientRect(&rect);
@@ -155,18 +155,18 @@ void ActiveXDialog::SetImage(IplImage *pImage1, IplImage *pImage2, IplImage *pIm
 	
 	xDistanceTransform dt;
 	dis = dt.GetDT(gray);
-	icpm.m_oCPM->m_vpEdges.push_back(dis);
-	icpm.m_oCPM->m_pSource = reSizedSource;
+	icpm.m_oCPM.m_vpEdges.push_back(dis);
+	icpm.m_oCPM.m_pSource = reSizedSource;
 	
-	icpm.m_oCPM->LayerMask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+	icpm.m_oCPM.LayerMask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
 	IplImage* reSizedMask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
 	cvResize(mask, reSizedMask, CV_INTER_LINEAR);
-	cvCvtColor(reSizedMask, icpm.m_oCPM->LayerMask, CV_RGB2GRAY);
+	cvCvtColor(reSizedMask, icpm.m_oCPM.LayerMask, CV_RGB2GRAY);
     
     cvReleaseImage(&reSizedMask);
 	
 	// 자동 붙이기를 위한 맵 생성
-	icpm.m_oCPM->preSetting(0.3);
+	icpm.m_oCPM.preSetting(0.3);
 	
 	
 	//에지 탄젠트 플로우(ETF:Edge Tangent Flow), 에지의 방향성 검출, 자동 붙이기 시 사용
@@ -205,8 +205,8 @@ void ActiveXDialog::AutoTileMove() {
    	double vecX, vecY, Length;
    	int angle;
 	
-   	tilePosition.x = icpm.m_oCPM->tilePosition.x;
-   	tilePosition.y = icpm.m_oCPM->tilePosition.y;
+   	tilePosition.x = icpm.m_oCPM.tilePosition.x;
+   	tilePosition.y = icpm.m_oCPM.tilePosition.y;
    	
 	//좌표계 변경
    	m_stMosaic.ClientToScreen(&tilePosition);
@@ -302,7 +302,7 @@ void ActiveXDialog::OnLButtonDown(MPoint point) {
 		// 모자이크 영역
 		m_stMosaic.ScreenToClient(&p2);
 		if(CGRectContainsPoint(Mosaic_rect, CGPointMake(point.x, point.y))) { //Mosaic_rect.PtInRect(point)
-			if( icpm.m_oCPM->m_pTileImageMask !=NULL && -1 < (CV_IMAGE_ELEM(icpm.m_oCPM->m_pTileImageMask, float, p2.y, p2.x))) { // 모자이크 영역 일때 색종이 붙임
+			if( icpm.m_oCPM.m_pTileImageMask !=NULL && -1 < (CV_IMAGE_ELEM(icpm.m_oCPM.m_pTileImageMask, float, p2.y, p2.x))) { // 모자이크 영역 일때 색종이 붙임
 				m_bArea = false;
 				m_tilePoint = p2;
 				icpm.AttachPaper(p2);				

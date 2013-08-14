@@ -5,7 +5,7 @@
 InteractiveColoredPaperMosaic::InteractiveColoredPaperMosaic(void)
 {
 	m_opSelectedTile = NULL;
-    m_oCPM = new ColoredPaperMosaic();
+    //m_oCPM = new ColoredPaperMosaic();
 }
 
 InteractiveColoredPaperMosaic::~InteractiveColoredPaperMosaic(void)
@@ -16,7 +16,7 @@ InteractiveColoredPaperMosaic::~InteractiveColoredPaperMosaic(void)
 	/*if(m_pDlg)
 		delete m_pDlg;*/
 
-	delete m_oCPM;
+	//delete m_oCPM;
 }
 
 void InteractiveColoredPaperMosaic::setDlg(ActiveXDialog* dlg)
@@ -56,7 +56,7 @@ void InteractiveColoredPaperMosaic::DrawSelectedTileAt(CGContextRef ctx, MPoint 
 //자동붙이기시, 색종이 영역에서 모자이크 영역으로 타일 이동 표현 
 void InteractiveColoredPaperMosaic::DrawAutoTileAt(CGContextRef ctx, MPoint position)
 {
-	m_oCPM->m_optile->RenderToDC(ctx, position);
+	m_oCPM.m_optile->RenderToDC(ctx, position);
 }
 
 // 색종이 붙이기.
@@ -74,20 +74,20 @@ void InteractiveColoredPaperMosaic::AttachPaper(MPoint position)
 		m_opSelectedTile->WhiteLayer();
 		
 		//타일 추가
-		m_oCPM->AddTile(m_opSelectedTile);
+		m_oCPM.AddTile(m_opSelectedTile);
 		
 		m_opSelectedTile = NULL;		
 	}
 	else //타일 이동
 	{
-		double index = CV_IMAGE_ELEM(m_oCPM->m_pTileImageMask, float, position.y, position.x);
+		double index = CV_IMAGE_ELEM(m_oCPM.m_pTileImageMask, float, position.y, position.x);
 		if(index == -1)
 		{
 			return;
 		}
 		else
 		{
-			m_opSelectedTile = m_oCPM->m_vpTileList[index];
+			m_opSelectedTile = m_oCPM.m_vpTileList[index];
 			
 			
 			
@@ -103,7 +103,7 @@ void InteractiveColoredPaperMosaic::AttachPaper(MPoint position)
 			
 			//마스크맵 리셋 및 선택 된 타일 삭제
 			
-			m_oCPM->setMosaic(index, m_opSelectedTile->m_oPosition);
+			m_oCPM.setMosaic(index, m_opSelectedTile->m_oPosition);
 		}
 	}
 	
@@ -119,7 +119,7 @@ void InteractiveColoredPaperMosaic::MoveTile() { // 타일 흔들기 효과
 
 	int r;
 
-	tilesize = m_oCPM->m_vpTileList.size();	
+	tilesize = m_oCPM.m_vpTileList.size();
 	
 	srand((unsigned)time(NULL));	
 
@@ -180,7 +180,7 @@ void InteractiveColoredPaperMosaic::MoveTile() { // 타일 흔들기 효과
 		}
 		
 
-		m_opSelectedTile = m_oCPM->m_vpTileList[i];
+		m_opSelectedTile = m_oCPM.m_vpTileList[i];
 		
 
 		w = m_pDlg->m_pMosaic->width;	
@@ -200,10 +200,10 @@ void InteractiveColoredPaperMosaic::MoveTile() { // 타일 흔들기 효과
 		m_opSelectedTile->ColoredLayer();
 		m_opSelectedTile->WhiteLayer(); 
 
-		m_oCPM->m_vpTileList[i] = m_opSelectedTile;
+		m_oCPM.m_vpTileList[i] = m_opSelectedTile;
 	}
 
-	m_oCPM->AddTile();
+	m_oCPM.AddTile();
 	m_opSelectedTile = NULL;
 
 }
@@ -252,10 +252,10 @@ void InteractiveColoredPaperMosaic::AutoGeneration(ActiveXDialog *flagOwner)  //
 {
 	// 색종이 자동 붙이기
 	if(flagOwner->m_bAutoGeneration==true) {
- 		m_oCPM->setOdering(); // 전 처리 작업, 후보 위치 지정, EdgeDistanceMap 생성
+ 		m_oCPM.setOdering(); // 전 처리 작업, 후보 위치 지정, EdgeDistanceMap 생성
 		flagOwner->c_view->killAlert();
 	}
-	while(m_oCPM->Odering()) { // 타일이 붙기 좋은 위치 지정 및 타일 생성
+	while(m_oCPM.Odering()) { // 타일이 붙기 좋은 위치 지정 및 타일 생성
  		if(flagOwner->m_bAutoGeneration==false)
  			break;
 	}	
