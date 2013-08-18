@@ -72,6 +72,10 @@
                                                 <rect key="frame" x="-256" y="-192" width="1536" height="1152"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="p01_ch.png" id="7q1-Qc-xqf" userLabel="mosaicView">
+                                                <rect key="frame" x="-41" y="32" width="593" height="321"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" id="XmA-yw-bV3" userLabel="subtitle" customClass="ONTextView">
                                                 <rect key="frame" x="6" y="232" width="500" height="304"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -81,16 +85,12 @@
                                                         <attributes>
                                                             <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <font key="NSFont" size="30" name="KoPubBatangBold"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="p01_ch.png" id="7q1-Qc-xqf" userLabel="mosaicView">
-                                                <rect key="frame" x="-41" y="32" width="593" height="321"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -347,7 +347,7 @@
                         <outlet property="onCollectionView" destination="otg-lp-aeP" id="zJ8-o1-KAZ"/>
                         <outlet property="pageView" destination="5cL-SG-ak5" id="uLb-dF-rVn"/>
                         <outlet property="right" destination="haz-PY-TgH" id="C3n-qa-H9y"/>
-                        <outlet property="subtitleView" destination="XmA-yw-bV3" id="d28-ip-8oM"/>
+                        <outlet property="subtitleView" destination="XmA-yw-bV3" id="Aai-DE-LjD"/>
                         <outlet property="zoomInLayer" destination="AdD-41-jbP" id="PGP-gK-0Nl"/>
                         <segue destination="8mp-NZ-myq" kind="modal" identifier="doMosaic" modalTransitionStyle="flipHorizontal" id="FwU-dx-tSw"/>
                     </connections>

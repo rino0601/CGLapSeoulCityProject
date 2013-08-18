@@ -24,23 +24,32 @@
     return [[super styleString] stringByAppendingString:@"; line-height: 1.5em"];
 }
 
+/*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void) drawTextInRect:(CGRect)rect
 {
-    CGRect bounds = [self bounds];
-    const char *result = [self.text UTF8String];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSelectFont(context, "KoPubBatangBold", self.font.pointSize, kCGEncodingMacRoman);
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1);
+ CGContextRef context = UIGraphicsGetCurrentContext();
+ CGContextSelectFont (context, [self.font.fontName cStringUsingEncoding:NSUTF8StringEncoding], self.font.pointSize, kCGEncodingMacRoman);
+ CGContextSetCharacterSpacing(context, 0.85);
+ CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+ CGAffineTransform myTextTransform = CGAffineTransformScale(CGAffineTransformIdentity, 1.f, -1.f );
+ CGContextSetTextMatrix (context, myTextTransform);
  
-    CGContextSetCharacterSpacing(context, -25); // <-----파라미터를 수정해주시면 됩니다.
-    CGContextTranslateCTM(context, 0, bounds.size.height + 5);
-    CGContextScaleCTM(context, 1, -1);
-    CGContextShowTextAtPoint(context, 0, rect.size.height/2, result, strlen(result));
+ // draw 1 but invisbly to get the string length.
+ CGPoint p =CGContextGetTextPosition(context);
+ float centeredY = (self.font.pointSize + (self.frame.size.height- self.font.pointSize)/2)-2;
+ CGContextShowTextAtPoint(context, 0, centeredY, [self.text cStringUsingEncoding:NSUTF8StringEncoding ], [self.text length]);
+ CGPoint v =CGContextGetTextPosition(context);
+ 
+ // calculate width and draw second one.
+ float width = v.x - p.x;
+ float centeredX =(self.frame.size.width- width)/2;
+ CGContextSetFillColorWithColor(context, [self.textColor CGColor]);
+ CGContextShowTextAtPoint(context, centeredX, centeredY, [self.text cStringUsingEncoding:NSUTF8StringEncoding ], [self.text length]);
+
 }
 
-
+*/
 
 @end

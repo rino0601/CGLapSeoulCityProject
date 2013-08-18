@@ -196,6 +196,7 @@
 		1C89EF8117BB3DD700DB9450 /* bgm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7D17BB3DD700DB9450 /* bgm2.wav */; };
 		1C89EF8217BB3DD700DB9450 /* bgm3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF7E17BB3DD700DB9450 /* bgm3.wav */; };
 		1C89EF8517BB71B000DB9450 /* ONTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C89EF8417BB71B000DB9450 /* ONTextView.m */; };
+		1C89EF8817C0AC4000DB9450 /* ONTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C89EF8717C0AC4000DB9450 /* ONTextLabel.m */; };
 		1C8AE10A1793D63300174072 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE1091793D63300174072 /* UIKit.framework */; };
 		1C8AE10C1793D63300174072 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10B1793D63300174072 /* Foundation.framework */; };
 		1C8AE10E1793D63300174072 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8AE10D1793D63300174072 /* CoreGraphics.framework */; };
@@ -518,6 +519,8 @@
 		1C89EF7E17BB3DD700DB9450 /* bgm3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm3.wav; sourceTree = "<group>"; };
 		1C89EF8317BB71B000DB9450 /* ONTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTextView.h; sourceTree = "<group>"; };
 		1C89EF8417BB71B000DB9450 /* ONTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTextView.m; sourceTree = "<group>"; };
+		1C89EF8617C0AC4000DB9450 /* ONTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTextLabel.h; sourceTree = "<group>"; };
+		1C89EF8717C0AC4000DB9450 /* ONTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTextLabel.m; sourceTree = "<group>"; };
 		1C8AE1061793D63300174072 /* photobook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8AE1091793D63300174072 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8AE10B1793D63300174072 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -984,6 +987,8 @@
 				1C4A1D9017AB84560026F6CA /* UIImage+SetAlpha.m */,
 				1C89EF8317BB71B000DB9450 /* ONTextView.h */,
 				1C89EF8417BB71B000DB9450 /* ONTextView.m */,
+				1C89EF8617C0AC4000DB9450 /* ONTextLabel.h */,
+				1C89EF8717C0AC4000DB9450 /* ONTextLabel.m */,
 			);
 			name = Photobook;
 			path = photobook;
@@ -1640,6 +1645,7 @@
 				1CEE48BA1797E337009D0105 /* ONSnapshotCollectionViewCell.m in Sources */,
 				1C4A1D9117AB84570026F6CA /* UIImage+SetAlpha.m in Sources */,
 				1C89EF8517BB71B000DB9450 /* ONTextView.m in Sources */,
+				1C89EF8817C0AC4000DB9450 /* ONTextLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1701,8 +1707,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: john Hong (FPFY7GF3UP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: john Hong (FPFY7GF3UP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1717,8 +1723,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "337C5441-53F2-43DB-8547-B4FEAF14310B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "337C5441-53F2-43DB-8547-B4FEAF14310B";
+				PROVISIONING_PROFILE = "08BB3436-B80F-424B-871B-F057F33A834B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08BB3436-B80F-424B-871B-F057F33A834B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1736,8 +1742,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: john Hong (FPFY7GF3UP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: john Hong (FPFY7GF3UP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hanjong Ko (V3UJUG6MGM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1745,8 +1751,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "337C5441-53F2-43DB-8547-B4FEAF14310B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "337C5441-53F2-43DB-8547-B4FEAF14310B";
+				PROVISIONING_PROFILE = "08BB3436-B80F-424B-871B-F057F33A834B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08BB3436-B80F-424B-871B-F057F33A834B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

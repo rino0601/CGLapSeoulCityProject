@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PaperMosaic/cpp/ColoredPaperMosaic.cpp"
-         timestampString = "397548293.548371"
+         timestampString = "398499373.938712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "878"
-         endingLineNumber = "878"
+         startingLineNumber = "877"
+         endingLineNumber = "877"
          landmarkName = "ColoredPaperMosaic::DirectionEval(MPoint current, MPoint previous1, MPoint previous2)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PaperMosaic/cpp/ColoredPaperMosaic.cpp"
-         timestampString = "397548293.548371"
+         timestampString = "398499373.938712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "882"
-         endingLineNumber = "882"
+         startingLineNumber = "881"
+         endingLineNumber = "881"
          landmarkName = "ColoredPaperMosaic::DirectionEval(MPoint current, MPoint previous1, MPoint previous2)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PaperMosaic/cpp/ColoredPaperMosaic.cpp"
-         timestampString = "397548293.548371"
+         timestampString = "398499373.938712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "889"
-         endingLineNumber = "889"
+         startingLineNumber = "888"
+         endingLineNumber = "888"
          landmarkName = "ColoredPaperMosaic::DirectionEval(MPoint current, MPoint previous1, MPoint previous2)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PaperMosaic/cpp/ColoredPaperMosaic.cpp"
-         timestampString = "397548293.548371"
+         timestampString = "398499373.938712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "893"
-         endingLineNumber = "893"
+         startingLineNumber = "892"
+         endingLineNumber = "892"
          landmarkName = "ColoredPaperMosaic::DirectionEval(MPoint current, MPoint previous1, MPoint previous2)"
          landmarkType = "5">
       </FileBreakpoint>

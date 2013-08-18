@@ -580,7 +580,6 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 
 			if((Byte)m_pBestPosition->imageData[p] != 0)
 				continue;	
-
 			if((Byte)tileMap->imageData[p] == TILE)
 				continue;
 			if((Byte)overlapMap->imageData[p] == OVERLAP)

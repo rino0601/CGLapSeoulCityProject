@@ -14,6 +14,7 @@
 @private
 	CGContextRef ctx;
 	CGPoint touchPos;
+    CGSize maxMosaicSize;
 }
 @property(nonatomic) ActiveXDialog *ADelegate;
 @property(strong,nonatomic) IBOutlet UIImageView *Mosaic;

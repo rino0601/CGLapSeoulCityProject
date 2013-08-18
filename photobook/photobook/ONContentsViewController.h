@@ -47,6 +47,6 @@
 @property (nonatomic, retain) IBOutlet UIView *pageView;
 @property (nonatomic, retain) IBOutlet UIButton *right;
 @property (nonatomic, retain) IBOutlet UIButton *left;
-@property (nonatomic, retain) IBOutlet ONTextView *subtitleView;
+@property (nonatomic, retain) IBOutlet UITextView *subtitleView;
 
 @end

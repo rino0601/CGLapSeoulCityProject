@@ -239,14 +239,42 @@
             [bgmPlayer play];
         }
         
-        [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+        //NSString *htmlstring = [[NSString alloc] initWithFormat:@"<html><body bgcolor=\"#000000\"><font style=\"text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87\">%@</font></body></html>", [subsList objectAtIndex:audioIndex], nil];
+        
+        
+        //note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
+        NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-2px;font-family:\"KoPubBatangBold\";font-size:30px}";
+        NSString *html = [NSString stringWithFormat:@"<html><head><style>%@</style></head><body><pre>%@\n </pre></body></html>", css,[subsList objectAtIndex:audioIndex]];
+        @try {
+            SEL setContentToHTMLString = NSSelectorFromString([@[@"set", @"Content", @"To", @"HTML", @"String", @":"] componentsJoinedByString:@""]);
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [subtitleView performSelector:setContentToHTMLString withObject:html];
+            #pragma clang diagnostic pop
+        }
+        @catch (NSException *exception) {
+            // html+css could not be applied to text view, so no kerning
+            [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+        }
+        
+        CGSize size = subtitleView.contentSize;
+        size.height = subtitleView.contentSize.height + 100;
+        subtitleView.contentSize = size;
+        
         CGRect rect          = subtitleView.frame;
         rect.size.height     = subtitleView.contentSize.height;
         subtitleView.frame   = rect;
         
         subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
-        [UIView animateWithDuration:0.5 animations:^{
-            subtitleView.transform = CGAffineTransformIdentity;
+        [UIView animateWithDuration:0.40 animations:^{
+            
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+            subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
+        }completion:^(BOOL finished){
+            [UIView animateWithDuration:0.10 animations:^{
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                subtitleView.transform = CGAffineTransformIdentity;
+            }];
         }];
         
         [audioPlayer play];
