@@ -547,7 +547,7 @@
 		1C8AE16C179424F400174072 /* ONMosaicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONMosaicViewController.m; sourceTree = "<group>"; };
 		1C8AE3FA1794451D00174072 /* ONContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONContentsViewController.h; sourceTree = "<group>"; };
 		1C8AE3FB1794452600174072 /* ONContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONContentsViewController.m; sourceTree = "<group>"; };
-		1C8AE3FD1794477800174072 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = settings.plist; path = ../photobook/settings.plist; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = "<none>"; };
+		1C8AE3FD1794477800174072 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = settings.plist; path = ../photobook/settings.plist; sourceTree = "<group>"; };
 		1C8AE4A217951F8E00174072 /* icon_m_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_home.png; sourceTree = "<group>"; };
 		1C8AE4A317951F8E00174072 /* icon_m_home_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_home_down.png; sourceTree = "<group>"; };
 		1C8AE4A417951F8E00174072 /* icon_m_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m_info.png; sourceTree = "<group>"; };

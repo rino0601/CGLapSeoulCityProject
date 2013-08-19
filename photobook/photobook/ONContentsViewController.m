@@ -242,7 +242,10 @@
         //NSString *htmlstring = [[NSString alloc] initWithFormat:@"<html><body bgcolor=\"#000000\"><font style=\"text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87\">%@</font></body></html>", [subsList objectAtIndex:audioIndex], nil];
         
         
-        //note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
+        /* setContentToHTMLString is private method.
+         * But we can use this method with some tricks.
+         * note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
+         */
         NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-2px;font-family:\"KoPubBatangBold\";font-size:30px}";
         NSString *html = [NSString stringWithFormat:@"<html><head><style>%@</style></head><body><pre>%@\n </pre></body></html>", css,[subsList objectAtIndex:audioIndex]];
         @try {
@@ -422,7 +425,7 @@
 	[appDelegate setMosaicSource:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_source_img.bmp"]]];
 	[appDelegate setMosaicMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_mask_img.bmp"]]];
 	[appDelegate setMosaicEdge:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]]];
-	[appDelegate setStartSectionCode:102];
+	[appDelegate setStartSectionCode:109];
 	/*************************************************************************/
 	
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
@@ -437,7 +440,27 @@
         ONMosaicViewController* t = [segue sourceViewController];
         //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
         CGFloat maskColor[6] = {255,255,255,255,255,255};
-        [mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
+ 
+        NSString *prefix = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"prefix"];
+        
+        UIImage* temp = [UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)];
+        
+        //[mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
+        
+        //[UIImacge imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]];
+        
+        UIGraphicsBeginImageContext(mosaicImageView.frame.size);
+        
+        [temp drawInRect:CGRectMake(0, 0, mosaicImageView.frame.size.width, mosaicImageView.frame.size.height)];
+        
+        [[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]] CGImage], maskColor)] drawInRect:CGRectMake(0, 0, mosaicImageView.frame.size.width, mosaicImageView.frame.size.height)];
+        
+        UIImage *combinedImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        [mosaicImageView setImage:combinedImage];
+        
+        UIGraphicsEndImageContext();
+        
         [bgmPlayer play];
         [audioPlayer play];
     }

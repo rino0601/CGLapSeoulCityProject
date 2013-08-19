@@ -579,12 +579,16 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 			int p = y*m_pRegion->widthStep+x;
 
 			if((Byte)m_pBestPosition->imageData[p] != 0)
-				continue;	
+				continue;
+            if(tileMap->width < x || tileMap->height < y) // 터지지 마라 ㅡㅡ
+                continue;
 			if((Byte)tileMap->imageData[p] == TILE)
 				continue;
 			if((Byte)overlapMap->imageData[p] == OVERLAP)
 				continue;
 			if(isEdge){
+                if(m_pRegion->height < y || m_pRegion->width < x) // 너도.
+                    continue;
 				if((Byte)m_pRegion->imageData[p] != PREMIUM)
 					continue;
 			}else{
