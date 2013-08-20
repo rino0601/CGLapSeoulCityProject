@@ -7,38 +7,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "photobook/ONContentsViewController.m"
-         timestampString = "398161382.262995"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "213"
-         endingLineNumber = "213"
-         landmarkName = "-doAudioPlay"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "photobook/ONContentsViewController.m"
-         timestampString = "398161382.262995"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "218"
-         endingLineNumber = "218"
-         landmarkName = "-doAudioPlay"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "photobook/ONViewController.m"
-         timestampString = "397030868.172168"
+         timestampString = "398669699.766846"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
          landmarkName = "-audioPlay"
          landmarkType = "5">
       </FileBreakpoint>
@@ -307,11 +281,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "photobook/ONContentsViewController.m"
-         timestampString = "398159631.184021"
+         timestampString = "398669699.766846"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-playButtonClickedEffectSound:"
          landmarkType = "5">
       </FileBreakpoint>

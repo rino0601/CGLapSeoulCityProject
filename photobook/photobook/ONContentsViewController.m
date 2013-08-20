@@ -12,22 +12,6 @@
 #import "ONAppDelegate.h"
 #import "UIImage+SetAlpha.h"
 
-@interface ONContentsViewController ()
-
-- (IBAction)doMenu;
-- (IBAction)doPrev;
-- (IBAction)doNext;
-- (IBAction)doMosaic;
-- (IBAction)doPageSelection;
-- (IBAction)doAudioPlay;
-- (IBAction)doReplay:(id)sender;
-- (IBAction)doChangeLang;
-- (IBAction)onContents:(UIStoryboardSegue *)segue;
-- (IBAction)playButtonClickedEffectSound:(id)sender;
-- (void)playBookWithIndex:(int)index;
-
-@end
-
 @implementation ONContentsViewController
 
 @synthesize mosaicImageView;
@@ -42,6 +26,20 @@
 @synthesize subtitleView;
 @synthesize languageButton;
 @synthesize zoomInLayer;
+
+#pragma mark - For IOS 5.1< landscape.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+
+#pragma mark - For IOS 6.0> landscape.
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,6 +90,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Languege Setting
 - (void)setLanguege:(NSString* )lng{
     ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     if([lng isEqualToString:@"kor"]){
@@ -104,15 +104,6 @@
     
     subsList = [[contentsList objectAtIndex:currentViewIndex] objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
     [self doAudioPlay];
-}
-- (IBAction)playButtonClickedEffectSound:(id)sender {
-    if(clickEffectPlayer == nil){
-        clickEffectPlayer = [[AVAudioPlayer alloc]
-                             initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"but_click" ofType:@"wav"]] error:nil];
-        [clickEffectPlayer prepareToPlay];
-        [clickEffectPlayer setVolume:0.1];
-    }
-    [clickEffectPlayer play];
 }
 - (IBAction)doChangeLang {
     if([lang isEqualToString:@"kor"]){
@@ -127,6 +118,231 @@
     [languageButton setImage:[UIImage imageWithContentsOfFile:temp] forState:UIControlStateHighlighted];
 }
 
+
+#pragma mark - sound & subtitle
+- (IBAction)playButtonClickedEffectSound:(id)sender {
+    if(clickEffectPlayer == nil){
+        clickEffectPlayer = [[AVAudioPlayer alloc]
+                             initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"but_click" ofType:@"wav"]] error:nil];
+        [clickEffectPlayer prepareToPlay];
+        [clickEffectPlayer setVolume:0.1];
+    }
+    [clickEffectPlayer play];
+}
+
+
+- (IBAction)doAudioPlay {
+    [audioPlayer stop];
+    
+    if(audioPlayer == nil)
+        audioPlayer = [AVAudioPlayer alloc];
+    
+    NSString *audioPath = [lang isEqualToString:@"eng"] ? [soundsList objectAtIndex:audioIndex] : [NSString stringWithFormat:@"%@_%@",[soundsList objectAtIndex:audioIndex],lang];
+    
+    NSLog(@"audio %d, %@ play", audioIndex, audioPath);
+    
+    [[audioPlayer initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL] setDelegate:self];
+    
+    
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    
+    
+    [bgmPlayer stop];
+    if(bgmPlayer == nil) {
+        bgmPlayer = [AVAudioPlayer alloc];
+    }
+    
+    if(bgmCounter == 0) {
+        [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm1" ofType:@"wav"]] error:NULL] setDelegate:self];
+        [bgmPlayer play];
+        bgmCounter = 1;
+    } else {
+        if(![bgmPlayer.description hasPrefix:@"bgm2.wav"]) {
+            [bgmPlayer stop];
+            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:-1];
+            [bgmPlayer play];
+        }
+        
+        //NSString *htmlstring = [[NSString alloc] initWithFormat:@"<html><body bgcolor=\"#000000\"><font style=\"text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87\">%@</font></body></html>", [subsList objectAtIndex:audioIndex], nil];
+        
+        
+        /* setContentToHTMLString is private method.
+         * But we can use this method with some tricks.
+         * note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
+         */
+        NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-2px;font-family:\"KoPubBatangBold\";font-size:30px}";
+        NSString *html = [NSString stringWithFormat:@"<html><head><style>%@</style></head><body><pre>%@\n </pre></body></html>", css,[subsList objectAtIndex:audioIndex]];
+        @try {
+            SEL setContentToHTMLString = NSSelectorFromString([@[@"set", @"Content", @"To", @"HTML", @"String", @":"] componentsJoinedByString:@""]);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [subtitleView performSelector:setContentToHTMLString withObject:html];
+#pragma clang diagnostic pop
+        }
+        @catch (NSException *exception) {
+            // html+css could not be applied to text view, so no kerning
+            [subtitleView setText:[subsList objectAtIndex:audioIndex]];
+        }
+        
+        CGSize size = subtitleView.contentSize;
+        size.height = subtitleView.contentSize.height + 100;
+        subtitleView.contentSize = size;
+        
+        CGRect rect          = subtitleView.frame;
+        rect.size.height     = subtitleView.contentSize.height;
+        subtitleView.frame   = rect;
+        
+        subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
+        [UIView animateWithDuration:0.40 animations:^{
+            
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+            subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
+        }completion:^(BOOL finished){
+            [UIView animateWithDuration:0.10 animations:^{
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                subtitleView.transform = CGAffineTransformIdentity;
+            }];
+        }];
+        
+        [audioPlayer play];
+    }
+    
+    
+}
+
+#pragma mark - AVAudioPlayerDelegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)avp successfully:(BOOL)flag {
+    //NSLog(@"%@",avp.url);
+    if(flag && avp == audioPlayer) {
+        if( ++audioIndex >= soundsList.count) {
+            audioIndex = 0;
+            bgmCounter = 0;
+            [right setImage:[rightBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
+            [left setImage:[leftBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
+            [bgmPlayer stop];
+            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm3" ofType:@"wav"]] error:NULL] play];
+        } else {
+            [self doAudioPlay];
+        }
+    } else if(avp == bgmPlayer && bgmCounter == 1){
+        [self doAudioPlay];
+    }
+}
+
+#pragma mark - book model.
+- (void)playBookWithIndex:(int)index{
+    
+    Boolean animationStart = NO;
+    Boolean isLeft = NO;
+    
+    index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
+    
+    (index == 0) ? [left setHidden:YES] : [left setHidden:NO];
+    (index == maxViewIndex -1) ? [right setHidden:YES] : [right setHidden:NO];
+    
+    if(index != currentViewIndex) {
+        animationStart = YES;
+        index < currentViewIndex ? isLeft = YES : isLeft = NO;
+    }
+    
+    //NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
+    
+    NSDictionary *thisDic = [contentsList objectAtIndex:index];
+    
+    [contentsImageView setImage:[UIImage imageNamed:[thisDic objectForKey:@"backImage"]]];
+    [contentsImageView setFrame:CGRectMake(-[[thisDic objectForKey:@"xPos"] floatValue], 0, 1200, 768)];
+    [zoomInLayer.layer removeAllAnimations];
+    
+    NSLog(@"%f",contentsView.frame.origin.x);
+    NSLog(@"%f",contentsImageView.frame.origin.x);
+    currentViewIndex = index;
+    
+    NSDictionary *mosaicDic = [thisDic objectForKey:@"mosaic"];
+    [mosaicImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[mosaicDic objectForKey:@"prefix"],@"_ch.png"]]];
+    
+    NSDictionary *mosaicFrame = [mosaicDic objectForKey:@"frame"];
+    
+    [mosaicImageView setFrame:CGRectMake
+     ([[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"x"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"y"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"width"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
+    
+    
+    subsList = [thisDic objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
+    soundsList = [thisDic objectForKey:@"sounds"];
+    audioIndex = 0;
+    
+    NSDictionary *subtitleFrame = [thisDic objectForKey:@"subtitleFrame"];
+    
+    [subtitleView setFrame:CGRectMake
+     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
+      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue])];
+    
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+    
+    if(animationStart) {
+        [subtitleView setText:@""];
+        [audioPlayer stop];
+        
+        if(efectPlayer == nil) {
+            efectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"page-flip-1" ofType:@"wav"]] error:NULL];
+        }
+        [efectPlayer play];
+        
+        NSDictionary *zoomInFrame = [thisDic objectForKey:@"zoomInFrame"];
+        
+        
+        CGRect ori = [contentsView frame];
+        CGRect wannabe = CGRectMake
+        ([[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"x"] intValue]] floatValue],
+         [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"y"] intValue]] floatValue],
+         [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"width"] intValue]] floatValue],
+         [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"height"] intValue]] floatValue]);
+        
+        double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 1;
+        double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 1;
+        
+        double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+        
+        CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);
+        [zoomInLayer setTransform:CGAffineTransformTranslate(temp, 512 - wannabe.origin.x - wannabe.size.width/2, 768/2 - wannabe.origin.y - wannabe.size.height/2)];
+        
+        [UIView beginAnimations:@"page" context:NULL];
+        {
+            [UIView setAnimationDuration:1.2];
+            [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsView cache:YES];
+            [UIView setAnimationBeginsFromCurrentState:NO];
+            [UIView setAnimationDelegate:self];
+            [UIView setAnimationDidStopSelector:@selector(pageAnimationDidStop:finished:)];
+        }
+        [UIView commitAnimations];
+    }
+    
+    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
+}
+
+#pragma mark - Animations, animation delegator
+- (void)pageAnimationDidStop:(NSString *)anim finished:(NSNumber* )finished{
+    if([finished isEqual:@YES] && [anim isEqualToString:@"page"]) {
+        [self pageAnimation];
+        [self doAudioPlay];
+    }
+}
+
+- (void)pageAnimation{
+    [right setImage:[rightBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
+    [left setImage:[leftBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
+    [UIView animateWithDuration:1.5 animations:^{
+        [UIView setAnimationDelay:.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [zoomInLayer setTransform:CGAffineTransformIdentity];
+    }];
+}
+
+#pragma mark - UI Actions
 - (IBAction)doMenu {
     
     if( [menuBar isHidden] ){
@@ -206,212 +422,6 @@
     audioIndex = 0;
     [self pageAnimation];
     [self doAudioPlay];
-}
-- (IBAction)doAudioPlay {
-    [audioPlayer stop];
-    
-    if(audioPlayer == nil)
-        audioPlayer = [AVAudioPlayer alloc];
-
-    NSString *audioPath = [lang isEqualToString:@"eng"] ? [soundsList objectAtIndex:audioIndex] : [NSString stringWithFormat:@"%@_%@",[soundsList objectAtIndex:audioIndex],lang];
-    
-    NSLog(@"audio %d, %@ play", audioIndex, audioPath);
-    
-    [[audioPlayer initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:audioPath ofType:@"wav"]] error:NULL] setDelegate:self];
-    
-    
-    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
-    
-    
-    [bgmPlayer stop];
-    if(bgmPlayer == nil) {
-        bgmPlayer = [AVAudioPlayer alloc];
-    }
-    
-    if(bgmCounter == 0) {
-        [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm1" ofType:@"wav"]] error:NULL] setDelegate:self];
-        [bgmPlayer play];
-        bgmCounter = 1;
-    } else {
-        if(![bgmPlayer.description hasPrefix:@"bgm2.wav"]) {
-            [bgmPlayer stop];
-            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:-1];
-            [bgmPlayer play];
-        }
-        
-        //NSString *htmlstring = [[NSString alloc] initWithFormat:@"<html><body bgcolor=\"#000000\"><font style=\"text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87\">%@</font></body></html>", [subsList objectAtIndex:audioIndex], nil];
-        
-        
-        /* setContentToHTMLString is private method.
-         * But we can use this method with some tricks.
-         * note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
-         */
-        NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-2px;font-family:\"KoPubBatangBold\";font-size:30px}";
-        NSString *html = [NSString stringWithFormat:@"<html><head><style>%@</style></head><body><pre>%@\n </pre></body></html>", css,[subsList objectAtIndex:audioIndex]];
-        @try {
-            SEL setContentToHTMLString = NSSelectorFromString([@[@"set", @"Content", @"To", @"HTML", @"String", @":"] componentsJoinedByString:@""]);
-            #pragma clang diagnostic push
-            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [subtitleView performSelector:setContentToHTMLString withObject:html];
-            #pragma clang diagnostic pop
-        }
-        @catch (NSException *exception) {
-            // html+css could not be applied to text view, so no kerning
-            [subtitleView setText:[subsList objectAtIndex:audioIndex]];
-        }
-        
-        CGSize size = subtitleView.contentSize;
-        size.height = subtitleView.contentSize.height + 100;
-        subtitleView.contentSize = size;
-        
-        CGRect rect          = subtitleView.frame;
-        rect.size.height     = subtitleView.contentSize.height;
-        subtitleView.frame   = rect;
-        
-        subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
-        [UIView animateWithDuration:0.40 animations:^{
-            
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-            subtitleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-        }completion:^(BOOL finished){
-            [UIView animateWithDuration:0.10 animations:^{
-                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                subtitleView.transform = CGAffineTransformIdentity;
-            }];
-        }];
-        
-        [audioPlayer play];
-    }
-    
-    
-}
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)avp successfully:(BOOL)flag {
-    //NSLog(@"%@",avp.url);
-    if(flag && avp == audioPlayer) {
-        if( ++audioIndex >= soundsList.count) {
-            audioIndex = 0;
-            bgmCounter = 0;
-            [right setImage:[rightBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
-            [left setImage:[leftBImage imageByApplyingAlpha:1] forState:UIControlStateNormal];
-            [bgmPlayer stop];
-            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm3" ofType:@"wav"]] error:NULL] play];
-        } else {
-            [self doAudioPlay];
-        }
-    } else if(avp == bgmPlayer && bgmCounter == 1){
-        [self doAudioPlay];
-    }
-}
-- (void)pageAnimationDidStop:(NSString *)anim finished:(NSNumber* )finished{
-    if([finished isEqual:@YES] && [anim isEqualToString:@"page"]) {
-        [self pageAnimation];
-        [self doAudioPlay];
-    }
-}
-
-- (void)pageAnimation{
-    [right setImage:[rightBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
-    [left setImage:[leftBImage imageByApplyingAlpha:0.5] forState:UIControlStateNormal];
-    [UIView animateWithDuration:1.5 animations:^{
-        [UIView setAnimationDelay:.5];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [zoomInLayer setTransform:CGAffineTransformIdentity];
-    }];
-}
-
-- (void)playBookWithIndex:(int)index{
-    
-    Boolean animationStart = NO;
-    Boolean isLeft = NO;
-    
-    index < 0 ? index = 0 : index >= maxViewIndex ? index = maxViewIndex - 1 : index;
-    
-    (index == 0) ? [left setHidden:YES] : [left setHidden:NO];
-    (index == maxViewIndex -1) ? [right setHidden:YES] : [right setHidden:NO];
-    
-    if(index != currentViewIndex) {
-        animationStart = YES;
-        index < currentViewIndex ? isLeft = YES : isLeft = NO;
-    }
-    
-    //NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
-    
-    NSDictionary *thisDic = [contentsList objectAtIndex:index];
-    
-    [contentsImageView setImage:[UIImage imageNamed:[thisDic objectForKey:@"backImage"]]];
-    [contentsImageView setFrame:CGRectMake(-[[thisDic objectForKey:@"xPos"] floatValue], 0, 1200, 768)];
-    [zoomInLayer.layer removeAllAnimations];
-    
-    NSLog(@"%f",contentsView.frame.origin.x);
-    NSLog(@"%f",contentsImageView.frame.origin.x);
-    currentViewIndex = index;
-
-    NSDictionary *mosaicDic = [thisDic objectForKey:@"mosaic"];
-    [mosaicImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[mosaicDic objectForKey:@"prefix"],@"_ch.png"]]];
-    
-    NSDictionary *mosaicFrame = [mosaicDic objectForKey:@"frame"];
-    
-    [mosaicImageView setFrame:CGRectMake
-     ([[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"x"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"y"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"width"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[mosaicFrame objectForKey:@"height"] intValue]] floatValue])];
-    
-
-    subsList = [thisDic objectForKey:[NSString stringWithFormat:@"subs_%@",lang]];
-    soundsList = [thisDic objectForKey:@"sounds"];
-    audioIndex = 0;
-   
-    NSDictionary *subtitleFrame = [thisDic objectForKey:@"subtitleFrame"];
-    
-    [subtitleView setFrame:CGRectMake
-     ([[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"x"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"y"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"width"] intValue]] floatValue],
-      [[NSNumber numberWithInt:[[subtitleFrame objectForKey:@"height"] intValue]] floatValue])];
-    
-    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
-    
-    if(animationStart) {
-        [subtitleView setText:@""];
-        [audioPlayer stop];
-        
-        if(efectPlayer == nil) {
-            efectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"page-flip-1" ofType:@"wav"]] error:NULL];
-        }
-        [efectPlayer play];
-        
-        NSDictionary *zoomInFrame = [thisDic objectForKey:@"zoomInFrame"];
-            
-        
-        CGRect ori = [contentsView frame];
-        CGRect wannabe = CGRectMake
-        ([[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"x"] intValue]] floatValue],
-            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"y"] intValue]] floatValue],
-            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"width"] intValue]] floatValue],
-            [[NSNumber numberWithInt:[[zoomInFrame objectForKey:@"height"] intValue]] floatValue]);
-            
-        double widthRatio = wannabe.size.width != 0 ? ori.size.width /wannabe.size.width  : 1;
-        double heightRatio= wannabe.size.height!= 0 ? ori.size.height/wannabe.size.height : 1;
-            
-        double ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
-        
-        CGAffineTransform temp = CGAffineTransformMakeScale(ratio, ratio);
-        [zoomInLayer setTransform:CGAffineTransformTranslate(temp, 512 - wannabe.origin.x - wannabe.size.width/2, 768/2 - wannabe.origin.y - wannabe.size.height/2)];
-        
-        [UIView beginAnimations:@"page" context:NULL];
-        {
-            [UIView setAnimationDuration:1.2];
-            [UIView setAnimationTransition:(isLeft ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:contentsView cache:YES];
-            [UIView setAnimationBeginsFromCurrentState:NO];
-            [UIView setAnimationDelegate:self];
-            [UIView setAnimationDidStopSelector:@selector(pageAnimationDidStop:finished:)];
-        }
-        [UIView commitAnimations];
-    }
-    
-    //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
 }
 
 - (IBAction)doMosaic{

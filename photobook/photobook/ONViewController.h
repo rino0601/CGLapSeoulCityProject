@@ -13,4 +13,7 @@
     AVAudioPlayer* startAudio;
 }
 
+- (IBAction)doStartButton:(id)sender;
+- (IBAction)home:(UIStoryboardSegue *)segue;
+
 @end

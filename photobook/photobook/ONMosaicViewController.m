@@ -15,6 +15,11 @@
 
 @implementation ONMosaicViewController
 @synthesize paperMosaicCanvas;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+ //   [image_signature setImage:[self resizeImage:image_signature.image]];
+    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -9,12 +9,22 @@
 #import "ONViewController.h"
 #import "ONAppDelegate.h"
 
-@interface ONViewController ()
-- (IBAction)doStartButton:(id)sender;
-- (IBAction)home:(UIStoryboardSegue *)segue;
-@end
 
 @implementation ONViewController
+
+#pragma mark - For IOS 5.1< landscape.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+
+#pragma mark - For IOS 6.0> landscape.
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
 
 - (void)viewDidLoad
 {
