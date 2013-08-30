@@ -7,10 +7,22 @@
 //
 
 #import "ONContentsViewController.h"
-#import "ONSnapshotCollectionViewCell.h"
-#import "ONMosaicViewController.h"
-#import "ONAppDelegate.h"
-#import "UIImage+SetAlpha.h"
+
+
+@interface ONContentsViewController() 
+- (IBAction)doMenu;
+- (IBAction)doPrev;
+- (IBAction)doNext;
+- (IBAction)doMosaic;
+- (IBAction)doPageSelection;
+- (IBAction)doAudioPlay;
+- (IBAction)doVideoPlay:(id)sender;
+- (IBAction)doReplay:(id)sender;
+- (IBAction)doChangeLang;
+- (IBAction)onContents:(UIStoryboardSegue *)segue;
+- (IBAction)playButtonClickedEffectSound:(id)sender;
+- (void)playBookWithIndex:(int)index;
+@end
 
 @implementation ONContentsViewController
 
@@ -27,19 +39,6 @@
 @synthesize languageButton;
 @synthesize zoomInLayer;
 
-#pragma mark - For IOS 5.1< landscape.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
-}
-
-
-#pragma mark - For IOS 6.0> landscape.
--(BOOL)shouldAutorotate {
-    return YES;
-}
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscapeLeft;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,7 +55,7 @@
     bgmCounter = 0;
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSString *settingPath = [path stringByAppendingPathComponent:@"settings.plist"];
+    NSString *settingPath = [path stringByAppendingPathComponent:@"contents.plist"];
     NSDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:settingPath];
     contentsList = [contentsPlist objectForKey:@"contentsList"];
     currentViewIndex = -1;
@@ -69,7 +68,7 @@
     appDelegate.lang == nil ? lang = [contentsPlist objectForKey:@"language"] : lang = appDelegate.lang;
     
     audioIndex = 0;
-    
+    code = 101;
     NSString *temp = [[NSBundle mainBundle] pathForResource:lang ofType:@"png"];
     NSLog(@"%@",temp);
     
@@ -90,7 +89,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+/*
+#pragma mark - For IOS 5.1< landscape. - It will not called at this code version.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
 
+
+#pragma mark - For IOS 6.0> landscape.
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+*/
 #pragma mark - Languege Setting
 - (void)setLanguege:(NSString* )lng{
     ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
@@ -147,7 +160,7 @@
     //NSLog(@"x %f, y %f, width %f, height %f", subtitleView.frame.origin.x, subtitleView.frame.origin.y, subtitleView.frame.size.width, subtitleView.frame.size.height);
     
     
-    [bgmPlayer stop];
+    //[bgmPlayer stop];
     if(bgmPlayer == nil) {
         bgmPlayer = [AVAudioPlayer alloc];
     }
@@ -157,9 +170,10 @@
         [bgmPlayer play];
         bgmCounter = 1;
     } else {
-        if(![bgmPlayer.description hasPrefix:@"bgm2.wav"]) {
+        NSLog(@"%@",[bgmPlayer.url description]);
+        if(![[bgmPlayer.url description] hasSuffix:@"bgm2.wav"]) {
             [bgmPlayer stop];
-            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:-1];
+            [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:1000];
             [bgmPlayer play];
         }
         
@@ -170,7 +184,7 @@
          * But we can use this method with some tricks.
          * note: http://stackoverflow.com/questions/13239267/kerning-in-ios-uitextview
          */
-        NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-2px;font-family:\"KoPubBatangBold\";font-size:30px}";
+        NSString *css = @"*{text-rendering: optimizeLegibility;text-shadow: 0 0 0.2em #FFF, 0 0 0.2em #FFF;letter-spacing:-1.5px;font-family:\"KoPubBatangBold\";font-size:30px}";
         NSString *html = [NSString stringWithFormat:@"<html><head><style>%@</style></head><body><pre>%@\n </pre></body></html>", css,[subsList objectAtIndex:audioIndex]];
         @try {
             SEL setContentToHTMLString = NSSelectorFromString([@[@"set", @"Content", @"To", @"HTML", @"String", @":"] componentsJoinedByString:@""]);
@@ -428,48 +442,63 @@
     [audioPlayer pause];
     [bgmPlayer pause];
     [self setMenuBarHidden];
-    
     NSString *prefix = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"prefix"];
 	/**************리소스 이미지 결정하는 코드입니다. 한줄이라도 빠지면 안되요.**************/
 	ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate setMosaicSource:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_source_img.bmp"]]];
 	[appDelegate setMosaicMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_mask_img.bmp"]]];
 	[appDelegate setMosaicEdge:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]]];
-	[appDelegate setStartSectionCode:109];
-	/*************************************************************************/
+	[appDelegate setStartSectionCode:105];
+	/*ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate setMosaicSource:[UIImage imageNamed:@"p99_source_img.bmp"]];
+	[appDelegate setMosaicMask:[UIImage imageNamed:@"p99_mask_img.bmp"]];
+	[appDelegate setMosaicEdge:[UIImage imageNamed:@"p99_edge_img.bmp"]];
+	[appDelegate setStartSectionCode:105];
+	*/
+     /*************************************************************************/
 	
     [self performSegueWithIdentifier:@"doMosaic" sender:self];
+}
+
+- (IBAction)doVideoPlay:(id)sender {
+    [audioPlayer stop];
+    [bgmPlayer stop];
+    [self setMenuBarHidden];
+    ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate setPlayIndex:currentViewIndex];
+    [self performSegueWithIdentifier:@"video" sender:self];
 }
 
 - (IBAction)doPageSelection {
     [pageView setHidden:!([pageView isHidden])];
 }
 
+#pragma mark - Unwind segue for back to contents view
 - (IBAction)onContents:(UIStoryboardSegue *)segue {
     if([[[[segue sourceViewController] class] description] isEqual: @"ONMosaicViewController"]){
         ONMosaicViewController* t = [segue sourceViewController];
         //[mosaicImageView setImage:[UIImage imageNamed:@"mask_img.bmp"]];
-        CGFloat maskColor[6] = {255,255,255,255,255,255};
- 
+        CGFloat maskColor[6] = {253,255,253,255,253,255};
+        CGFloat maskColor2[6] = {200,255,200,255,200,255};
+        
         NSString *prefix = [[[contentsList objectAtIndex:currentViewIndex] objectForKey:@"mosaic"] objectForKey:@"prefix"];
         
         UIImage* temp = [UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)];
         
-        //[mosaicImageView setImage:[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[t resultImage] CGImage], maskColor)]];
-        
-        //[UIImacge imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]];
-        
+        // 모자이크 된 이미지의 외각선 살리기.
         UIGraphicsBeginImageContext(mosaicImageView.frame.size);
-        
         [temp drawInRect:CGRectMake(0, 0, mosaicImageView.frame.size.width, mosaicImageView.frame.size.height)];
-        
-        [[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]] CGImage], maskColor)] drawInRect:CGRectMake(0, 0, mosaicImageView.frame.size.width, mosaicImageView.frame.size.height)];
-        
+        [[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",prefix,@"_edge_img.bmp"]] CGImage], maskColor2)] drawInRect:CGRectMake(0, 0, mosaicImageView.frame.size.width, mosaicImageView.frame.size.height)];
         UIImage *combinedImage = UIGraphicsGetImageFromCurrentImageContext();
-        
         [mosaicImageView setImage:combinedImage];
-        
         UIGraphicsEndImageContext();
+        
+        
+        [bgmPlayer play];
+        [audioPlayer play];
+    }
+    if([[[[segue sourceViewController] class] description] isEqual: @"ONVideoViewController"]){
+        //ONVideoViewController* t = [segue sourceViewController];
         
         [bgmPlayer play];
         [audioPlayer play];

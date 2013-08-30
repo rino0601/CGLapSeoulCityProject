@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "../PaperMosaic/PaperMosaicCanvas.h"
 
-@interface ONMosaicViewController : UIViewController
+@interface ONMosaicViewController : UIViewController {
+    BOOL isAuto;
+}
 
 @property(retain, nonatomic) IBOutlet PaperMosaicCanvas *paperMosaicCanvas;
+@property(retain, nonatomic) IBOutlet UIButton *autoMosaicButton;
 
 - (IBAction)doAsAutoMode:(UIButton *)sender;
 - (IBAction)colorChangeFrom:(UIButton *)sender;

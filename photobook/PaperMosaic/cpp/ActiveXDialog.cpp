@@ -131,8 +131,11 @@ void ActiveXDialog::SetImage(IplImage *pImage1, IplImage *pImage2, IplImage *pIm
 	m_pColordPaper = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 4);
 	
 	m_fside =  sqrt((float)(w*h)/ 81);																//타일 지름
-	icpm.m_oCPM.m_nTileRadius =  (int)((sqrt((m_fside*m_fside) + (m_fside*m_fside)) / 2)+ 0.5) ;	//타일 반지름
+	//icpm.m_oCPM.m_nTileRadius =  (int)((sqrt((m_fside*m_fside) + (m_fside*m_fside)) / 2)+ 0.5) ;	//타일 반지름
+    // 위에 지름이 있는데 반지름 구하는 방법보소...
 
+    icpm.m_oCPM.m_nTileRadius = m_fside / 2;
+    
 	//모자이크 영역 랜더링을 위한 IplImage(m_pMosaic)생성
 	m_stMosaic.GetClientRect(&rect);
 	w = (int)CGRectGetWidth(rect);

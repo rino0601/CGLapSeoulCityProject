@@ -100,8 +100,8 @@ void ColoredPaper::InitPaper(int ntile)
 	
 	//타일 반지름
  	side = sqrt((float)(ntile));	
-	int delta_h =  (h / side) / 2;
-	int delta_w =  (w / side) / 2;
+	int delta_h =  (h / side) / 2 +0.5f;
+	int delta_w =  (w / side) / 2 ;
 	
  	int k = 0;
 

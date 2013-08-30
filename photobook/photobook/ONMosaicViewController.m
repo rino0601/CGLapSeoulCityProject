@@ -8,6 +8,7 @@
 
 #import "ONMosaicViewController.h"
 #import "UIImageCVArrConverter.h"
+#import "ONAppDelegate.h"
 
 @interface ONMosaicViewController ()
 
@@ -15,10 +16,7 @@
 
 @implementation ONMosaicViewController
 @synthesize paperMosaicCanvas;
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
- //   [image_signature setImage:[self resizeImage:image_signature.image]];
-    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft);
-}
+@synthesize autoMosaicButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    isAuto = NO;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -43,6 +43,13 @@
 
 - (IBAction)doAsAutoMode:(UIButton *)sender {
 	[paperMosaicCanvas doAsAutoMode];
+    isAuto = !isAuto;
+    [autoMosaicButton setImage:[UIImage imageNamed:isAuto?@"mosaic_pause.png":@"mosaic_auto.png"] forState:UIControlStateNormal];
+    //ONAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    //int ts = [appDelegate startSectionCode];
+    /*NSLog(@"%d",++ts);
+	[appDelegate setStartSectionCode:ts];
+	*/
 	//[paperMosaicCanvas saveResult];
 }
 

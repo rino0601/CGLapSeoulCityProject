@@ -540,16 +540,18 @@ void ColoredPaperMosaic::preSetting(float edgeProtection)
 void ColoredPaperMosaic::setOdering()
 {
 	// 타일 생성 후보맵 생성
-	m_pBestPosition = cvCreateImage(cvGetSize(m_pDlg->m_pMosaic), IPL_DEPTH_32F, 1); 
+	m_pBestPosition = cvCreateImage(cvGetSize(m_pDlg->m_pMosaic), IPL_DEPTH_32F,1);
 	cvSet(m_pBestPosition,cvScalar(0.0));
 
 	
 	tilePosition.x = tilePosition.y = 0;
 
 	// 후보점 탐색
-	setBestPosition(tileMap, overlapMap, positionMap, true, tilePosition.x, tilePosition.y); 
-	setBestPosition(tileMap, overlapMap, positionMap, false, tilePosition.x, tilePosition.y); 
-	
+    
+    setBestPosition(tileMap, overlapMap, positionMap, true, tilePosition.x, tilePosition.y);
+    NSLog(@"Edge true finished");
+	setBestPosition(tileMap, overlapMap, positionMap, false, tilePosition.x, tilePosition.y);
+	NSLog(@"Edge false finished");
 	// EdgeDistanceMap 생성
 	setEdgeDistanceMap();
 
@@ -565,41 +567,56 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 	int width = m_pRegion->width;
 	int height = m_pRegion->height;
 
-	int i,j; 
+	//int i,j;
 	int max_x, max_y, max_val;
 	int wstart, wend, hstart, hend;
 	// 영역별 베스트 포지션 탐색
 	for(int m = 0; m < height;  m = m + (m_pDlg->m_fside)/4 +0.5 )
 	for(int n = 0; n < width;   n = n + (m_pDlg->m_fside)/4 +0.5 )
 	{
-		for(y = m; y < m + (m_pDlg->m_fside)/4 +0.5; y++)
-		for(x = n; x < n + (m_pDlg->m_fside)/4 +0.5; x++)
+		for(y = m; y < m + (m_pDlg->m_fside)/4 + 0.5; y++)
+		for(x = n; x < n + (m_pDlg->m_fside)/4 + 0.5; x++)
 		{
-
+            // 아래에 있던 boundery 계산을 배열이 터지는 관계로 위로 가져옴. + 수식을 보기 좋게 수정함.
+			if(x - border < 0 || y - border < 0 || x + border >= width || y + border >= height)
+				continue;
+            
 			int p = y*m_pRegion->widthStep+x;
 
 			if((Byte)m_pBestPosition->imageData[p] != 0)
 				continue;
-            /*if(tileMap->width < x || tileMap->height < y) // 터지지 마라 ㅡㅡ
-                continue;*/
 			if((Byte)tileMap->imageData[p] == TILE)
 				continue;
 			if((Byte)overlapMap->imageData[p] == OVERLAP)
 				continue;
-			if(isEdge){
-                /*if(m_pRegion->height < y || m_pRegion->width < x) // 너도.
-                    continue;*/
+			//if((Byte)m_pRegion->imageData[p] == NON_LAYER || (Byte)m_pRegion->imageData[p] == EDGE_PRESERVING)
+            //    continue;
+            if(isEdge){
 				if((Byte)m_pRegion->imageData[p] != PREMIUM)
 					continue;
 			}else{
 				if((Byte)m_pRegion->imageData[p] == NON_LAYER || (Byte)m_pRegion->imageData[p] == EDGE_PRESERVING)
 					continue;			
-			}		
+			}
+            
 
+            // 아래에 쓰는 i, j 와 위에 이미 선언된 x, y의 의미가 동일해 보여 통일함.
+            
+            
+			wstart = max(border, x-m_nTileRadius/2);
+			wend = min(width-border, x+m_nTileRadius/2);
+            
+			hstart = max(border, y-m_nTileRadius/2);
+			hend = min(height-border, y+m_nTileRadius/2);
+            
+			ret.x = max_x = x;
+			ret.y = max_y = y;
+			max_val = (Byte)positionMap->imageData[y*positionMap->widthStep + x];
+            /*
 			i = p % m_pRegion->widthStep;
 			j = p / m_pRegion->widthStep;
 
-			if(i < border || j < border || i >= width-border || j >= height-border)
+			if(i - border < 0 || j - border < 0 || i + border >= width || j + border >= height)
 				continue;
 
 			wstart = max(border, i-m_nTileRadius/2);
@@ -611,7 +628,7 @@ void ColoredPaperMosaic::setBestPosition(IplImage* tileMap, IplImage* overlapMap
 			ret.x = max_x = i;
 			ret.y = max_y = j;
 			max_val = (Byte)positionMap->imageData[j*positionMap->widthStep + i];
-
+             */
 			for(int k = wstart; k < wend; k++)
 			{
 				for(int l = hstart; l < hend; l++)
@@ -990,8 +1007,7 @@ bool ColoredPaperMosaic::Odering()
 			for(int i =0; i < width; i++) {
 				int n = j*m_pRegion->widthStep+i;
 
-				// 요기입니다. 위에 보이는 2중 for문으로 한 픽셀씩 돌면서 시작위치 찾아 가는 거 인듯요.
-				if((Byte)LayerMask->imageData[n] != this->m_pDlg->getStartSectionCode())
+				if(ABS((Byte)LayerMask->imageData[n] - 100) < 50)
 					continue;
 				
 				if((Byte)tileMap->imageData[n] == TILE) // 타일이 있을 때 제외
@@ -1043,6 +1059,7 @@ bool ColoredPaperMosaic::Odering()
 
 				if((Byte)tileMap->imageData[n] == TILE)  // 타일이 위치한 경우 제외
 					continue;
+                
 				if((Byte)overlapMap->imageData[n] == OVERLAP) // 오버랩 되는 위치일 경우 제외
 					continue;
 

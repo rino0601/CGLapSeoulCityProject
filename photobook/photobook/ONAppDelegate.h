@@ -14,5 +14,6 @@
 @property UIImage *mosaicSource, *mosaicEdge, *mosaicMask;
 @property NSUInteger startSectionCode;
 @property NSString *lang;
+@property NSInteger playIndex;
 
 @end

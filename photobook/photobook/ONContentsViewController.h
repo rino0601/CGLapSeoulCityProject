@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ONTextView.h"
+#import "ONSnapshotCollectionViewCell.h"
+#import "ONMosaicViewController.h"
+#import "ONVideoViewController.h"
+#import "ONAppDelegate.h"
+#import "UIImage+SetAlpha.h"
 
 @interface ONContentsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, AVAudioPlayerDelegate> {
     
@@ -20,7 +25,7 @@
     
     int currentViewIndex;
     int maxViewIndex;
-    
+    int code;
     int bgmCounter;
     
     NSArray *contentsList;
@@ -35,18 +40,6 @@
     UIImage* leftBImage;
     
 }
-
-- (IBAction)doMenu;
-- (IBAction)doPrev;
-- (IBAction)doNext;
-- (IBAction)doMosaic;
-- (IBAction)doPageSelection;
-- (IBAction)doAudioPlay;
-- (IBAction)doReplay:(id)sender;
-- (IBAction)doChangeLang;
-- (IBAction)onContents:(UIStoryboardSegue *)segue;
-- (IBAction)playButtonClickedEffectSound:(id)sender;
-- (void)playBookWithIndex:(int)index;
 
 @property (nonatomic, retain) IBOutlet UIView*           contentsView;
 @property (nonatomic, retain) IBOutlet UIView*           zoomInLayer;

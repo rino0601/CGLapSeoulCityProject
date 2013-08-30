@@ -20,6 +20,7 @@
     CGContextSetRGBStrokeColor( contextRef, 1, 0, 0, 1 );
     CGImageRef cgImage = CGBitmapContextCreateImage( contextRef );
     UIImage* result = [UIImage imageWithCGImage:cgImage];
+    
     CGImageRelease( cgImage );
     CGContextRelease( contextRef );
     CGColorSpaceRelease( colorSpace );
@@ -285,7 +286,6 @@
     CGImageRelease(imageRef);
     CGDataProviderRelease(provider);
     CGColorSpaceRelease(colorSpace);
-    
     return finalImage;
 }
 

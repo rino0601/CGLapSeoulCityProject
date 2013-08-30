@@ -15,14 +15,17 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	ADelegate = new ActiveXDialog();
-	CUIImageView paper(Paper),canvas(Mosaic);
-	ONAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	ADelegate->init(self,paper,canvas,
-					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicEdge],
-					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicSource],
-					[UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicMask],
-					appDelegate.startSectionCode);
+    
+    if(ADelegate == nil){
+        CUIImageView paper(Paper),canvas(Mosaic);
+        ADelegate = new ActiveXDialog();
+        ONAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        ADelegate->init(self,paper,canvas,
+                        [UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicEdge],
+                        [UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicSource],
+                        [UIImageCVArrConverter CreateIplImageFromUIImage:appDelegate.mosaicMask],
+                        appDelegate.startSectionCode);
+    }
 	[self setMultipleTouchEnabled:YES];
 }
 
@@ -47,7 +50,8 @@
 	ADelegate->OnMouseMove(MPoint(touchPos.x, touchPos.y));
 }
 - (void)drawRect:(CGRect)rect {
-	//더블 버퍼링을 위한 Graphic Context 할당
+    
+//더블 버퍼링을 위한 Graphic Context 할당
 	CGColorSpaceRef cs=CGColorSpaceCreateDeviceRGB();
 	ctx = CGBitmapContextCreate(NULL,
 								(int)[self bounds].size.width,
@@ -57,18 +61,28 @@
 								cs,
 								kCGImageAlphaPremultipliedLast);
 	CGColorSpaceRelease(cs);
-	
+
+	//CGFloat maskColor[6] = {200,255,200,255,200,255};
+    
+    /*[[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pEdge] drawInRect:Mosaic.frame];       // 밑그림(에지) 그리기.
+	[[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic] drawInRect:Mosaic.frame];     // 색종이 조각 그리기.
+	[[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pColordPaper] drawInRect:Paper.frame]; // 색종이 영역 그리기.
+    [[UIImage imageWithCGImage:CGImageCreateWithMaskingColors([[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pEdge] CGImage], maskColor)] drawInRect:Mosaic.frame];
+    */
 	// 모자이크 영역에 밑그림(에지) && 색종이 조각 그리기
-	CGContextTranslateCTM(ctx, 0, Mosaic.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
+	CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextTranslateCTM(ctx, 0, -(768 - Mosaic.frame.origin.y));
+    //NSLog(@"%f",Mosaic.frame.origin.y);
 	CGContextDrawImage(ctx, Mosaic.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pEdge] CGImage]); 	//밑그림(에지)
-	/* 웃긴게, 엣지를 버려도 엣지가 그려진다?! 게다가 그릴때 깜빡이는것도 사라짐. 허헣ㅎ허허*/
+    /* 웃긴게, 엣지를 버려도 엣지가 그려진다?! 게다가 그릴때 깜빡이는것도 사라짐. 허헣ㅎ허허*/
 	CGContextDrawImage(ctx, Mosaic.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pMosaic] CGImage]); 	//색종이 조각 그리기
-	CGContextTranslateCTM(ctx, 0, Mosaic.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextTranslateCTM(ctx, 0, 768 - Mosaic.frame.origin.y);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
 	
 	// 색종이 영역 그리기
-	CGContextTranslateCTM(ctx, 0, Paper.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
-	CGContextDrawImage(ctx, Paper.frame, [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pColordPaper] CGImage]);
-	CGContextTranslateCTM(ctx, 0, Paper.bounds.size.height); CGContextScaleCTM(ctx, 1.0, -1.0);
+	CGContextTranslateCTM(ctx, 0, Paper.frame.size.height + Paper.frame.origin.y); CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextDrawImage(ctx, CGRectMake(Paper.frame.origin.x, 0, Paper.frame.size.width, Paper.frame.size.height), [[UIImageCVArrConverter UIImageFromIplImage:ADelegate->m_pColordPaper] CGImage]);
+	CGContextTranslateCTM(ctx, 0, Paper.frame.size.height + Paper.frame.origin.y); CGContextScaleCTM(ctx, 1.0, -1.0);
 	
 	if(ADelegate->m_bAutoTileMove || ADelegate->m_bAutoGeneration) { // 자동 붙이기시 타일 이동 (색종이 영역 -> 모자이크 영역)
 		if(ADelegate->icpm.m_oCPM.m_optile) {

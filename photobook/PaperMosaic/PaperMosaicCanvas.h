@@ -25,6 +25,7 @@
 - (void)saveResult;
 - (UIImage*)resultImage;
 
+
 @end
 
 class CPaperMosaicCanvas {
