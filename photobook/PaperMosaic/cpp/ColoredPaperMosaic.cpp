@@ -1007,7 +1007,7 @@ bool ColoredPaperMosaic::Odering()
 			for(int i =0; i < width; i++) {
 				int n = j*m_pRegion->widthStep+i;
 
-				if(ABS((Byte)LayerMask->imageData[n] - 100) < 50)
+				if(ABS((Byte)LayerMask->imageData[n] - 150) < 50)
 					continue;
 				
 				if((Byte)tileMap->imageData[n] == TILE) // 타일이 있을 때 제외

@@ -171,10 +171,11 @@
         bgmCounter = 1;
     } else {
         NSLog(@"%@",[bgmPlayer.url description]);
-        if(![[bgmPlayer.url description] hasSuffix:@"bgm2.wav"]) {
+        if(bgmCounter == 1) {
             [bgmPlayer stop];
             [[bgmPlayer initWithContentsOfURL:[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"bgm2" ofType:@"wav"]] error:NULL] setNumberOfLoops:1000];
             [bgmPlayer play];
+            bgmCounter = 2;
         }
         
         //NSString *htmlstring = [[NSString alloc] initWithFormat:@"<html><body bgcolor=\"#000000\"><font style=\"text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87\">%@</font></body></html>", [subsList objectAtIndex:audioIndex], nil];
@@ -238,7 +239,7 @@
         } else {
             [self doAudioPlay];
         }
-    } else if(avp == bgmPlayer && bgmCounter == 1){
+    } else if(avp == bgmPlayer && (bgmCounter == 1 || bgmCounter == 2)){
         [self doAudioPlay];
     }
 }
@@ -254,10 +255,10 @@
     (index == 0) ? [left setHidden:YES] : [left setHidden:NO];
     (index == maxViewIndex -1) ? [right setHidden:YES] : [right setHidden:NO];
     
-    if(index != currentViewIndex) {
+    //if(index != currentViewIndex) {
         animationStart = YES;
         index < currentViewIndex ? isLeft = YES : isLeft = NO;
-    }
+    //}
     
     //NSLog(@"Load %@ file",[contentsList objectAtIndex:index]);
     
@@ -542,6 +543,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self doAudioPlay];
     [self playBookWithIndex:indexPath.row];
     [self setMenuBarHidden];
 }

@@ -258,7 +258,7 @@ void ActiveXDialog::AutoTileMove() {
    	m_bAutoTileMove = true;
    	AutoMovePoint.clear();
 	
-   	for(int i = Length; i > 0 ; i-- )
+   	for(int i = Length; i > 0 ; i-=3 )
    	{
    		p.x = tilePosition.x + i * ( COS( ANGLE( angle)));
    		p.y = tilePosition.y + i * ( SIN( ANGLE( angle)));

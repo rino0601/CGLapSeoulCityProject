@@ -19,7 +19,7 @@
     
     NSString *path = [[NSBundle mainBundle] bundlePath];
     
-    NSString *finalPath = [path stringByAppendingPathComponent:@"settings.plist"];
+    NSString *finalPath = [path stringByAppendingPathComponent:@"contents.plist"];
     
     NSMutableDictionary *contentsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:finalPath];
     

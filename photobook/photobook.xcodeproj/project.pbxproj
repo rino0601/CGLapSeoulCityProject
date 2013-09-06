@@ -152,6 +152,7 @@
 		1C5E98C517CDA1B600672B79 /* subtitle_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C5E98BE17CDA1B600672B79 /* subtitle_off.png */; };
 		1C5E98C617CDA1B600672B79 /* subtitle_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C5E98BF17CDA1B600672B79 /* subtitle_on.png */; };
 		1C5E98C817CDAFAC00672B79 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5E98C717CDAFAB00672B79 /* CoreMedia.framework */; };
+		1C5E98CA17D72AEC00672B79 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C5E98C917D72AEB00672B79 /* icon-72.png */; };
 		1C89EF4917B9381000DB9450 /* p01_ch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF1917B9381000DB9450 /* p01_ch.png */; };
 		1C89EF4A17B9381000DB9450 /* p01_edge_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF1A17B9381000DB9450 /* p01_edge_img.bmp */; };
 		1C89EF4B17B9381000DB9450 /* p01_mask_img.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C89EF1B17B9381000DB9450 /* p01_mask_img.bmp */; };
@@ -490,6 +491,7 @@
 		1C5E98BE17CDA1B600672B79 /* subtitle_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subtitle_off.png; sourceTree = "<group>"; };
 		1C5E98BF17CDA1B600672B79 /* subtitle_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subtitle_on.png; sourceTree = "<group>"; };
 		1C5E98C717CDAFAB00672B79 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1C5E98C917D72AEB00672B79 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		1C89EF1917B9381000DB9450 /* p01_ch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p01_ch.png; sourceTree = "<group>"; };
 		1C89EF1A17B9381000DB9450 /* p01_edge_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = p01_edge_img.bmp; sourceTree = "<group>"; };
 		1C89EF1B17B9381000DB9450 /* p01_mask_img.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = p01_mask_img.bmp; sourceTree = "<group>"; };
@@ -983,6 +985,7 @@
 		1C8AE0FD1793D63300174072 = {
 			isa = PBXGroup;
 			children = (
+				1C5E98C917D72AEB00672B79 /* icon-72.png */,
 				1CEE484817955028009D0105 /* PaperMosaic */,
 				1C8AE3811794449900174072 /* Resources */,
 				1C8AE10F1793D63300174072 /* Photobook */,
@@ -1658,6 +1661,7 @@
 				1C5E98C417CDA1B600672B79 /* play.png in Resources */,
 				1C5E98C517CDA1B600672B79 /* subtitle_off.png in Resources */,
 				1C5E98C617CDA1B600672B79 /* subtitle_on.png in Resources */,
+				1C5E98CA17D72AEC00672B79 /* icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1848,7 +1852,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -1870,7 +1874,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "photobook/photobook-Prefix.pch";
 				INFOPLIST_FILE = "photobook/photobook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
